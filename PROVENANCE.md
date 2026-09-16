@@ -36,3 +36,18 @@ claim is made by this initial provenance commit.
 
 The owner is Pavlo's personal account per his explicit correction; this is not
 an implementation branch in a pre-existing foundation repository.
+
+## Local implementation status after the root commit
+
+New on `feat/robinhood-stock-token-relation-v0`: independently implemented Robinhood
+relation/schema; exact integer/rational recomputation; 26 synthetic vectors;
+deterministic receipts; seven source mutation proofs; implementation-neutral guard
+result schema and example; deployment evidence checklist; local JSON two-path demo;
+minimal Foundry directory/config scaffolding and source/provenance records.
+
+Pending: Fede's contract/guard integration, Tiago's live evidence adapter and
+Robinhood Chain testnet deployment, actual revert/execute transactions, frontend/UX
+and later independent RSI verification. These are not claimed as implemented.
+No runtime source was copied or adapted from pre-existing repositories. Semantic
+ABI concepts, RSI methodology, existing schema/linker/research and ETHOnline work
+remain pre-existing foundations explicitly disclosed above and in BASELINES.md.

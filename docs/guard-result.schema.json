@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pipavlo82/semantic-execution-guard/docs/guard-result.schema.json",
+  "title": "Semantic result handoff v0 - unauthenticated, not execution authority",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "relation_profile_id",
+    "asset_id",
+    "chain_id",
+    "contract_address",
+    "claim_type",
+    "currency",
+    "price_side",
+    "value",
+    "decimals",
+    "quote_time",
+    "multiplier_effective_state",
+    "evidence_digest",
+    "context_digest",
+    "relation_status",
+    "reason_code"
+  ],
+  "properties": {
+    "relation_profile_id": {
+      "const": "semantic-execution-guard.robinhood-stock-token.v0"
+    },
+    "asset_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "chain_id": {
+      "type": "string",
+      "pattern": "^[1-9][0-9]{0,19}$"
+    },
+    "contract_address": {
+      "type": "string",
+      "pattern": "^0x[0-9a-f]{40}$"
+    },
+    "claim_type": {
+      "const": "MULTIPLIER_ADJUSTED_TOKEN_PRICE"
+    },
+    "currency": {
+      "const": "USD"
+    },
+    "price_side": {
+      "type": "string",
+      "enum": [
+        "BID",
+        "ASK"
+      ]
+    },
+    "value": {
+      "type": "string",
+      "pattern": "^[1-9][0-9]*$"
+    },
+    "decimals": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 36
+    },
+    "quote_time": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "multiplier_effective_state": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "evidence_digest": {
+      "type": "string",
+      "pattern": "^0x[0-9a-f]{64}$"
+    },
+    "context_digest": {
+      "type": "string",
+      "pattern": "^0x[0-9a-f]{64}$"
+    },
+    "relation_status": {
+      "const": "PASS"
+    },
+    "reason_code": {
+      "const": "EXACT_CONVERSION_ESTABLISHED"
+    }
+  }
+}

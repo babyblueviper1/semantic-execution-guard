@@ -1,0 +1,9 @@
+{
+  "status": "UNVERIFIED",
+  "chain_id": null,
+  "rpc_used": null,
+  "guard_address": null,
+  "stock_token_or_test_asset_address": null,
+  "oracle_or_feed_address": null,
+  "deployment_tx_hash": null
+}

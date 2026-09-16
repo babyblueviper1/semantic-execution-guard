@@ -1,0 +1,17 @@
+{
+  "relation_profile_id": "semantic-execution-guard.robinhood-stock-token.v0",
+  "asset_id": "synthetic:equity-A",
+  "chain_id": "31337",
+  "contract_address": "0x0000000000000000000000000000000000000001",
+  "claim_type": "MULTIPLIER_ADJUSTED_TOKEN_PRICE",
+  "currency": "USD",
+  "price_side": "BID",
+  "value": "1543125",
+  "decimals": 4,
+  "quote_time": 1000,
+  "multiplier_effective_state": "synthetic:state-2",
+  "evidence_digest": "0xd9dbb2e80523518e11b8ba8ca23b8b0f0e22a68e3d48a51de43600da316f964c",
+  "context_digest": "0x3751bb726c15d25a75a34a3f86a6da28e6f8a551f686c1b233cc2c64e3b6e2d3",
+  "relation_status": "PASS",
+  "reason_code": "EXACT_CONVERSION_ESTABLISHED"
+}

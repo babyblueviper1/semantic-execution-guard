@@ -1,0 +1,81 @@
+{
+  "documentation": [
+    {
+      "url": "https://docs.robinhood.com/chain/stock-token-apis/",
+      "accessed_at": "2026-09-16T17:59:27.548Z",
+      "classification": "normative documentation",
+      "captured_response_sha256": "fd24406d41eda710dd628e97eaf5b72cd5ca8c4a753b57d6594f28460cadbb7c",
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "observation_boundary": "Documentation fetch only; no REST price, RPC, token, feed or deployment observation."
+    },
+    {
+      "url": "https://docs.robinhood.com/chain/building-with-stock-tokens/",
+      "accessed_at": "2026-09-16T17:59:27.626Z",
+      "classification": "normative documentation",
+      "captured_response_sha256": "3b5b9df3333eb26805614c8daa5078893015a1d0bc3b5dfd9e5d20920e84eed5",
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "observation_boundary": "Documentation fetch only; no REST price, RPC, token, feed or deployment observation."
+    },
+    {
+      "url": "https://docs.robinhood.com/chain/oracles-and-price-feeds/",
+      "accessed_at": "2026-09-16T17:59:27.663Z",
+      "classification": "normative documentation",
+      "captured_response_sha256": "a13507f60f7ec406ad897294fdf99c5066219077e35428550f8df6fddc6ee504",
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "observation_boundary": "Documentation fetch only; no REST price, RPC, token, feed or deployment observation."
+    }
+  ],
+  "foundation_inspection": [
+    {
+      "repository": "trustless-ai/semantic-abi",
+      "commit": "d15c666dfccff17f7350fe97d2fc7b71cb2cbaee",
+      "path": "README.md",
+      "sha256": "f20050889a9e9b2a03fb450add57a0e707ded53c9e0836c7ba23579e5c4e7794",
+      "accessed_at": "2026-09-16T17:59:27.975Z",
+      "use": "read-only inspection; no source copied into product"
+    },
+    {
+      "repository": "trustless-ai/semantic-abi",
+      "commit": "d15c666dfccff17f7350fe97d2fc7b71cb2cbaee",
+      "path": "runner/src/linker.mjs",
+      "sha256": "bae8e519361989bfadbb5d226cb9940255cd954c60b40ba42136a2b11161d391",
+      "accessed_at": "2026-09-16T17:59:28.293Z",
+      "use": "read-only inspection; no source copied into product"
+    },
+    {
+      "repository": "trustless-ai/semantic-abi",
+      "commit": "d15c666dfccff17f7350fe97d2fc7b71cb2cbaee",
+      "path": "schema/manifest-v0.md",
+      "sha256": "1361dbd123ae3f270ed39d1236b91d49d3ccdb9161dcfbdec4579a50be4f0a02",
+      "accessed_at": "2026-09-16T17:59:28.589Z",
+      "use": "read-only inspection; no source copied into product"
+    },
+    {
+      "repository": "trustless-ai/semantic-abi",
+      "commit": "d15c666dfccff17f7350fe97d2fc7b71cb2cbaee",
+      "path": "schema/manifest.schema.json",
+      "sha256": "3219f51c7929ff915b71e5931a5d10edc5e15e73809fc2c47107592490bbe397",
+      "accessed_at": "2026-09-16T17:59:29.290Z",
+      "use": "read-only inspection; no source copied into product"
+    },
+    {
+      "repository": "trustless-ai/semantic-abi",
+      "commit": "d15c666dfccff17f7350fe97d2fc7b71cb2cbaee",
+      "path": "package.json",
+      "sha256": "c79f589ded6bf7e23867fd295baf70eee93322a3ceb0473458342f8d4ffdeeba",
+      "accessed_at": "2026-09-16T17:59:29.964Z",
+      "use": "read-only inspection; no source copied into product"
+    },
+    {
+      "repository": "trustless-ai/semantic-abi",
+      "commit": "d15c666dfccff17f7350fe97d2fc7b71cb2cbaee",
+      "path": "LICENSE",
+      "sha256": "c95bae1d1ce0235ecccd3560b772ec1efb97f348a79f0fbe0a634f0c2ccefe2c",
+      "accessed_at": "2026-09-16T17:59:30.544Z",
+      "use": "read-only inspection; no source copied into product"
+    }
+  ]
+}

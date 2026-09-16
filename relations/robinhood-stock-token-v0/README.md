@@ -69,5 +69,15 @@ node relations/robinhood-stock-token-v0/recompute.mjs
 node --test
 ```
 
-The corpus and mutation proof are added in subsequent separate commits. No
-Solidity guard or testnet route is implemented in this lane.
+The corpus contains 26 cases, including all ten required adversarial/control cases.
+The mutation runner patches one rule at a time in temporary module copies, keeps
+both positive controls passing, and requires a negative vector to become PASS.
+Crashes and control failures do not count as kills. Reports bind implementation,
+schema, validator, vectors and mutation-runner source digests. Regenerate with:
+
+```sh
+node relations/robinhood-stock-token-v0/recompute.mjs artifacts/recomputation-receipts.json
+node relations/robinhood-stock-token-v0/mutations.mjs artifacts/mutation-report.json
+```
+
+No Solidity guard or testnet route is implemented in this lane.

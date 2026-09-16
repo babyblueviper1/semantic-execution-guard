@@ -1,0 +1,1883 @@
+[
+  {
+    "description": "123.45 USD/share times 1.25 shares/token = exactly 154.3125 USD/token.",
+    "input": {
+      "relation_profile_id": "semantic-execution-guard.robinhood-stock-token.v0",
+      "fixture_kind": "SYNTHETIC_RELATION_FIXTURE",
+      "case_id": "V1_CONTROL_CONVERSION",
+      "requested_claim_type": "MULTIPLIER_ADJUSTED_TOKEN_PRICE",
+      "quote": {
+        "claim_type": "UNDERLYING_EQUITY_QUOTE",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "ROBINHOOD_REST_PRICES",
+        "authority_class": "DECLARED_REST_QUOTE",
+        "currency": "USD",
+        "price_side": "BID",
+        "mantissa": "12345",
+        "decimals": 2,
+        "already_adjusted": false,
+        "observed_at": 1000,
+        "state_id": "synthetic:state-2"
+      },
+      "multiplier": {
+        "claim_type": "SHARES_PER_TOKEN_MULTIPLIER",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "ROBINHOOD_REST_ASSETS",
+        "authority_class": "DECLARED_ASSET_METADATA",
+        "unit": "SHARES_PER_TOKEN",
+        "mantissa": "1250000000000000000",
+        "decimals": 18,
+        "observed_at": 990,
+        "state_id": "synthetic:state-2",
+        "effective_from": 900,
+        "effective_until": 1100
+      },
+      "context": {
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "currency": "USD",
+        "price_side": "BID",
+        "quote_time": 1000,
+        "effective_state": "synthetic:state-2",
+        "state_observed_at": 1000,
+        "effective_from": 900,
+        "effective_until": 1100,
+        "raw_decimals": 2,
+        "multiplier_decimals": 18,
+        "output_decimals": 4
+      },
+      "conversion": {
+        "operation": "MULTIPLY_EXACT",
+        "quote_digest": "0xbc03d16dc17b20f445eabd6c25f53f76cc71506255a1d24d1b0f5e3e02a7649a",
+        "multiplier_digest": "0x5147fb408cc9e147136652076a4942a650746bd4f41408f7958a4e6bd4bfd154",
+        "raw_decimals": 2,
+        "multiplier_decimals": 18,
+        "output_decimals": 4
+      }
+    },
+    "expected": {
+      "relation_status": "PASS",
+      "reason_code": "EXACT_CONVERSION_ESTABLISHED",
+      "derived_adjusted_value": {
+        "mantissa": "1543125",
+        "decimals": 4
+      }
+    }
+  },
+  {
+    "description": "Multiplier one: equal numbers still do not establish a conversion relation.",
+    "input": {
+      "relation_profile_id": "semantic-execution-guard.robinhood-stock-token.v0",
+      "fixture_kind": "SYNTHETIC_RELATION_FIXTURE",
+      "case_id": "V2_NUMERIC_COINCIDENCE_DIRECT_PROMOTION",
+      "requested_claim_type": "MULTIPLIER_ADJUSTED_TOKEN_PRICE",
+      "quote": {
+        "claim_type": "UNDERLYING_EQUITY_QUOTE",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "ROBINHOOD_REST_PRICES",
+        "authority_class": "DECLARED_REST_QUOTE",
+        "currency": "USD",
+        "price_side": "BID",
+        "mantissa": "12345",
+        "decimals": 2,
+        "already_adjusted": false,
+        "observed_at": 1000,
+        "state_id": "synthetic:state-2"
+      },
+      "multiplier": {
+        "claim_type": "SHARES_PER_TOKEN_MULTIPLIER",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "ROBINHOOD_REST_ASSETS",
+        "authority_class": "DECLARED_ASSET_METADATA",
+        "unit": "SHARES_PER_TOKEN",
+        "mantissa": "1000000000000000000",
+        "decimals": 18,
+        "observed_at": 990,
+        "state_id": "synthetic:state-2",
+        "effective_from": 900,
+        "effective_until": 1100
+      },
+      "context": {
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "currency": "USD",
+        "price_side": "BID",
+        "quote_time": 1000,
+        "effective_state": "synthetic:state-2",
+        "state_observed_at": 1000,
+        "effective_from": 900,
+        "effective_until": 1100,
+        "raw_decimals": 2,
+        "multiplier_decimals": 18,
+        "output_decimals": 4
+      },
+      "conversion": {
+        "operation": "DIRECT_PROMOTION",
+        "quote_digest": "0xbc03d16dc17b20f445eabd6c25f53f76cc71506255a1d24d1b0f5e3e02a7649a",
+        "multiplier_digest": "0x6889b880d946aca297f9939ceec53954580ab8268b438b16be8dabdf4ee7f2a6",
+        "raw_decimals": 2,
+        "multiplier_decimals": 18,
+        "output_decimals": 4
+      }
+    },
+    "expected": {
+      "relation_status": "FAIL",
+      "reason_code": "EXPLICIT_CONVERSION_REQUIRED",
+      "derived_adjusted_value": null
+    }
+  },
+  {
+    "description": "Context declares state-2 while multiplier carries older state-1.",
+    "input": {
+      "relation_profile_id": "semantic-execution-guard.robinhood-stock-token.v0",
+      "fixture_kind": "SYNTHETIC_RELATION_FIXTURE",
+      "case_id": "V3_STALE_MULTIPLIER",
+      "requested_claim_type": "MULTIPLIER_ADJUSTED_TOKEN_PRICE",
+      "quote": {
+        "claim_type": "UNDERLYING_EQUITY_QUOTE",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "ROBINHOOD_REST_PRICES",
+        "authority_class": "DECLARED_REST_QUOTE",
+        "currency": "USD",
+        "price_side": "BID",
+        "mantissa": "12345",
+        "decimals": 2,
+        "already_adjusted": false,
+        "observed_at": 1000,
+        "state_id": "synthetic:state-2"
+      },
+      "multiplier": {
+        "claim_type": "SHARES_PER_TOKEN_MULTIPLIER",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "ROBINHOOD_REST_ASSETS",
+        "authority_class": "DECLARED_ASSET_METADATA",
+        "unit": "SHARES_PER_TOKEN",
+        "mantissa": "1250000000000000000",
+        "decimals": 18,
+        "observed_at": 990,
+        "state_id": "synthetic:state-1",
+        "effective_from": 900,
+        "effective_until": 1100
+      },
+      "context": {
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "currency": "USD",
+        "price_side": "BID",
+        "quote_time": 1000,
+        "effective_state": "synthetic:state-2",
+        "state_observed_at": 1000,
+        "effective_from": 900,
+        "effective_until": 1100,
+        "raw_decimals": 2,
+        "multiplier_decimals": 18,
+        "output_decimals": 4
+      },
+      "conversion": {
+        "operation": "MULTIPLY_EXACT",
+        "quote_digest": "0xbc03d16dc17b20f445eabd6c25f53f76cc71506255a1d24d1b0f5e3e02a7649a",
+        "multiplier_digest": "0xfad2617e29f9183992ff73ab58ac3f1a155e401f1f0ec6690d5e3f2a45726f7c",
+        "raw_decimals": 2,
+        "multiplier_decimals": 18,
+        "output_decimals": 4
+      }
+    },
+    "expected": {
+      "relation_status": "FAIL",
+      "reason_code": "STALE_MULTIPLIER_STATE",
+      "derived_adjusted_value": null
+    }
+  },
+  {
+    "description": "No multiplier evidence exists; identity multiplier must not be invented.",
+    "input": {
+      "relation_profile_id": "semantic-execution-guard.robinhood-stock-token.v0",
+      "fixture_kind": "SYNTHETIC_RELATION_FIXTURE",
+      "case_id": "V4_MISSING_MULTIPLIER",
+      "requested_claim_type": "MULTIPLIER_ADJUSTED_TOKEN_PRICE",
+      "quote": {
+        "claim_type": "UNDERLYING_EQUITY_QUOTE",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "ROBINHOOD_REST_PRICES",
+        "authority_class": "DECLARED_REST_QUOTE",
+        "currency": "USD",
+        "price_side": "BID",
+        "mantissa": "12345",
+        "decimals": 2,
+        "already_adjusted": false,
+        "observed_at": 1000,
+        "state_id": "synthetic:state-2"
+      },
+      "multiplier": null,
+      "context": {
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "currency": "USD",
+        "price_side": "BID",
+        "quote_time": 1000,
+        "effective_state": "synthetic:state-2",
+        "state_observed_at": 1000,
+        "effective_from": 900,
+        "effective_until": 1100,
+        "raw_decimals": 2,
+        "multiplier_decimals": 18,
+        "output_decimals": 4
+      },
+      "conversion": {
+        "operation": "MULTIPLY_EXACT",
+        "quote_digest": "0xbc03d16dc17b20f445eabd6c25f53f76cc71506255a1d24d1b0f5e3e02a7649a",
+        "multiplier_digest": null,
+        "raw_decimals": 2,
+        "multiplier_decimals": 18,
+        "output_decimals": 4
+      }
+    },
+    "expected": {
+      "relation_status": "CANNOT_ESTABLISH",
+      "reason_code": "MISSING_MULTIPLIER",
+      "derived_adjusted_value": null
+    }
+  },
+  {
+    "description": "Multiplier belongs to equity B.",
+    "input": {
+      "relation_profile_id": "semantic-execution-guard.robinhood-stock-token.v0",
+      "fixture_kind": "SYNTHETIC_RELATION_FIXTURE",
+      "case_id": "V5_WRONG_ASSET_MULTIPLIER",
+      "requested_claim_type": "MULTIPLIER_ADJUSTED_TOKEN_PRICE",
+      "quote": {
+        "claim_type": "UNDERLYING_EQUITY_QUOTE",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "ROBINHOOD_REST_PRICES",
+        "authority_class": "DECLARED_REST_QUOTE",
+        "currency": "USD",
+        "price_side": "BID",
+        "mantissa": "12345",
+        "decimals": 2,
+        "already_adjusted": false,
+        "observed_at": 1000,
+        "state_id": "synthetic:state-2"
+      },
+      "multiplier": {
+        "claim_type": "SHARES_PER_TOKEN_MULTIPLIER",
+        "asset": {
+          "asset_id": "synthetic:equity-B",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "ROBINHOOD_REST_ASSETS",
+        "authority_class": "DECLARED_ASSET_METADATA",
+        "unit": "SHARES_PER_TOKEN",
+        "mantissa": "1250000000000000000",
+        "decimals": 18,
+        "observed_at": 990,
+        "state_id": "synthetic:state-2",
+        "effective_from": 900,
+        "effective_until": 1100
+      },
+      "context": {
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "currency": "USD",
+        "price_side": "BID",
+        "quote_time": 1000,
+        "effective_state": "synthetic:state-2",
+        "state_observed_at": 1000,
+        "effective_from": 900,
+        "effective_until": 1100,
+        "raw_decimals": 2,
+        "multiplier_decimals": 18,
+        "output_decimals": 4
+      },
+      "conversion": {
+        "operation": "MULTIPLY_EXACT",
+        "quote_digest": "0xbc03d16dc17b20f445eabd6c25f53f76cc71506255a1d24d1b0f5e3e02a7649a",
+        "multiplier_digest": "0xa3a9723aa7181da2b5d3222d6ed680bf45cb643f06c5c91cc6e37d636e65d043",
+        "raw_decimals": 2,
+        "multiplier_decimals": 18,
+        "output_decimals": 4
+      }
+    },
+    "expected": {
+      "relation_status": "FAIL",
+      "reason_code": "ASSET_IDENTITY_MISMATCH",
+      "derived_adjusted_value": null
+    }
+  },
+  {
+    "description": "Quote predates the declared effective interval.",
+    "input": {
+      "relation_profile_id": "semantic-execution-guard.robinhood-stock-token.v0",
+      "fixture_kind": "SYNTHETIC_RELATION_FIXTURE",
+      "case_id": "V6_TEMPORAL_MISMATCH",
+      "requested_claim_type": "MULTIPLIER_ADJUSTED_TOKEN_PRICE",
+      "quote": {
+        "claim_type": "UNDERLYING_EQUITY_QUOTE",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "ROBINHOOD_REST_PRICES",
+        "authority_class": "DECLARED_REST_QUOTE",
+        "currency": "USD",
+        "price_side": "BID",
+        "mantissa": "12345",
+        "decimals": 2,
+        "already_adjusted": false,
+        "observed_at": 800,
+        "state_id": "synthetic:state-2"
+      },
+      "multiplier": {
+        "claim_type": "SHARES_PER_TOKEN_MULTIPLIER",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "ROBINHOOD_REST_ASSETS",
+        "authority_class": "DECLARED_ASSET_METADATA",
+        "unit": "SHARES_PER_TOKEN",
+        "mantissa": "1250000000000000000",
+        "decimals": 18,
+        "observed_at": 990,
+        "state_id": "synthetic:state-2",
+        "effective_from": 900,
+        "effective_until": 1100
+      },
+      "context": {
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "currency": "USD",
+        "price_side": "BID",
+        "quote_time": 800,
+        "effective_state": "synthetic:state-2",
+        "state_observed_at": 1000,
+        "effective_from": 900,
+        "effective_until": 1100,
+        "raw_decimals": 2,
+        "multiplier_decimals": 18,
+        "output_decimals": 4
+      },
+      "conversion": {
+        "operation": "MULTIPLY_EXACT",
+        "quote_digest": "0xaff34c0c5212f0d9d82a367493a31a2d193d929d2e20e39b700d7518691b2082",
+        "multiplier_digest": "0x5147fb408cc9e147136652076a4942a650746bd4f41408f7958a4e6bd4bfd154",
+        "raw_decimals": 2,
+        "multiplier_decimals": 18,
+        "output_decimals": 4
+      }
+    },
+    "expected": {
+      "relation_status": "FAIL",
+      "reason_code": "TEMPORAL_MISMATCH",
+      "derived_adjusted_value": null
+    }
+  },
+  {
+    "description": "Already-adjusted onchain evidence cannot enter raw conversion.",
+    "input": {
+      "relation_profile_id": "semantic-execution-guard.robinhood-stock-token.v0",
+      "fixture_kind": "SYNTHETIC_RELATION_FIXTURE",
+      "case_id": "V7_DOUBLE_ADJUSTMENT",
+      "requested_claim_type": "MULTIPLIER_ADJUSTED_TOKEN_PRICE",
+      "quote": {
+        "claim_type": "ALREADY_ADJUSTED_ONCHAIN_PRICE",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "ROBINHOOD_ONCHAIN_ADJUSTED_FEED",
+        "authority_class": "DECLARED_ONCHAIN_FEED",
+        "currency": "USD",
+        "price_side": "BID",
+        "mantissa": "16000",
+        "decimals": 2,
+        "already_adjusted": true,
+        "observed_at": 1000,
+        "state_id": "synthetic:state-2"
+      },
+      "multiplier": {
+        "claim_type": "SHARES_PER_TOKEN_MULTIPLIER",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "ROBINHOOD_REST_ASSETS",
+        "authority_class": "DECLARED_ASSET_METADATA",
+        "unit": "SHARES_PER_TOKEN",
+        "mantissa": "1250000000000000000",
+        "decimals": 18,
+        "observed_at": 990,
+        "state_id": "synthetic:state-2",
+        "effective_from": 900,
+        "effective_until": 1100
+      },
+      "context": {
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "currency": "USD",
+        "price_side": "BID",
+        "quote_time": 1000,
+        "effective_state": "synthetic:state-2",
+        "state_observed_at": 1000,
+        "effective_from": 900,
+        "effective_until": 1100,
+        "raw_decimals": 2,
+        "multiplier_decimals": 18,
+        "output_decimals": 4
+      },
+      "conversion": {
+        "operation": "MULTIPLY_EXACT",
+        "quote_digest": "0x139436d90d07f0f7830e63c2af52dce76795c85db7fc5b01a37f9f09f3e812dc",
+        "multiplier_digest": "0x5147fb408cc9e147136652076a4942a650746bd4f41408f7958a4e6bd4bfd154",
+        "raw_decimals": 2,
+        "multiplier_decimals": 18,
+        "output_decimals": 4
+      }
+    },
+    "expected": {
+      "relation_status": "FAIL",
+      "reason_code": "DOUBLE_ADJUSTMENT",
+      "derived_adjusted_value": null
+    }
+  },
+  {
+    "description": "Conversion witness claims three raw decimals, but quote and context declare two.",
+    "input": {
+      "relation_profile_id": "semantic-execution-guard.robinhood-stock-token.v0",
+      "fixture_kind": "SYNTHETIC_RELATION_FIXTURE",
+      "case_id": "V8_SCALE_MISMATCH",
+      "requested_claim_type": "MULTIPLIER_ADJUSTED_TOKEN_PRICE",
+      "quote": {
+        "claim_type": "UNDERLYING_EQUITY_QUOTE",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "ROBINHOOD_REST_PRICES",
+        "authority_class": "DECLARED_REST_QUOTE",
+        "currency": "USD",
+        "price_side": "BID",
+        "mantissa": "12345",
+        "decimals": 2,
+        "already_adjusted": false,
+        "observed_at": 1000,
+        "state_id": "synthetic:state-2"
+      },
+      "multiplier": {
+        "claim_type": "SHARES_PER_TOKEN_MULTIPLIER",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "ROBINHOOD_REST_ASSETS",
+        "authority_class": "DECLARED_ASSET_METADATA",
+        "unit": "SHARES_PER_TOKEN",
+        "mantissa": "1250000000000000000",
+        "decimals": 18,
+        "observed_at": 990,
+        "state_id": "synthetic:state-2",
+        "effective_from": 900,
+        "effective_until": 1100
+      },
+      "context": {
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "currency": "USD",
+        "price_side": "BID",
+        "quote_time": 1000,
+        "effective_state": "synthetic:state-2",
+        "state_observed_at": 1000,
+        "effective_from": 900,
+        "effective_until": 1100,
+        "raw_decimals": 2,
+        "multiplier_decimals": 18,
+        "output_decimals": 4
+      },
+      "conversion": {
+        "operation": "MULTIPLY_EXACT",
+        "quote_digest": "0xbc03d16dc17b20f445eabd6c25f53f76cc71506255a1d24d1b0f5e3e02a7649a",
+        "multiplier_digest": "0x5147fb408cc9e147136652076a4942a650746bd4f41408f7958a4e6bd4bfd154",
+        "raw_decimals": 3,
+        "multiplier_decimals": 18,
+        "output_decimals": 4
+      }
+    },
+    "expected": {
+      "relation_status": "FAIL",
+      "reason_code": "SCALE_MISMATCH",
+      "derived_adjusted_value": null
+    }
+  },
+  {
+    "description": "Same amount and coordinates with an unrelated semantic price claim.",
+    "input": {
+      "relation_profile_id": "semantic-execution-guard.robinhood-stock-token.v0",
+      "fixture_kind": "SYNTHETIC_RELATION_FIXTURE",
+      "case_id": "V9_CLAIM_TYPE_SUBSTITUTION",
+      "requested_claim_type": "MULTIPLIER_ADJUSTED_TOKEN_PRICE",
+      "quote": {
+        "claim_type": "UNRELATED_PRICE_CLAIM",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "ROBINHOOD_REST_PRICES",
+        "authority_class": "DECLARED_REST_QUOTE",
+        "currency": "USD",
+        "price_side": "BID",
+        "mantissa": "12345",
+        "decimals": 2,
+        "already_adjusted": false,
+        "observed_at": 1000,
+        "state_id": "synthetic:state-2"
+      },
+      "multiplier": {
+        "claim_type": "SHARES_PER_TOKEN_MULTIPLIER",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "ROBINHOOD_REST_ASSETS",
+        "authority_class": "DECLARED_ASSET_METADATA",
+        "unit": "SHARES_PER_TOKEN",
+        "mantissa": "1250000000000000000",
+        "decimals": 18,
+        "observed_at": 990,
+        "state_id": "synthetic:state-2",
+        "effective_from": 900,
+        "effective_until": 1100
+      },
+      "context": {
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "currency": "USD",
+        "price_side": "BID",
+        "quote_time": 1000,
+        "effective_state": "synthetic:state-2",
+        "state_observed_at": 1000,
+        "effective_from": 900,
+        "effective_until": 1100,
+        "raw_decimals": 2,
+        "multiplier_decimals": 18,
+        "output_decimals": 4
+      },
+      "conversion": {
+        "operation": "MULTIPLY_EXACT",
+        "quote_digest": "0xedd164df4d0894a022b26c9416650375c4df08fc1df4d5950bf1a9802d3d2a56",
+        "multiplier_digest": "0x5147fb408cc9e147136652076a4942a650746bd4f41408f7958a4e6bd4bfd154",
+        "raw_decimals": 2,
+        "multiplier_decimals": 18,
+        "output_decimals": 4
+      }
+    },
+    "expected": {
+      "relation_status": "FAIL",
+      "reason_code": "INPUT_CLAIM_TYPE",
+      "derived_adjusted_value": null
+    }
+  },
+  {
+    "description": "Look-alike quote surface with no approved declared price role.",
+    "input": {
+      "relation_profile_id": "semantic-execution-guard.robinhood-stock-token.v0",
+      "fixture_kind": "SYNTHETIC_RELATION_FIXTURE",
+      "case_id": "V10_AUTHORITY_OR_SOURCE_SUBSTITUTION",
+      "requested_claim_type": "MULTIPLIER_ADJUSTED_TOKEN_PRICE",
+      "quote": {
+        "claim_type": "UNDERLYING_EQUITY_QUOTE",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "UNRELATED_REST_ENDPOINT",
+        "authority_class": "DECLARED_REST_QUOTE",
+        "currency": "USD",
+        "price_side": "BID",
+        "mantissa": "12345",
+        "decimals": 2,
+        "already_adjusted": false,
+        "observed_at": 1000,
+        "state_id": "synthetic:state-2"
+      },
+      "multiplier": {
+        "claim_type": "SHARES_PER_TOKEN_MULTIPLIER",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "ROBINHOOD_REST_ASSETS",
+        "authority_class": "DECLARED_ASSET_METADATA",
+        "unit": "SHARES_PER_TOKEN",
+        "mantissa": "1250000000000000000",
+        "decimals": 18,
+        "observed_at": 990,
+        "state_id": "synthetic:state-2",
+        "effective_from": 900,
+        "effective_until": 1100
+      },
+      "context": {
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "currency": "USD",
+        "price_side": "BID",
+        "quote_time": 1000,
+        "effective_state": "synthetic:state-2",
+        "state_observed_at": 1000,
+        "effective_from": 900,
+        "effective_until": 1100,
+        "raw_decimals": 2,
+        "multiplier_decimals": 18,
+        "output_decimals": 4
+      },
+      "conversion": {
+        "operation": "MULTIPLY_EXACT",
+        "quote_digest": "0xb7d5f325f4ed619e9faad9cd031976f69123c16a1c788509816a3902994ee5f4",
+        "multiplier_digest": "0x5147fb408cc9e147136652076a4942a650746bd4f41408f7958a4e6bd4bfd154",
+        "raw_decimals": 2,
+        "multiplier_decimals": 18,
+        "output_decimals": 4
+      }
+    },
+    "expected": {
+      "relation_status": "FAIL",
+      "reason_code": "SOURCE_AUTHORITY_SUBSTITUTION",
+      "derived_adjusted_value": null
+    }
+  },
+  {
+    "description": "No conversion witness, multiplier is not one.",
+    "input": {
+      "relation_profile_id": "semantic-execution-guard.robinhood-stock-token.v0",
+      "fixture_kind": "SYNTHETIC_RELATION_FIXTURE",
+      "case_id": "V11_DIRECT_PROMOTION_NONUNIT",
+      "requested_claim_type": "MULTIPLIER_ADJUSTED_TOKEN_PRICE",
+      "quote": {
+        "claim_type": "UNDERLYING_EQUITY_QUOTE",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "ROBINHOOD_REST_PRICES",
+        "authority_class": "DECLARED_REST_QUOTE",
+        "currency": "USD",
+        "price_side": "BID",
+        "mantissa": "12345",
+        "decimals": 2,
+        "already_adjusted": false,
+        "observed_at": 1000,
+        "state_id": "synthetic:state-2"
+      },
+      "multiplier": {
+        "claim_type": "SHARES_PER_TOKEN_MULTIPLIER",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "ROBINHOOD_REST_ASSETS",
+        "authority_class": "DECLARED_ASSET_METADATA",
+        "unit": "SHARES_PER_TOKEN",
+        "mantissa": "1250000000000000000",
+        "decimals": 18,
+        "observed_at": 990,
+        "state_id": "synthetic:state-2",
+        "effective_from": 900,
+        "effective_until": 1100
+      },
+      "context": {
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "currency": "USD",
+        "price_side": "BID",
+        "quote_time": 1000,
+        "effective_state": "synthetic:state-2",
+        "state_observed_at": 1000,
+        "effective_from": 900,
+        "effective_until": 1100,
+        "raw_decimals": 2,
+        "multiplier_decimals": 18,
+        "output_decimals": 4
+      },
+      "conversion": null
+    },
+    "expected": {
+      "relation_status": "FAIL",
+      "reason_code": "EXPLICIT_CONVERSION_REQUIRED",
+      "derived_adjusted_value": null
+    }
+  },
+  {
+    "description": "Numeric coincidence with a real explicit conversion does establish the relation.",
+    "input": {
+      "relation_profile_id": "semantic-execution-guard.robinhood-stock-token.v0",
+      "fixture_kind": "SYNTHETIC_RELATION_FIXTURE",
+      "case_id": "V12_UNIT_MULTIPLIER_EXPLICIT_CONTROL",
+      "requested_claim_type": "MULTIPLIER_ADJUSTED_TOKEN_PRICE",
+      "quote": {
+        "claim_type": "UNDERLYING_EQUITY_QUOTE",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "ROBINHOOD_REST_PRICES",
+        "authority_class": "DECLARED_REST_QUOTE",
+        "currency": "USD",
+        "price_side": "BID",
+        "mantissa": "12345",
+        "decimals": 2,
+        "already_adjusted": false,
+        "observed_at": 1000,
+        "state_id": "synthetic:state-2"
+      },
+      "multiplier": {
+        "claim_type": "SHARES_PER_TOKEN_MULTIPLIER",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "ROBINHOOD_REST_ASSETS",
+        "authority_class": "DECLARED_ASSET_METADATA",
+        "unit": "SHARES_PER_TOKEN",
+        "mantissa": "1000000000000000000",
+        "decimals": 18,
+        "observed_at": 990,
+        "state_id": "synthetic:state-2",
+        "effective_from": 900,
+        "effective_until": 1100
+      },
+      "context": {
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "currency": "USD",
+        "price_side": "BID",
+        "quote_time": 1000,
+        "effective_state": "synthetic:state-2",
+        "state_observed_at": 1000,
+        "effective_from": 900,
+        "effective_until": 1100,
+        "raw_decimals": 2,
+        "multiplier_decimals": 18,
+        "output_decimals": 4
+      },
+      "conversion": {
+        "operation": "MULTIPLY_EXACT",
+        "quote_digest": "0xbc03d16dc17b20f445eabd6c25f53f76cc71506255a1d24d1b0f5e3e02a7649a",
+        "multiplier_digest": "0x6889b880d946aca297f9939ceec53954580ab8268b438b16be8dabdf4ee7f2a6",
+        "raw_decimals": 2,
+        "multiplier_decimals": 18,
+        "output_decimals": 4
+      }
+    },
+    "expected": {
+      "relation_status": "PASS",
+      "reason_code": "EXACT_CONVERSION_ESTABLISHED",
+      "derived_adjusted_value": {
+        "mantissa": "1234500",
+        "decimals": 4
+      }
+    }
+  },
+  {
+    "description": "154.3125 cannot be exactly represented at two output decimals.",
+    "input": {
+      "relation_profile_id": "semantic-execution-guard.robinhood-stock-token.v0",
+      "fixture_kind": "SYNTHETIC_RELATION_FIXTURE",
+      "case_id": "V13_ROUNDING_UNSPECIFIED",
+      "requested_claim_type": "MULTIPLIER_ADJUSTED_TOKEN_PRICE",
+      "quote": {
+        "claim_type": "UNDERLYING_EQUITY_QUOTE",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "ROBINHOOD_REST_PRICES",
+        "authority_class": "DECLARED_REST_QUOTE",
+        "currency": "USD",
+        "price_side": "BID",
+        "mantissa": "12345",
+        "decimals": 2,
+        "already_adjusted": false,
+        "observed_at": 1000,
+        "state_id": "synthetic:state-2"
+      },
+      "multiplier": {
+        "claim_type": "SHARES_PER_TOKEN_MULTIPLIER",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "ROBINHOOD_REST_ASSETS",
+        "authority_class": "DECLARED_ASSET_METADATA",
+        "unit": "SHARES_PER_TOKEN",
+        "mantissa": "1250000000000000000",
+        "decimals": 18,
+        "observed_at": 990,
+        "state_id": "synthetic:state-2",
+        "effective_from": 900,
+        "effective_until": 1100
+      },
+      "context": {
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "currency": "USD",
+        "price_side": "BID",
+        "quote_time": 1000,
+        "effective_state": "synthetic:state-2",
+        "state_observed_at": 1000,
+        "effective_from": 900,
+        "effective_until": 1100,
+        "raw_decimals": 2,
+        "multiplier_decimals": 18,
+        "output_decimals": 2
+      },
+      "conversion": {
+        "operation": "MULTIPLY_EXACT",
+        "quote_digest": "0xbc03d16dc17b20f445eabd6c25f53f76cc71506255a1d24d1b0f5e3e02a7649a",
+        "multiplier_digest": "0x5147fb408cc9e147136652076a4942a650746bd4f41408f7958a4e6bd4bfd154",
+        "raw_decimals": 2,
+        "multiplier_decimals": 18,
+        "output_decimals": 2
+      }
+    },
+    "expected": {
+      "relation_status": "CANNOT_ESTABLISH",
+      "reason_code": "ROUNDING_UNSPECIFIED",
+      "derived_adjusted_value": null
+    }
+  },
+  {
+    "description": "Multiplier decimal metadata changes while mantissa is unchanged.",
+    "input": {
+      "relation_profile_id": "semantic-execution-guard.robinhood-stock-token.v0",
+      "fixture_kind": "SYNTHETIC_RELATION_FIXTURE",
+      "case_id": "V14_MULTIPLIER_SCALE_SUBSTITUTION",
+      "requested_claim_type": "MULTIPLIER_ADJUSTED_TOKEN_PRICE",
+      "quote": {
+        "claim_type": "UNDERLYING_EQUITY_QUOTE",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "ROBINHOOD_REST_PRICES",
+        "authority_class": "DECLARED_REST_QUOTE",
+        "currency": "USD",
+        "price_side": "BID",
+        "mantissa": "12345",
+        "decimals": 2,
+        "already_adjusted": false,
+        "observed_at": 1000,
+        "state_id": "synthetic:state-2"
+      },
+      "multiplier": {
+        "claim_type": "SHARES_PER_TOKEN_MULTIPLIER",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "ROBINHOOD_REST_ASSETS",
+        "authority_class": "DECLARED_ASSET_METADATA",
+        "unit": "SHARES_PER_TOKEN",
+        "mantissa": "1250000000000000000",
+        "decimals": 17,
+        "observed_at": 990,
+        "state_id": "synthetic:state-2",
+        "effective_from": 900,
+        "effective_until": 1100
+      },
+      "context": {
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "currency": "USD",
+        "price_side": "BID",
+        "quote_time": 1000,
+        "effective_state": "synthetic:state-2",
+        "state_observed_at": 1000,
+        "effective_from": 900,
+        "effective_until": 1100,
+        "raw_decimals": 2,
+        "multiplier_decimals": 17,
+        "output_decimals": 4
+      },
+      "conversion": {
+        "operation": "MULTIPLY_EXACT",
+        "quote_digest": "0xbc03d16dc17b20f445eabd6c25f53f76cc71506255a1d24d1b0f5e3e02a7649a",
+        "multiplier_digest": "0x2ea3d0c9d61f6681f5086b40b0ab7c7c29a8f69a99a80dbeb217db5075777a5f",
+        "raw_decimals": 2,
+        "multiplier_decimals": 17,
+        "output_decimals": 4
+      }
+    },
+    "expected": {
+      "relation_status": "FAIL",
+      "reason_code": "SCALE_MISMATCH",
+      "derived_adjusted_value": null
+    }
+  },
+  {
+    "description": "Same asset and address on a different declared chain.",
+    "input": {
+      "relation_profile_id": "semantic-execution-guard.robinhood-stock-token.v0",
+      "fixture_kind": "SYNTHETIC_RELATION_FIXTURE",
+      "case_id": "V15_WRONG_CHAIN",
+      "requested_claim_type": "MULTIPLIER_ADJUSTED_TOKEN_PRICE",
+      "quote": {
+        "claim_type": "UNDERLYING_EQUITY_QUOTE",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "ROBINHOOD_REST_PRICES",
+        "authority_class": "DECLARED_REST_QUOTE",
+        "currency": "USD",
+        "price_side": "BID",
+        "mantissa": "12345",
+        "decimals": 2,
+        "already_adjusted": false,
+        "observed_at": 1000,
+        "state_id": "synthetic:state-2"
+      },
+      "multiplier": {
+        "claim_type": "SHARES_PER_TOKEN_MULTIPLIER",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31338",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "ROBINHOOD_REST_ASSETS",
+        "authority_class": "DECLARED_ASSET_METADATA",
+        "unit": "SHARES_PER_TOKEN",
+        "mantissa": "1250000000000000000",
+        "decimals": 18,
+        "observed_at": 990,
+        "state_id": "synthetic:state-2",
+        "effective_from": 900,
+        "effective_until": 1100
+      },
+      "context": {
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "currency": "USD",
+        "price_side": "BID",
+        "quote_time": 1000,
+        "effective_state": "synthetic:state-2",
+        "state_observed_at": 1000,
+        "effective_from": 900,
+        "effective_until": 1100,
+        "raw_decimals": 2,
+        "multiplier_decimals": 18,
+        "output_decimals": 4
+      },
+      "conversion": {
+        "operation": "MULTIPLY_EXACT",
+        "quote_digest": "0xbc03d16dc17b20f445eabd6c25f53f76cc71506255a1d24d1b0f5e3e02a7649a",
+        "multiplier_digest": "0x7b59feb0b5e602b63c382abe5a5e9b67b5377b8916cd5e8320a6328848454423",
+        "raw_decimals": 2,
+        "multiplier_decimals": 18,
+        "output_decimals": 4
+      }
+    },
+    "expected": {
+      "relation_status": "FAIL",
+      "reason_code": "ASSET_IDENTITY_MISMATCH",
+      "derived_adjusted_value": null
+    }
+  },
+  {
+    "description": "Same asset and chain with another token contract.",
+    "input": {
+      "relation_profile_id": "semantic-execution-guard.robinhood-stock-token.v0",
+      "fixture_kind": "SYNTHETIC_RELATION_FIXTURE",
+      "case_id": "V16_WRONG_CONTRACT",
+      "requested_claim_type": "MULTIPLIER_ADJUSTED_TOKEN_PRICE",
+      "quote": {
+        "claim_type": "UNDERLYING_EQUITY_QUOTE",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "ROBINHOOD_REST_PRICES",
+        "authority_class": "DECLARED_REST_QUOTE",
+        "currency": "USD",
+        "price_side": "BID",
+        "mantissa": "12345",
+        "decimals": 2,
+        "already_adjusted": false,
+        "observed_at": 1000,
+        "state_id": "synthetic:state-2"
+      },
+      "multiplier": {
+        "claim_type": "SHARES_PER_TOKEN_MULTIPLIER",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000002"
+        },
+        "source_surface": "ROBINHOOD_REST_ASSETS",
+        "authority_class": "DECLARED_ASSET_METADATA",
+        "unit": "SHARES_PER_TOKEN",
+        "mantissa": "1250000000000000000",
+        "decimals": 18,
+        "observed_at": 990,
+        "state_id": "synthetic:state-2",
+        "effective_from": 900,
+        "effective_until": 1100
+      },
+      "context": {
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "currency": "USD",
+        "price_side": "BID",
+        "quote_time": 1000,
+        "effective_state": "synthetic:state-2",
+        "state_observed_at": 1000,
+        "effective_from": 900,
+        "effective_until": 1100,
+        "raw_decimals": 2,
+        "multiplier_decimals": 18,
+        "output_decimals": 4
+      },
+      "conversion": {
+        "operation": "MULTIPLY_EXACT",
+        "quote_digest": "0xbc03d16dc17b20f445eabd6c25f53f76cc71506255a1d24d1b0f5e3e02a7649a",
+        "multiplier_digest": "0xe23d8087d0a475e5820017c4458931aab9217795703c98d40a90be41dfc64a75",
+        "raw_decimals": 2,
+        "multiplier_decimals": 18,
+        "output_decimals": 4
+      }
+    },
+    "expected": {
+      "relation_status": "FAIL",
+      "reason_code": "ASSET_IDENTITY_MISMATCH",
+      "derived_adjusted_value": null
+    }
+  },
+  {
+    "description": "Consumer USD request cannot be satisfied by an EUR quote.",
+    "input": {
+      "relation_profile_id": "semantic-execution-guard.robinhood-stock-token.v0",
+      "fixture_kind": "SYNTHETIC_RELATION_FIXTURE",
+      "case_id": "V17_CURRENCY_SUBSTITUTION",
+      "requested_claim_type": "MULTIPLIER_ADJUSTED_TOKEN_PRICE",
+      "quote": {
+        "claim_type": "UNDERLYING_EQUITY_QUOTE",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "ROBINHOOD_REST_PRICES",
+        "authority_class": "DECLARED_REST_QUOTE",
+        "currency": "EUR",
+        "price_side": "BID",
+        "mantissa": "12345",
+        "decimals": 2,
+        "already_adjusted": false,
+        "observed_at": 1000,
+        "state_id": "synthetic:state-2"
+      },
+      "multiplier": {
+        "claim_type": "SHARES_PER_TOKEN_MULTIPLIER",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "ROBINHOOD_REST_ASSETS",
+        "authority_class": "DECLARED_ASSET_METADATA",
+        "unit": "SHARES_PER_TOKEN",
+        "mantissa": "1250000000000000000",
+        "decimals": 18,
+        "observed_at": 990,
+        "state_id": "synthetic:state-2",
+        "effective_from": 900,
+        "effective_until": 1100
+      },
+      "context": {
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "currency": "USD",
+        "price_side": "BID",
+        "quote_time": 1000,
+        "effective_state": "synthetic:state-2",
+        "state_observed_at": 1000,
+        "effective_from": 900,
+        "effective_until": 1100,
+        "raw_decimals": 2,
+        "multiplier_decimals": 18,
+        "output_decimals": 4
+      },
+      "conversion": {
+        "operation": "MULTIPLY_EXACT",
+        "quote_digest": "0x952507aeeee5bed6b68a6bbb0492f6ff359608c5ee161df39150a9a84150d623",
+        "multiplier_digest": "0x5147fb408cc9e147136652076a4942a650746bd4f41408f7958a4e6bd4bfd154",
+        "raw_decimals": 2,
+        "multiplier_decimals": 18,
+        "output_decimals": 4
+      }
+    },
+    "expected": {
+      "relation_status": "FAIL",
+      "reason_code": "CURRENCY_OR_SIDE_MISMATCH",
+      "derived_adjusted_value": null
+    }
+  },
+  {
+    "description": "BID is not an ASK requirement.",
+    "input": {
+      "relation_profile_id": "semantic-execution-guard.robinhood-stock-token.v0",
+      "fixture_kind": "SYNTHETIC_RELATION_FIXTURE",
+      "case_id": "V18_PRICE_SIDE_SUBSTITUTION",
+      "requested_claim_type": "MULTIPLIER_ADJUSTED_TOKEN_PRICE",
+      "quote": {
+        "claim_type": "UNDERLYING_EQUITY_QUOTE",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "ROBINHOOD_REST_PRICES",
+        "authority_class": "DECLARED_REST_QUOTE",
+        "currency": "USD",
+        "price_side": "BID",
+        "mantissa": "12345",
+        "decimals": 2,
+        "already_adjusted": false,
+        "observed_at": 1000,
+        "state_id": "synthetic:state-2"
+      },
+      "multiplier": {
+        "claim_type": "SHARES_PER_TOKEN_MULTIPLIER",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "ROBINHOOD_REST_ASSETS",
+        "authority_class": "DECLARED_ASSET_METADATA",
+        "unit": "SHARES_PER_TOKEN",
+        "mantissa": "1250000000000000000",
+        "decimals": 18,
+        "observed_at": 990,
+        "state_id": "synthetic:state-2",
+        "effective_from": 900,
+        "effective_until": 1100
+      },
+      "context": {
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "currency": "USD",
+        "price_side": "ASK",
+        "quote_time": 1000,
+        "effective_state": "synthetic:state-2",
+        "state_observed_at": 1000,
+        "effective_from": 900,
+        "effective_until": 1100,
+        "raw_decimals": 2,
+        "multiplier_decimals": 18,
+        "output_decimals": 4
+      },
+      "conversion": {
+        "operation": "MULTIPLY_EXACT",
+        "quote_digest": "0xbc03d16dc17b20f445eabd6c25f53f76cc71506255a1d24d1b0f5e3e02a7649a",
+        "multiplier_digest": "0x5147fb408cc9e147136652076a4942a650746bd4f41408f7958a4e6bd4bfd154",
+        "raw_decimals": 2,
+        "multiplier_decimals": 18,
+        "output_decimals": 4
+      }
+    },
+    "expected": {
+      "relation_status": "FAIL",
+      "reason_code": "CURRENCY_OR_SIDE_MISMATCH",
+      "derived_adjusted_value": null
+    }
+  },
+  {
+    "description": "Quote value changes after conversion witness binding.",
+    "input": {
+      "relation_profile_id": "semantic-execution-guard.robinhood-stock-token.v0",
+      "fixture_kind": "SYNTHETIC_RELATION_FIXTURE",
+      "case_id": "V19_WITNESS_TAMPER",
+      "requested_claim_type": "MULTIPLIER_ADJUSTED_TOKEN_PRICE",
+      "quote": {
+        "claim_type": "UNDERLYING_EQUITY_QUOTE",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "ROBINHOOD_REST_PRICES",
+        "authority_class": "DECLARED_REST_QUOTE",
+        "currency": "USD",
+        "price_side": "BID",
+        "mantissa": "12346",
+        "decimals": 2,
+        "already_adjusted": false,
+        "observed_at": 1000,
+        "state_id": "synthetic:state-2"
+      },
+      "multiplier": {
+        "claim_type": "SHARES_PER_TOKEN_MULTIPLIER",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "ROBINHOOD_REST_ASSETS",
+        "authority_class": "DECLARED_ASSET_METADATA",
+        "unit": "SHARES_PER_TOKEN",
+        "mantissa": "1250000000000000000",
+        "decimals": 18,
+        "observed_at": 990,
+        "state_id": "synthetic:state-2",
+        "effective_from": 900,
+        "effective_until": 1100
+      },
+      "context": {
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "currency": "USD",
+        "price_side": "BID",
+        "quote_time": 1000,
+        "effective_state": "synthetic:state-2",
+        "state_observed_at": 1000,
+        "effective_from": 900,
+        "effective_until": 1100,
+        "raw_decimals": 2,
+        "multiplier_decimals": 18,
+        "output_decimals": 4
+      },
+      "conversion": {
+        "operation": "MULTIPLY_EXACT",
+        "quote_digest": "0xbc03d16dc17b20f445eabd6c25f53f76cc71506255a1d24d1b0f5e3e02a7649a",
+        "multiplier_digest": "0x5147fb408cc9e147136652076a4942a650746bd4f41408f7958a4e6bd4bfd154",
+        "raw_decimals": 2,
+        "multiplier_decimals": 18,
+        "output_decimals": 4
+      }
+    },
+    "expected": {
+      "relation_status": "FAIL",
+      "reason_code": "WITNESS_DIGEST_MISMATCH",
+      "derived_adjusted_value": null
+    }
+  },
+  {
+    "description": "V0 cannot turn an unreviewed live input into fixture evidence.",
+    "input": {
+      "relation_profile_id": "semantic-execution-guard.robinhood-stock-token.v0",
+      "fixture_kind": "LIVE_OBSERVATION",
+      "case_id": "V20_LIVE_INPUT_UNSUPPORTED",
+      "requested_claim_type": "MULTIPLIER_ADJUSTED_TOKEN_PRICE",
+      "quote": {
+        "claim_type": "UNDERLYING_EQUITY_QUOTE",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "ROBINHOOD_REST_PRICES",
+        "authority_class": "DECLARED_REST_QUOTE",
+        "currency": "USD",
+        "price_side": "BID",
+        "mantissa": "12345",
+        "decimals": 2,
+        "already_adjusted": false,
+        "observed_at": 1000,
+        "state_id": "synthetic:state-2"
+      },
+      "multiplier": {
+        "claim_type": "SHARES_PER_TOKEN_MULTIPLIER",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "ROBINHOOD_REST_ASSETS",
+        "authority_class": "DECLARED_ASSET_METADATA",
+        "unit": "SHARES_PER_TOKEN",
+        "mantissa": "1250000000000000000",
+        "decimals": 18,
+        "observed_at": 990,
+        "state_id": "synthetic:state-2",
+        "effective_from": 900,
+        "effective_until": 1100
+      },
+      "context": {
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "currency": "USD",
+        "price_side": "BID",
+        "quote_time": 1000,
+        "effective_state": "synthetic:state-2",
+        "state_observed_at": 1000,
+        "effective_from": 900,
+        "effective_until": 1100,
+        "raw_decimals": 2,
+        "multiplier_decimals": 18,
+        "output_decimals": 4
+      },
+      "conversion": {
+        "operation": "MULTIPLY_EXACT",
+        "quote_digest": "0xbc03d16dc17b20f445eabd6c25f53f76cc71506255a1d24d1b0f5e3e02a7649a",
+        "multiplier_digest": "0x5147fb408cc9e147136652076a4942a650746bd4f41408f7958a4e6bd4bfd154",
+        "raw_decimals": 2,
+        "multiplier_decimals": 18,
+        "output_decimals": 4
+      }
+    },
+    "expected": {
+      "relation_status": "CANNOT_ESTABLISH",
+      "reason_code": "INVALID_INPUT",
+      "derived_adjusted_value": null
+    }
+  },
+  {
+    "description": "A same-value quote cannot be used as shares/token.",
+    "input": {
+      "relation_profile_id": "semantic-execution-guard.robinhood-stock-token.v0",
+      "fixture_kind": "SYNTHETIC_RELATION_FIXTURE",
+      "case_id": "V21_MULTIPLIER_CLAIM_SUBSTITUTION",
+      "requested_claim_type": "MULTIPLIER_ADJUSTED_TOKEN_PRICE",
+      "quote": {
+        "claim_type": "UNDERLYING_EQUITY_QUOTE",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "ROBINHOOD_REST_PRICES",
+        "authority_class": "DECLARED_REST_QUOTE",
+        "currency": "USD",
+        "price_side": "BID",
+        "mantissa": "12345",
+        "decimals": 2,
+        "already_adjusted": false,
+        "observed_at": 1000,
+        "state_id": "synthetic:state-2"
+      },
+      "multiplier": {
+        "claim_type": "UNDERLYING_EQUITY_QUOTE",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "ROBINHOOD_REST_ASSETS",
+        "authority_class": "DECLARED_ASSET_METADATA",
+        "unit": "SHARES_PER_TOKEN",
+        "mantissa": "1250000000000000000",
+        "decimals": 18,
+        "observed_at": 990,
+        "state_id": "synthetic:state-2",
+        "effective_from": 900,
+        "effective_until": 1100
+      },
+      "context": {
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "currency": "USD",
+        "price_side": "BID",
+        "quote_time": 1000,
+        "effective_state": "synthetic:state-2",
+        "state_observed_at": 1000,
+        "effective_from": 900,
+        "effective_until": 1100,
+        "raw_decimals": 2,
+        "multiplier_decimals": 18,
+        "output_decimals": 4
+      },
+      "conversion": {
+        "operation": "MULTIPLY_EXACT",
+        "quote_digest": "0xbc03d16dc17b20f445eabd6c25f53f76cc71506255a1d24d1b0f5e3e02a7649a",
+        "multiplier_digest": "0x7ef137593ac22c11e8b55526574d90f9d97692d6c958df4256f78712e299fd0f",
+        "raw_decimals": 2,
+        "multiplier_decimals": 18,
+        "output_decimals": 4
+      }
+    },
+    "expected": {
+      "relation_status": "FAIL",
+      "reason_code": "MULTIPLIER_CLAIM_TYPE",
+      "derived_adjusted_value": null
+    }
+  },
+  {
+    "description": "Correct source string with an unrelated authority role.",
+    "input": {
+      "relation_profile_id": "semantic-execution-guard.robinhood-stock-token.v0",
+      "fixture_kind": "SYNTHETIC_RELATION_FIXTURE",
+      "case_id": "V22_AUTHORITY_SUBSTITUTION",
+      "requested_claim_type": "MULTIPLIER_ADJUSTED_TOKEN_PRICE",
+      "quote": {
+        "claim_type": "UNDERLYING_EQUITY_QUOTE",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "ROBINHOOD_REST_PRICES",
+        "authority_class": "UNRELATED_AUTHORITY",
+        "currency": "USD",
+        "price_side": "BID",
+        "mantissa": "12345",
+        "decimals": 2,
+        "already_adjusted": false,
+        "observed_at": 1000,
+        "state_id": "synthetic:state-2"
+      },
+      "multiplier": {
+        "claim_type": "SHARES_PER_TOKEN_MULTIPLIER",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "ROBINHOOD_REST_ASSETS",
+        "authority_class": "DECLARED_ASSET_METADATA",
+        "unit": "SHARES_PER_TOKEN",
+        "mantissa": "1250000000000000000",
+        "decimals": 18,
+        "observed_at": 990,
+        "state_id": "synthetic:state-2",
+        "effective_from": 900,
+        "effective_until": 1100
+      },
+      "context": {
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "currency": "USD",
+        "price_side": "BID",
+        "quote_time": 1000,
+        "effective_state": "synthetic:state-2",
+        "state_observed_at": 1000,
+        "effective_from": 900,
+        "effective_until": 1100,
+        "raw_decimals": 2,
+        "multiplier_decimals": 18,
+        "output_decimals": 4
+      },
+      "conversion": {
+        "operation": "MULTIPLY_EXACT",
+        "quote_digest": "0xcc50f468e9d008a72ac88330864bb1037fc219f9d491d2bb0feb98bb079721bb",
+        "multiplier_digest": "0x5147fb408cc9e147136652076a4942a650746bd4f41408f7958a4e6bd4bfd154",
+        "raw_decimals": 2,
+        "multiplier_decimals": 18,
+        "output_decimals": 4
+      }
+    },
+    "expected": {
+      "relation_status": "FAIL",
+      "reason_code": "SOURCE_AUTHORITY_SUBSTITUTION",
+      "derived_adjusted_value": null
+    }
+  },
+  {
+    "description": "Multiplier number provided by an unrelated source surface.",
+    "input": {
+      "relation_profile_id": "semantic-execution-guard.robinhood-stock-token.v0",
+      "fixture_kind": "SYNTHETIC_RELATION_FIXTURE",
+      "case_id": "V23_MULTIPLIER_SOURCE_SUBSTITUTION",
+      "requested_claim_type": "MULTIPLIER_ADJUSTED_TOKEN_PRICE",
+      "quote": {
+        "claim_type": "UNDERLYING_EQUITY_QUOTE",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "ROBINHOOD_REST_PRICES",
+        "authority_class": "DECLARED_REST_QUOTE",
+        "currency": "USD",
+        "price_side": "BID",
+        "mantissa": "12345",
+        "decimals": 2,
+        "already_adjusted": false,
+        "observed_at": 1000,
+        "state_id": "synthetic:state-2"
+      },
+      "multiplier": {
+        "claim_type": "SHARES_PER_TOKEN_MULTIPLIER",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "UNRELATED_SOURCE",
+        "authority_class": "DECLARED_ASSET_METADATA",
+        "unit": "SHARES_PER_TOKEN",
+        "mantissa": "1250000000000000000",
+        "decimals": 18,
+        "observed_at": 990,
+        "state_id": "synthetic:state-2",
+        "effective_from": 900,
+        "effective_until": 1100
+      },
+      "context": {
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "currency": "USD",
+        "price_side": "BID",
+        "quote_time": 1000,
+        "effective_state": "synthetic:state-2",
+        "state_observed_at": 1000,
+        "effective_from": 900,
+        "effective_until": 1100,
+        "raw_decimals": 2,
+        "multiplier_decimals": 18,
+        "output_decimals": 4
+      },
+      "conversion": {
+        "operation": "MULTIPLY_EXACT",
+        "quote_digest": "0xbc03d16dc17b20f445eabd6c25f53f76cc71506255a1d24d1b0f5e3e02a7649a",
+        "multiplier_digest": "0x6cce330300d304d672215cd4cbdec658f6891595394eb0f563a3d8676cddbe9e",
+        "raw_decimals": 2,
+        "multiplier_decimals": 18,
+        "output_decimals": 4
+      }
+    },
+    "expected": {
+      "relation_status": "FAIL",
+      "reason_code": "MULTIPLIER_SOURCE_AUTHORITY",
+      "derived_adjusted_value": null
+    }
+  },
+  {
+    "description": "Evidence pair is internally consistent but consumer requests equity B.",
+    "input": {
+      "relation_profile_id": "semantic-execution-guard.robinhood-stock-token.v0",
+      "fixture_kind": "SYNTHETIC_RELATION_FIXTURE",
+      "case_id": "V24_CONSUMER_ASSET_MISMATCH",
+      "requested_claim_type": "MULTIPLIER_ADJUSTED_TOKEN_PRICE",
+      "quote": {
+        "claim_type": "UNDERLYING_EQUITY_QUOTE",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "ROBINHOOD_REST_PRICES",
+        "authority_class": "DECLARED_REST_QUOTE",
+        "currency": "USD",
+        "price_side": "BID",
+        "mantissa": "12345",
+        "decimals": 2,
+        "already_adjusted": false,
+        "observed_at": 1000,
+        "state_id": "synthetic:state-2"
+      },
+      "multiplier": {
+        "claim_type": "SHARES_PER_TOKEN_MULTIPLIER",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "ROBINHOOD_REST_ASSETS",
+        "authority_class": "DECLARED_ASSET_METADATA",
+        "unit": "SHARES_PER_TOKEN",
+        "mantissa": "1250000000000000000",
+        "decimals": 18,
+        "observed_at": 990,
+        "state_id": "synthetic:state-2",
+        "effective_from": 900,
+        "effective_until": 1100
+      },
+      "context": {
+        "asset": {
+          "asset_id": "synthetic:equity-B",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "currency": "USD",
+        "price_side": "BID",
+        "quote_time": 1000,
+        "effective_state": "synthetic:state-2",
+        "state_observed_at": 1000,
+        "effective_from": 900,
+        "effective_until": 1100,
+        "raw_decimals": 2,
+        "multiplier_decimals": 18,
+        "output_decimals": 4
+      },
+      "conversion": {
+        "operation": "MULTIPLY_EXACT",
+        "quote_digest": "0xbc03d16dc17b20f445eabd6c25f53f76cc71506255a1d24d1b0f5e3e02a7649a",
+        "multiplier_digest": "0x5147fb408cc9e147136652076a4942a650746bd4f41408f7958a4e6bd4bfd154",
+        "raw_decimals": 2,
+        "multiplier_decimals": 18,
+        "output_decimals": 4
+      }
+    },
+    "expected": {
+      "relation_status": "FAIL",
+      "reason_code": "ASSET_IDENTITY_MISMATCH",
+      "derived_adjusted_value": null
+    }
+  },
+  {
+    "description": "Conversion does not establish a different consumer claim type.",
+    "input": {
+      "relation_profile_id": "semantic-execution-guard.robinhood-stock-token.v0",
+      "fixture_kind": "SYNTHETIC_RELATION_FIXTURE",
+      "case_id": "V25_REQUESTED_TYPE_SUBSTITUTION",
+      "requested_claim_type": "EXECUTION_AUTHORIZED",
+      "quote": {
+        "claim_type": "UNDERLYING_EQUITY_QUOTE",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "ROBINHOOD_REST_PRICES",
+        "authority_class": "DECLARED_REST_QUOTE",
+        "currency": "USD",
+        "price_side": "BID",
+        "mantissa": "12345",
+        "decimals": 2,
+        "already_adjusted": false,
+        "observed_at": 1000,
+        "state_id": "synthetic:state-2"
+      },
+      "multiplier": {
+        "claim_type": "SHARES_PER_TOKEN_MULTIPLIER",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "ROBINHOOD_REST_ASSETS",
+        "authority_class": "DECLARED_ASSET_METADATA",
+        "unit": "SHARES_PER_TOKEN",
+        "mantissa": "1250000000000000000",
+        "decimals": 18,
+        "observed_at": 990,
+        "state_id": "synthetic:state-2",
+        "effective_from": 900,
+        "effective_until": 1100
+      },
+      "context": {
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "currency": "USD",
+        "price_side": "BID",
+        "quote_time": 1000,
+        "effective_state": "synthetic:state-2",
+        "state_observed_at": 1000,
+        "effective_from": 900,
+        "effective_until": 1100,
+        "raw_decimals": 2,
+        "multiplier_decimals": 18,
+        "output_decimals": 4
+      },
+      "conversion": {
+        "operation": "MULTIPLY_EXACT",
+        "quote_digest": "0xbc03d16dc17b20f445eabd6c25f53f76cc71506255a1d24d1b0f5e3e02a7649a",
+        "multiplier_digest": "0x5147fb408cc9e147136652076a4942a650746bd4f41408f7958a4e6bd4bfd154",
+        "raw_decimals": 2,
+        "multiplier_decimals": 18,
+        "output_decimals": 4
+      }
+    },
+    "expected": {
+      "relation_status": "FAIL",
+      "reason_code": "REQUESTED_CLAIM_TYPE",
+      "derived_adjusted_value": null
+    }
+  },
+  {
+    "description": "Half-open effective interval excludes its upper endpoint.",
+    "input": {
+      "relation_profile_id": "semantic-execution-guard.robinhood-stock-token.v0",
+      "fixture_kind": "SYNTHETIC_RELATION_FIXTURE",
+      "case_id": "V26_EFFECTIVE_INTERVAL_END",
+      "requested_claim_type": "MULTIPLIER_ADJUSTED_TOKEN_PRICE",
+      "quote": {
+        "claim_type": "UNDERLYING_EQUITY_QUOTE",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "ROBINHOOD_REST_PRICES",
+        "authority_class": "DECLARED_REST_QUOTE",
+        "currency": "USD",
+        "price_side": "BID",
+        "mantissa": "12345",
+        "decimals": 2,
+        "already_adjusted": false,
+        "observed_at": 1100,
+        "state_id": "synthetic:state-2"
+      },
+      "multiplier": {
+        "claim_type": "SHARES_PER_TOKEN_MULTIPLIER",
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "source_surface": "ROBINHOOD_REST_ASSETS",
+        "authority_class": "DECLARED_ASSET_METADATA",
+        "unit": "SHARES_PER_TOKEN",
+        "mantissa": "1250000000000000000",
+        "decimals": 18,
+        "observed_at": 990,
+        "state_id": "synthetic:state-2",
+        "effective_from": 900,
+        "effective_until": 1100
+      },
+      "context": {
+        "asset": {
+          "asset_id": "synthetic:equity-A",
+          "chain_id": "31337",
+          "contract_address": "0x0000000000000000000000000000000000000001"
+        },
+        "currency": "USD",
+        "price_side": "BID",
+        "quote_time": 1100,
+        "effective_state": "synthetic:state-2",
+        "state_observed_at": 1100,
+        "effective_from": 900,
+        "effective_until": 1100,
+        "raw_decimals": 2,
+        "multiplier_decimals": 18,
+        "output_decimals": 4
+      },
+      "conversion": {
+        "operation": "MULTIPLY_EXACT",
+        "quote_digest": "0x400dc54d10a14aa3d189256236ab8c7607543d73d970f49a7b3b7959db0a8b21",
+        "multiplier_digest": "0x5147fb408cc9e147136652076a4942a650746bd4f41408f7958a4e6bd4bfd154",
+        "raw_decimals": 2,
+        "multiplier_decimals": 18,
+        "output_decimals": 4
+      }
+    },
+    "expected": {
+      "relation_status": "FAIL",
+      "reason_code": "TEMPORAL_MISMATCH",
+      "derived_adjusted_value": null
+    }
+  }
+]

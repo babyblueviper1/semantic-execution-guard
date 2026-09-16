@@ -1,0 +1,3348 @@
+{
+  "schema": "cross-repo-composition-audit.v0",
+  "timestamp": "2026-09-16T18:58:40.249Z",
+  "product_repo": "pipavlo82/semantic-execution-guard",
+  "base_sha": "8c786d8134632cdb4892ed32051377e739495300",
+  "provenance_main_sha": "093dc4f7832c1e18ede0bf9de6fb590aad6fbea8",
+  "frozen_snapshot": {
+    "remote_main_sha": "093dc4f7832c1e18ede0bf9de6fb590aad6fbea8",
+    "remote_feature_sha": "8c786d8134632cdb4892ed32051377e739495300",
+    "pr_number": 1,
+    "pr_url": "https://github.com/pipavlo82/semantic-execution-guard/pull/1",
+    "pr_state": "OPEN",
+    "pr_draft": true,
+    "merged_at": null,
+    "pr_updated_at": "2026-09-16T18:21:57Z",
+    "observation_method": "Read-only gh pr view and git ls-remote rechecked before local audit commit; no remote write."
+  },
+  "branch": "research/cross-repo-composition-audit-v0",
+  "scope": "Read-only source audit plus two local report files; no product implementation, push, PR or deployment changes.",
+  "method": {
+    "auth": "gh auth status verified authenticated pipavlo82; accessible org trustless-ai",
+    "discovery": "gh repo list for user/org, paginated user/repos; exact GitHub default-branch commit/tree/branch/open-PR metadata. Relevant linked sources followed; unrelated applications excluded.",
+    "evidence": "Pinned source bytes fetched by gh API; full source-file SHA-256 recorded. No external repository test/install code executed. No external RPC or trading calls. Local formatter experiment only.",
+    "claims": "Source inspection independently observed in this audit; deployment and third-party verification narratives remain upstream reported. Conclusions about composition are explicitly proposals/inferences.",
+    "booleans": "Flags describe the exact primitive scope in binding_scope, NOT a universal security guarantee. A fixture commitment or signed read can be state_bound without proving current state. null means insufficient evidence/not instantiated.",
+    "exposure": "Starts at first outcome-affecting state/event making predicate false; ends only at enforced recheck, consumer rejection, expiry or resolution. Offline/periodic results do not bound action authorization absent consumer wiring."
+  },
+  "summary": {
+    "repositories": 23,
+    "primitives": 28,
+    "enforcement_modes": {
+      "EVENT_ATOMIC": 5,
+      "EVENT_BOUND": 1,
+      "EVENT_CHECKED_NONATOMIC": 2,
+      "PERIODIC_ONLY": 2,
+      "AUDIT_ONLY": 7,
+      "CONFORMANCE_ONLY": 9,
+      "UNKNOWN": 2
+    },
+    "findings": {
+      "PROVEN_GAP": 0,
+      "STRUCTURAL_RISK": 16,
+      "SAFE_BY_CONSTRUCTION": 3,
+      "OUT_OF_SCOPE": 9,
+      "UNKNOWN": 0
+    },
+    "roles": {
+      "REQUIRED_FOR_FIRST_SLICE": 1,
+      "USEFUL_AFTER_FIRST_SLICE": 14,
+      "INDEPENDENT_VERIFICATION_ONLY": 5,
+      "NOT_JUSTIFIED_YET": 8
+    },
+    "proven_live_vulnerabilities": 0,
+    "count_scope": "Counts are per primitive, not unique root cause. Scoped source-level atomic examples are not deployed SEG enforcement. Required future composition properties are counted separately from existing primitives."
+  },
+  "repositories": [
+    {
+      "repo": "pipavlo82/Chronicle",
+      "default_branch": "main",
+      "sha": "c467b48fd18fc8ec86f10582befa35946ce41914",
+      "inspected_at": "2026-09-16T18:33:18.395Z",
+      "status": "merged/main tree (master for pq-receipt-profile); component may be experimental/spec-only",
+      "inspection_depth": "Targeted code/spec and caller-boundary inspection",
+      "license": "Apache-2.0; brand and underlying proof rights separately reserved",
+      "license_evidence": [
+        {
+          "repo": "pipavlo82/Chronicle",
+          "sha": "c467b48fd18fc8ec86f10582befa35946ce41914",
+          "path": "LICENSE",
+          "lines": [
+            1,
+            12
+          ],
+          "url": "https://github.com/pipavlo82/Chronicle/blob/c467b48fd18fc8ec86f10582befa35946ce41914/LICENSE#L1-L12",
+          "assertion": "Pinned root license text; inspect per-file exceptions before any copying.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "5a92139183111df03bdbf51afb7a45f4578efc3c8b5d6a32d190b0dde939961e"
+        },
+        {
+          "repo": "pipavlo82/Chronicle",
+          "sha": "c467b48fd18fc8ec86f10582befa35946ce41914",
+          "path": "docs/LICENSE_POLICY_V0.md",
+          "lines": [
+            9,
+            46
+          ],
+          "url": "https://github.com/pipavlo82/Chronicle/blob/c467b48fd18fc8ec86f10582befa35946ce41914/docs/LICENSE_POLICY_V0.md#L9-L46",
+          "assertion": "Apache code/docs, brand reserved, underlying proof rights separate.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "89652644266a98d142a2e4793215834c30fc757e82f5ebae957a9159c78e4d92"
+        }
+      ],
+      "license_absence_tree": null,
+      "relevant_paths": [
+        "src/chronicle_receiptos_admission.mjs",
+        "docs/verification-before-history.md",
+        "LICENSE",
+        "docs/LICENSE_POLICY_V0.md"
+      ],
+      "open_prs_inventory": [],
+      "screening_result": null
+    },
+    {
+      "repo": "pipavlo82/crystal-receipt",
+      "default_branch": "main",
+      "sha": "45b46bf7df3a60b32583291f577a36bf19d22f00",
+      "inspected_at": "2026-09-16T18:33:12.582Z",
+      "status": "merged/main tree (master for pq-receipt-profile); component may be experimental/spec-only",
+      "inspection_depth": "Targeted code/spec and caller-boundary inspection",
+      "license": "Apache-2.0",
+      "license_evidence": [
+        {
+          "repo": "pipavlo82/crystal-receipt",
+          "sha": "45b46bf7df3a60b32583291f577a36bf19d22f00",
+          "path": "LICENSE",
+          "lines": [
+            1,
+            12
+          ],
+          "url": "https://github.com/pipavlo82/crystal-receipt/blob/45b46bf7df3a60b32583291f577a36bf19d22f00/LICENSE#L1-L12",
+          "assertion": "Pinned root license text; inspect per-file exceptions before any copying.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "fa7fe2e14249d2da31c0d2a0bbefc17a1994a93b42ae652a3dab450b6f1c0251"
+        }
+      ],
+      "license_absence_tree": null,
+      "relevant_paths": [
+        "conformance/tsei-invariant-discrimination-v0/independent-authority-model.ts",
+        "src/receiptos/verify/verify-receipt.ts",
+        "LICENSE"
+      ],
+      "open_prs_inventory": [],
+      "screening_result": null
+    },
+    {
+      "repo": "pipavlo82/pq-receipt-profile",
+      "default_branch": "master",
+      "sha": "54cf1a3784a56f4624b41357148bbe9ba301c470",
+      "inspected_at": "2026-09-16T18:33:18.334Z",
+      "status": "merged/main tree (master for pq-receipt-profile); component may be experimental/spec-only",
+      "inspection_depth": "README/license/tree screening",
+      "license": "No license found in inspected tree",
+      "license_evidence": [
+        {
+          "repo": "pipavlo82/pq-receipt-profile",
+          "sha": "54cf1a3784a56f4624b41357148bbe9ba301c470",
+          "path": "README.md",
+          "lines": [
+            1,
+            20
+          ],
+          "url": "https://github.com/pipavlo82/pq-receipt-profile/blob/54cf1a3784a56f4624b41357148bbe9ba301c470/README.md#L1-L20",
+          "assertion": "Historical-signature longevity is a different threat; README explicitly says receipts gate nothing. No first-slice event-time protection added.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "44b6baf569d028e4349762bd814a71a62705adc5f741f2b76385130cffe21273"
+        }
+      ],
+      "license_absence_tree": "https://api.github.com/repos/pipavlo82/pq-receipt-profile/git/trees/54cf1a3784a56f4624b41357148bbe9ba301c470?recursive=1",
+      "relevant_paths": [
+        "README.md"
+      ],
+      "open_prs_inventory": [],
+      "screening_result": "Historical-signature longevity is a different threat; README explicitly says receipts gate nothing. No first-slice event-time protection added."
+    },
+    {
+      "repo": "pipavlo82/protected-relation-fixtures",
+      "default_branch": "main",
+      "sha": "07075d874c75da43f5ac8ed8769d5dbc01d56427",
+      "inspected_at": "2026-09-16T18:33:12.440Z",
+      "status": "merged/main tree (master for pq-receipt-profile); component may be experimental/spec-only",
+      "inspection_depth": "Targeted code/spec and caller-boundary inspection",
+      "license": "MIT",
+      "license_evidence": [
+        {
+          "repo": "pipavlo82/protected-relation-fixtures",
+          "sha": "07075d874c75da43f5ac8ed8769d5dbc01d56427",
+          "path": "LICENSE",
+          "lines": [
+            1,
+            12
+          ],
+          "url": "https://github.com/pipavlo82/protected-relation-fixtures/blob/07075d874c75da43f5ac8ed8769d5dbc01d56427/LICENSE#L1-L12",
+          "assertion": "Pinned root license text; inspect per-file exceptions before any copying.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "11d93abd8b3371d3d3dbc536e11e132f3482dc6334eca0006601cfd58229253e"
+        }
+      ],
+      "license_absence_tree": null,
+      "relevant_paths": [
+        "tools/relation_discrimination.py",
+        "LICENSE"
+      ],
+      "open_prs_inventory": [],
+      "screening_result": null
+    },
+    {
+      "repo": "pipavlo82/receiptos-mvp",
+      "default_branch": "main",
+      "sha": "0e70ebe85f4dd1b8b2a24be9c29f1b9757e25a71",
+      "inspected_at": "2026-09-16T18:33:18.289Z",
+      "status": "merged/main tree (master for pq-receipt-profile); component may be experimental/spec-only",
+      "inspection_depth": "Targeted code/spec and caller-boundary inspection",
+      "license": "No license found in inspected tree",
+      "license_evidence": [],
+      "license_absence_tree": "https://api.github.com/repos/pipavlo82/receiptos-mvp/git/trees/0e70ebe85f4dd1b8b2a24be9c29f1b9757e25a71?recursive=1",
+      "relevant_paths": [
+        "src/api.py"
+      ],
+      "open_prs_inventory": [],
+      "screening_result": null
+    },
+    {
+      "repo": "pipavlo82/receiptos-pq-lab",
+      "default_branch": "main",
+      "sha": "a705d9c1942c0f30725c9bddec6606a0cddf4fc6",
+      "inspected_at": "2026-09-16T18:33:22.351Z",
+      "status": "merged/main tree (master for pq-receipt-profile); component may be experimental/spec-only",
+      "inspection_depth": "README/license/tree screening",
+      "license": "No license found in inspected tree",
+      "license_evidence": [
+        {
+          "repo": "pipavlo82/receiptos-pq-lab",
+          "sha": "a705d9c1942c0f30725c9bddec6606a0cddf4fc6",
+          "path": "README.md",
+          "lines": [
+            1,
+            20
+          ],
+          "url": "https://github.com/pipavlo82/receiptos-pq-lab/blob/a705d9c1942c0f30725c9bddec6606a0cddf4fc6/README.md#L1-L20",
+          "assertion": "Match-integrity demo and signature-agility work; no distinct stock-token state/action boundary justified. README screening only.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "ff726b28badc3662f3f141f91b10f38ed2a69219fb3a229519b4df16793203d0"
+        }
+      ],
+      "license_absence_tree": "https://api.github.com/repos/pipavlo82/receiptos-pq-lab/git/trees/a705d9c1942c0f30725c9bddec6606a0cddf4fc6?recursive=1",
+      "relevant_paths": [
+        "README.md"
+      ],
+      "open_prs_inventory": [],
+      "screening_result": "Match-integrity demo and signature-agility work; no distinct stock-token state/action boundary justified. README screening only."
+    },
+    {
+      "repo": "pipavlo82/recomputable-verification-receipts",
+      "default_branch": "main",
+      "sha": "287c0ea1c2578c1833405bc2476975f95addbada",
+      "inspected_at": "2026-09-16T18:33:12.233Z",
+      "status": "merged/main tree (master for pq-receipt-profile); component may be experimental/spec-only",
+      "inspection_depth": "Targeted code/spec and caller-boundary inspection",
+      "license": "Apache-2.0",
+      "license_evidence": [
+        {
+          "repo": "pipavlo82/recomputable-verification-receipts",
+          "sha": "287c0ea1c2578c1833405bc2476975f95addbada",
+          "path": "LICENSE",
+          "lines": [
+            1,
+            12
+          ],
+          "url": "https://github.com/pipavlo82/recomputable-verification-receipts/blob/287c0ea1c2578c1833405bc2476975f95addbada/LICENSE#L1-L12",
+          "assertion": "Pinned root license text; inspect per-file exceptions before any copying.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "fa7fe2e14249d2da31c0d2a0bbefc17a1994a93b42ae652a3dab450b6f1c0251"
+        }
+      ],
+      "license_absence_tree": null,
+      "relevant_paths": [
+        "docs/spec/RECOMPUTABLE_VERIFICATION_RECEIPTS_V0.md",
+        "LICENSE"
+      ],
+      "open_prs_inventory": [],
+      "screening_result": null
+    },
+    {
+      "repo": "pipavlo82/relational-security-invariants",
+      "default_branch": "main",
+      "sha": "e8fb81904af2ffe19e974383cf78d9d18d259b98",
+      "inspected_at": "2026-09-16T18:33:09.677Z",
+      "status": "merged/main tree (master for pq-receipt-profile); component may be experimental/spec-only",
+      "inspection_depth": "Targeted code/spec and caller-boundary inspection",
+      "license": "License decision pending; no reuse grant",
+      "license_evidence": [
+        {
+          "repo": "pipavlo82/relational-security-invariants",
+          "sha": "e8fb81904af2ffe19e974383cf78d9d18d259b98",
+          "path": "LICENSE",
+          "lines": [
+            1,
+            6
+          ],
+          "url": "https://github.com/pipavlo82/relational-security-invariants/blob/e8fb81904af2ffe19e974383cf78d9d18d259b98/LICENSE#L1-L6",
+          "assertion": "Pinned root license text; inspect per-file exceptions before any copying.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "8538f3699adfbf44315245ad3bd0140785344842c22df47082f1f8dcf54a4fbd"
+        }
+      ],
+      "license_absence_tree": null,
+      "relevant_paths": [
+        "runner/execution.py",
+        "LICENSE"
+      ],
+      "open_prs_inventory": [],
+      "screening_result": null
+    },
+    {
+      "repo": "pipavlo82/semantic-execution-guard",
+      "default_branch": "main",
+      "sha": "8c786d8134632cdb4892ed32051377e739495300",
+      "inspected_at": "2026-09-16T18:33:09.387Z",
+      "status": "draft/branch (frozen PR #1)",
+      "inspection_depth": "Targeted code/spec and caller-boundary inspection",
+      "license": "No license grant; team decision pending",
+      "license_evidence": [
+        {
+          "repo": "pipavlo82/semantic-execution-guard",
+          "sha": "8c786d8134632cdb4892ed32051377e739495300",
+          "path": "docs/architecture.md",
+          "lines": [
+            33,
+            36
+          ],
+          "url": "https://github.com/pipavlo82/semantic-execution-guard/blob/8c786d8134632cdb4892ed32051377e739495300/docs/architecture.md#L33-L36",
+          "assertion": "Product has no license grant.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "2a17cf2b3bb2459eea2cd13644b592dc23821c9f80e5e13d213629508085453c"
+        }
+      ],
+      "license_absence_tree": "https://api.github.com/repos/pipavlo82/semantic-execution-guard/git/trees/8c786d8134632cdb4892ed32051377e739495300?recursive=1",
+      "relevant_paths": [
+        "relations/robinhood-stock-token-v0/recompute.mjs",
+        "relations/robinhood-stock-token-v0/relation.schema.json",
+        "docs/guard-result.schema.json",
+        "docs/fede-handoff.md",
+        "docs/architecture.md"
+      ],
+      "open_prs_inventory": [
+        {
+          "number": 1,
+          "title": "feat: Robinhood Stock Token protected relation v0",
+          "draft": true,
+          "head": "8c786d8134632cdb4892ed32051377e739495300",
+          "base": "093dc4f7832c1e18ede0bf9de6fb590aad6fbea8",
+          "head_ref": "feat/robinhood-stock-token-relation-v0",
+          "url": "https://github.com/pipavlo82/semantic-execution-guard/pull/1"
+        }
+      ],
+      "screening_result": null
+    },
+    {
+      "repo": "trustless-ai/agent-contracts-examples",
+      "default_branch": "main",
+      "sha": "60855b200745d2f6dfd24b266f95ca92ce102ed2",
+      "inspected_at": "2026-09-16T18:33:16.110Z",
+      "status": "merged/main tree (master for pq-receipt-profile); component may be experimental/spec-only",
+      "inspection_depth": "Targeted code/spec and caller-boundary inspection",
+      "license": "Apache-2.0",
+      "license_evidence": [
+        {
+          "repo": "trustless-ai/agent-contracts-examples",
+          "sha": "60855b200745d2f6dfd24b266f95ca92ce102ed2",
+          "path": "LICENSE",
+          "lines": [
+            1,
+            12
+          ],
+          "url": "https://github.com/trustless-ai/agent-contracts-examples/blob/60855b200745d2f6dfd24b266f95ca92ce102ed2/LICENSE#L1-L12",
+          "assertion": "Pinned root license text; inspect per-file exceptions before any copying.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+        }
+      ],
+      "license_absence_tree": null,
+      "relevant_paths": [
+        "recovery-receipt/contracts/src/MiniRecoveryEscrow.sol",
+        "LICENSE"
+      ],
+      "open_prs_inventory": [],
+      "screening_result": null
+    },
+    {
+      "repo": "trustless-ai/agent-ercs",
+      "default_branch": "main",
+      "sha": "01283ca57305f915afb560d23359a27fd748eb5a",
+      "inspected_at": "2026-09-16T18:33:15.154Z",
+      "status": "merged/main tree (master for pq-receipt-profile); component may be experimental/spec-only",
+      "inspection_depth": "Targeted code/spec and caller-boundary inspection",
+      "license": "Apache-2.0 root; inspected ConsultEscrow MIT; PolicyAction CC0-1.0",
+      "license_evidence": [
+        {
+          "repo": "trustless-ai/agent-ercs",
+          "sha": "01283ca57305f915afb560d23359a27fd748eb5a",
+          "path": "LICENSE",
+          "lines": [
+            1,
+            12
+          ],
+          "url": "https://github.com/trustless-ai/agent-ercs/blob/01283ca57305f915afb560d23359a27fd748eb5a/LICENSE#L1-L12",
+          "assertion": "Pinned root license text; inspect per-file exceptions before any copying.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+        },
+        {
+          "repo": "trustless-ai/agent-ercs",
+          "sha": "01283ca57305f915afb560d23359a27fd748eb5a",
+          "path": "contracts/settlement/ConsultEscrow/ConsultEscrow.sol",
+          "lines": [
+            1,
+            1
+          ],
+          "url": "https://github.com/trustless-ai/agent-ercs/blob/01283ca57305f915afb560d23359a27fd748eb5a/contracts/settlement/ConsultEscrow/ConsultEscrow.sol#L1-L1",
+          "assertion": "Per-file SPDX exception.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "373e1f6feab886d1115eceef391cebce97a16b51d4bdfdfb1e5bd4bdb3bd07f5"
+        },
+        {
+          "repo": "trustless-ai/agent-ercs",
+          "sha": "01283ca57305f915afb560d23359a27fd748eb5a",
+          "path": "contracts/verify/ERC8354/PolicyAction.sol",
+          "lines": [
+            1,
+            1
+          ],
+          "url": "https://github.com/trustless-ai/agent-ercs/blob/01283ca57305f915afb560d23359a27fd748eb5a/contracts/verify/ERC8354/PolicyAction.sol#L1-L1",
+          "assertion": "Per-file SPDX exception.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "9698c60db69fbae636164c22620407a0868589d7a1466fed5d1b4e213f4ec64f"
+        }
+      ],
+      "license_absence_tree": null,
+      "relevant_paths": [
+        "contracts/verify/ERC8354/PolicyAction.sol",
+        "contracts/settlement/ConsultEscrow/ConsultEscrow.sol",
+        "LICENSE"
+      ],
+      "open_prs_inventory": [
+        {
+          "number": 15,
+          "title": "Add Reproducible Contenthash Commitment to publish/",
+          "draft": false,
+          "head": "fde4518c3722e2820c7fc2a49bc5844b5c7df587",
+          "base": "56a010574b568491a90c8f5ec5a4ea4c8067aabe",
+          "head_ref": "erc/reproducible-contenthash",
+          "url": "https://github.com/trustless-ai/agent-ercs/pull/15"
+        }
+      ],
+      "screening_result": null
+    },
+    {
+      "repo": "trustless-ai/agent-sdk",
+      "default_branch": "main",
+      "sha": "e41b117893fb56bc869922de378daf91aad63def",
+      "inspected_at": "2026-09-16T18:33:24.912Z",
+      "status": "merged/main tree (master for pq-receipt-profile); component may be experimental/spec-only",
+      "inspection_depth": "Targeted code/spec and caller-boundary inspection",
+      "license": "Apache-2.0 root; inspected CAPV mock CC0-1.0",
+      "license_evidence": [
+        {
+          "repo": "trustless-ai/agent-sdk",
+          "sha": "e41b117893fb56bc869922de378daf91aad63def",
+          "path": "LICENSE",
+          "lines": [
+            1,
+            12
+          ],
+          "url": "https://github.com/trustless-ai/agent-sdk/blob/e41b117893fb56bc869922de378daf91aad63def/LICENSE#L1-L12",
+          "assertion": "Pinned root license text; inspect per-file exceptions before any copying.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+        },
+        {
+          "repo": "trustless-ai/agent-sdk",
+          "sha": "e41b117893fb56bc869922de378daf91aad63def",
+          "path": "testkit/contracts/mocks/verify/ERC8354/ConfidentialPolicyVerdict.sol",
+          "lines": [
+            1,
+            1
+          ],
+          "url": "https://github.com/trustless-ai/agent-sdk/blob/e41b117893fb56bc869922de378daf91aad63def/testkit/contracts/mocks/verify/ERC8354/ConfidentialPolicyVerdict.sol#L1-L1",
+          "assertion": "Mock per-file SPDX.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "4b17a45b8820bd9fd29ccd13e6881a35cec68d071a7c2dbeff04dbef8807630c"
+        }
+      ],
+      "license_absence_tree": null,
+      "relevant_paths": [
+        "testkit/contracts/mocks/verify/ERC8354/ConfidentialPolicyVerdict.sol",
+        "LICENSE"
+      ],
+      "open_prs_inventory": [
+        {
+          "number": 28,
+          "title": "Repin ERC-8354 verifier to pick up the expiry fix",
+          "draft": false,
+          "head": "703f9311dd2f173303184ddc7820b9267d53fb68",
+          "base": "e41b117893fb56bc869922de378daf91aad63def",
+          "head_ref": "repin-erc8354-expiry-fix",
+          "url": "https://github.com/trustless-ai/agent-sdk/pull/28"
+        }
+      ],
+      "screening_result": null
+    },
+    {
+      "repo": "trustless-ai/ccip-router",
+      "default_branch": "main",
+      "sha": "d6f5c96d31490213e932eb63c83b9989b2073900",
+      "inspected_at": "2026-09-16T18:33:12.382Z",
+      "status": "merged/main tree (master for pq-receipt-profile); component may be experimental/spec-only",
+      "inspection_depth": "Targeted code/spec and caller-boundary inspection",
+      "license": "MIT",
+      "license_evidence": [
+        {
+          "repo": "trustless-ai/ccip-router",
+          "sha": "d6f5c96d31490213e932eb63c83b9989b2073900",
+          "path": "LICENSE",
+          "lines": [
+            1,
+            12
+          ],
+          "url": "https://github.com/trustless-ai/ccip-router/blob/d6f5c96d31490213e932eb63c83b9989b2073900/LICENSE#L1-L12",
+          "assertion": "Pinned root license text; inspect per-file exceptions before any copying.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "2e4a5f0865b801a4e12a41e8173faf26860b8edb90859c883ebd073e7ec76c9a"
+        }
+      ],
+      "license_absence_tree": null,
+      "relevant_paths": [
+        "src/integrations/tseiProfileA.ts",
+        "src/integrations/tseiProfileARouter.ts",
+        "src/verify/binding.ts",
+        "contracts/OffchainResolver.sol",
+        "src/mesh/cron.ts",
+        "contracts/GenericCommitRevealSettler.sol",
+        "LICENSE"
+      ],
+      "open_prs_inventory": [],
+      "screening_result": null
+    },
+    {
+      "repo": "trustless-ai/composed-attestation-note",
+      "default_branch": "main",
+      "sha": "b1ba7a24d492804a2382576170404baa2998ff77",
+      "inspected_at": "2026-09-16T18:33:22.263Z",
+      "status": "merged/main tree (master for pq-receipt-profile); component may be experimental/spec-only",
+      "inspection_depth": "README/license/tree screening",
+      "license": "CC0-1.0",
+      "license_evidence": [
+        {
+          "repo": "trustless-ai/composed-attestation-note",
+          "sha": "b1ba7a24d492804a2382576170404baa2998ff77",
+          "path": "LICENSE",
+          "lines": [
+            1,
+            12
+          ],
+          "url": "https://github.com/trustless-ai/composed-attestation-note/blob/b1ba7a24d492804a2382576170404baa2998ff77/LICENSE#L1-L12",
+          "assertion": "Pinned root license text; inspect per-file exceptions before any copying.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499"
+        },
+        {
+          "repo": "trustless-ai/composed-attestation-note",
+          "sha": "b1ba7a24d492804a2382576170404baa2998ff77",
+          "path": "README.md",
+          "lines": [
+            1,
+            20
+          ],
+          "url": "https://github.com/trustless-ai/composed-attestation-note/blob/b1ba7a24d492804a2382576170404baa2998ff77/README.md#L1-L20",
+          "assertion": "Useful vocabulary for input/decision/action/seam commitments; README says it specifies no legs. No runtime primitive imported, worked-example deployment not verified.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "7efb8dc8a4a89767d95ad454afa0957c3cd20dacdb93fcb0d3a4c1a5900792e0"
+        }
+      ],
+      "license_absence_tree": null,
+      "relevant_paths": [
+        "LICENSE",
+        "README.md"
+      ],
+      "open_prs_inventory": [],
+      "screening_result": "Useful vocabulary for input/decision/action/seam commitments; README says it specifies no legs. No runtime primitive imported, worked-example deployment not verified."
+    },
+    {
+      "repo": "trustless-ai/cross-reference-console",
+      "default_branch": "main",
+      "sha": "268c77b795aef5f13b018e76e4f7d9307a81b395",
+      "inspected_at": "2026-09-16T18:33:24.784Z",
+      "status": "merged/main tree (master for pq-receipt-profile); component may be experimental/spec-only",
+      "inspection_depth": "Targeted code/spec and caller-boundary inspection",
+      "license": "CC0-1.0",
+      "license_evidence": [
+        {
+          "repo": "trustless-ai/cross-reference-console",
+          "sha": "268c77b795aef5f13b018e76e4f7d9307a81b395",
+          "path": "LICENSE",
+          "lines": [
+            1,
+            6
+          ],
+          "url": "https://github.com/trustless-ai/cross-reference-console/blob/268c77b795aef5f13b018e76e4f7d9307a81b395/LICENSE#L1-L6",
+          "assertion": "Pinned root license text; inspect per-file exceptions before any copying.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "fab94f290fa307e36b2ec973b36835b737409f574535a28fec45073c1180b963"
+        }
+      ],
+      "license_absence_tree": null,
+      "relevant_paths": [
+        ".github/workflows/watcher.yml",
+        "LICENSE"
+      ],
+      "open_prs_inventory": [
+        {
+          "number": 90,
+          "title": "rung 4 — attribution recomputed under an independent semantic contract",
+          "draft": false,
+          "head": "be8dbed4303a1ccafd850fcfea447f917645f0f5",
+          "base": "5d50bf951e475d33b75ec5d3428639871432ebdd",
+          "head_ref": "rung4-independent-oracle",
+          "url": "https://github.com/trustless-ai/cross-reference-console/pull/90"
+        }
+      ],
+      "screening_result": null
+    },
+    {
+      "repo": "trustless-ai/eip7702-rescue",
+      "default_branch": "main",
+      "sha": "31133de1ca5428947580f53a486d97aae461e33e",
+      "inspected_at": "2026-09-16T18:33:22.385Z",
+      "status": "merged/main tree (master for pq-receipt-profile); component may be experimental/spec-only",
+      "inspection_depth": "Targeted code/spec and caller-boundary inspection",
+      "license": "CC0-1.0",
+      "license_evidence": [
+        {
+          "repo": "trustless-ai/eip7702-rescue",
+          "sha": "31133de1ca5428947580f53a486d97aae461e33e",
+          "path": "LICENSE",
+          "lines": [
+            1,
+            12
+          ],
+          "url": "https://github.com/trustless-ai/eip7702-rescue/blob/31133de1ca5428947580f53a486d97aae461e33e/LICENSE#L1-L12",
+          "assertion": "Pinned root license text; inspect per-file exceptions before any copying.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "170e3b177791614567a81679ad1e20ee0197c57377cbff7f8d52030d1e8abfe9"
+        }
+      ],
+      "license_absence_tree": null,
+      "relevant_paths": [
+        "contracts/RescueDelegate.sol",
+        "LICENSE"
+      ],
+      "open_prs_inventory": [],
+      "screening_result": null
+    },
+    {
+      "repo": "trustless-ai/observation-conditions-note",
+      "default_branch": "main",
+      "sha": "05e8fda42996ea138c6728df4c02931122dc7f98",
+      "inspected_at": "2026-09-16T18:33:22.364Z",
+      "status": "merged/main tree (master for pq-receipt-profile); component may be experimental/spec-only",
+      "inspection_depth": "README/license/tree screening",
+      "license": "CC0-1.0",
+      "license_evidence": [
+        {
+          "repo": "trustless-ai/observation-conditions-note",
+          "sha": "05e8fda42996ea138c6728df4c02931122dc7f98",
+          "path": "LICENSE",
+          "lines": [
+            1,
+            4
+          ],
+          "url": "https://github.com/trustless-ai/observation-conditions-note/blob/05e8fda42996ea138c6728df4c02931122dc7f98/LICENSE#L1-L4",
+          "assertion": "Pinned root license text; inspect per-file exceptions before any copying.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "7b8e39433bf026c111931a27907c16ee553bd878ef02a61322580cbf9ce0da6b"
+        },
+        {
+          "repo": "trustless-ai/observation-conditions-note",
+          "sha": "05e8fda42996ea138c6728df4c02931122dc7f98",
+          "path": "README.md",
+          "lines": [
+            1,
+            20
+          ],
+          "url": "https://github.com/trustless-ai/observation-conditions-note/blob/05e8fda42996ea138c6728df4c02931122dc7f98/README.md#L1-L20",
+          "assertion": "Draft conceptual unification, explicitly under review; conditions are preserved in this audit without adding a dependency.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "d1eecaa9a3a9c8d033d917bacb64bfd5764490b020ec6cb838b7de21e646bad1"
+        }
+      ],
+      "license_absence_tree": null,
+      "relevant_paths": [
+        "LICENSE",
+        "README.md"
+      ],
+      "open_prs_inventory": [],
+      "screening_result": "Draft conceptual unification, explicitly under review; conditions are preserved in this audit without adding a dependency."
+    },
+    {
+      "repo": "trustless-ai/pq-agent-binding",
+      "default_branch": "main",
+      "sha": "4f934ad31e96979002d818cd8a5f12909c1b6713",
+      "inspected_at": "2026-09-16T18:33:15.076Z",
+      "status": "merged/main tree (master for pq-receipt-profile); component may be experimental/spec-only",
+      "inspection_depth": "Targeted code/spec and caller-boundary inspection",
+      "license": "CC0-1.0",
+      "license_evidence": [
+        {
+          "repo": "trustless-ai/pq-agent-binding",
+          "sha": "4f934ad31e96979002d818cd8a5f12909c1b6713",
+          "path": "LICENSE",
+          "lines": [
+            1,
+            6
+          ],
+          "url": "https://github.com/trustless-ai/pq-agent-binding/blob/4f934ad31e96979002d818cd8a5f12909c1b6713/LICENSE#L1-L6",
+          "assertion": "Pinned root license text; inspect per-file exceptions before any copying.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "fab94f290fa307e36b2ec973b36835b737409f574535a28fec45073c1180b963"
+        }
+      ],
+      "license_absence_tree": null,
+      "relevant_paths": [
+        "spec/v1-temporal-authority.md",
+        "LICENSE"
+      ],
+      "open_prs_inventory": [],
+      "screening_result": null
+    },
+    {
+      "repo": "trustless-ai/primitives",
+      "default_branch": "main",
+      "sha": "6b39e9540d4bd0a78decb588c0a8e328c303f208",
+      "inspected_at": "2026-09-16T18:33:24.694Z",
+      "status": "merged/main tree (master for pq-receipt-profile); component may be experimental/spec-only",
+      "inspection_depth": "README/license/tree screening",
+      "license": "CC0-1.0",
+      "license_evidence": [
+        {
+          "repo": "trustless-ai/primitives",
+          "sha": "6b39e9540d4bd0a78decb588c0a8e328c303f208",
+          "path": "LICENSE",
+          "lines": [
+            1,
+            4
+          ],
+          "url": "https://github.com/trustless-ai/primitives/blob/6b39e9540d4bd0a78decb588c0a8e328c303f208/LICENSE#L1-L4",
+          "assertion": "Pinned root license text; inspect per-file exceptions before any copying.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "bd1565ed53e0710c252914871977bcc28b98d1a5b6013d2b03539453386559bf"
+        },
+        {
+          "repo": "trustless-ai/primitives",
+          "sha": "6b39e9540d4bd0a78decb588c0a8e328c303f208",
+          "path": "README.md",
+          "lines": [
+            1,
+            20
+          ],
+          "url": "https://github.com/trustless-ai/primitives/blob/6b39e9540d4bd0a78decb588c0a8e328c303f208/README.md#L1-L20",
+          "assertion": "Discovery index only; README explicitly defers authority to code/chain/package. Live labels and addresses were not independently verified.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "a63d40430eb09ae303dd16c6b8347177cdb36e89421fd40e78de94f61381efd2"
+        }
+      ],
+      "license_absence_tree": null,
+      "relevant_paths": [
+        "LICENSE",
+        "README.md"
+      ],
+      "open_prs_inventory": [],
+      "screening_result": "Discovery index only; README explicitly defers authority to code/chain/package. Live labels and addresses were not independently verified."
+    },
+    {
+      "repo": "trustless-ai/recompute-kit",
+      "default_branch": "main",
+      "sha": "f5a25bd6bbf555c710d63915d4e5092548e3702c",
+      "inspected_at": "2026-09-16T18:33:09.491Z",
+      "status": "merged/main tree (master for pq-receipt-profile); component may be experimental/spec-only",
+      "inspection_depth": "Targeted code/spec and caller-boundary inspection",
+      "license": "CC0-1.0",
+      "license_evidence": [
+        {
+          "repo": "trustless-ai/recompute-kit",
+          "sha": "f5a25bd6bbf555c710d63915d4e5092548e3702c",
+          "path": "LICENSE",
+          "lines": [
+            1,
+            11
+          ],
+          "url": "https://github.com/trustless-ai/recompute-kit/blob/f5a25bd6bbf555c710d63915d4e5092548e3702c/LICENSE#L1-L11",
+          "assertion": "Pinned root license text; inspect per-file exceptions before any copying.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "405d0af6743b62b00a440d519b85fd9c3f159ff85b3bcfcd8c683e6372b4a7aa"
+        }
+      ],
+      "license_absence_tree": null,
+      "relevant_paths": [
+        "conformance/verdict-profile-binding-v0/verdict-profile-binding-v0.reference.mjs",
+        "conformance/profile-amendment-v0/profile-amendment-v0.reference.mjs",
+        "conformance/captured-admission-v0/README.md",
+        "conformance/pq-recovery-classes-v0/README.md",
+        "conformance/pq-recovery-classes-v0/recovery_check.py",
+        "conformance/pq-key-binding-v1/cutoff_enforce.py",
+        "conformance/predicate-conformance-v0/gate.ts",
+        "LICENSE"
+      ],
+      "open_prs_inventory": [
+        {
+          "number": 44,
+          "title": "run_conformance: a gate's own exit 2 is unverifiable, not verified-bad",
+          "draft": false,
+          "head": "7bbb14975ea8497dd2fe5955d2279f9d59565fbb",
+          "base": "f5a25bd6bbf555c710d63915d4e5092548e3702c",
+          "head_ref": "runner-exit-2-unverifiable",
+          "url": "https://github.com/trustless-ai/recompute-kit/pull/44"
+        },
+        {
+          "number": 43,
+          "title": "predicate-conformance-v0: post-merge hardening from Pavlo's PR #14 review",
+          "draft": false,
+          "head": "ca65030b3dedca013bfcbbb78f05b52ce10e64de",
+          "base": "f5a25bd6bbf555c710d63915d4e5092548e3702c",
+          "head_ref": "predicate-conformance-v0-postmerge-hardening",
+          "url": "https://github.com/trustless-ai/recompute-kit/pull/43"
+        },
+        {
+          "number": 42,
+          "title": "conformance: profile-commitment-loop-v0 — chain both ends into one mechanical seam",
+          "draft": false,
+          "head": "28e5f1c2842f9355873bf9d62a08f6ba8c931df3",
+          "base": "15f7f59ac47b3358492bd5741143c418b5d657f5",
+          "head_ref": "feat/profile-commitment-loop-v0",
+          "url": "https://github.com/trustless-ai/recompute-kit/pull/42"
+        },
+        {
+          "number": 29,
+          "title": "docs: map coordinated basis-points completion",
+          "draft": false,
+          "head": "26647f9e84f17991b00606754a3a547026ec0a7a",
+          "base": "9461bf3f881484725f9730c5711fb1ff657356e4",
+          "head_ref": "plan/win-rate-bps-cutover-matrix",
+          "url": "https://github.com/trustless-ai/recompute-kit/pull/29"
+        },
+        {
+          "number": 19,
+          "title": "docs(README): document per-suite hash-pinned conformance + fix MCP tool count",
+          "draft": false,
+          "head": "7c130af4d21684143c396e062da61d9be45ee684",
+          "base": "dbb984bcf92dea2b39d5752c5fcb6a53ec4728b3",
+          "head_ref": "docs/readme-per-suite-conformance",
+          "url": "https://github.com/trustless-ai/recompute-kit/pull/19"
+        },
+        {
+          "number": 18,
+          "title": "pq-key-binding-v1: add t==B / t==R cutoff boundary vectors (parity with ERC-8373)",
+          "draft": false,
+          "head": "6091811d3f4e81dabc8a2fc672d707c0e3848fcd",
+          "base": "dbb984bcf92dea2b39d5752c5fcb6a53ec4728b3",
+          "head_ref": "feat/pq-v1-cutoff-boundary-vectors",
+          "url": "https://github.com/trustless-ai/recompute-kit/pull/18"
+        },
+        {
+          "number": 17,
+          "title": "Add recompute-mutation-survival: prove tests are load-bearing, not decorative",
+          "draft": false,
+          "head": "4ecf663f36a368e98c2f8f74089d26ff8bb50dad",
+          "base": "dbb984bcf92dea2b39d5752c5fcb6a53ec4728b3",
+          "head_ref": "feat/mutation-survival-gate",
+          "url": "https://github.com/trustless-ai/recompute-kit/pull/17"
+        },
+        {
+          "number": 15,
+          "title": "conformance: cover dex-calldata-v0 with a hermetic gate",
+          "draft": false,
+          "head": "78ec58a6b5e97e2ddf2e1ad25f6fee7cd17e0743",
+          "base": "73ca2843e283d55687b1a231e4c525a831298596",
+          "head_ref": "cover-dex-calldata",
+          "url": "https://github.com/trustless-ai/recompute-kit/pull/15"
+        },
+        {
+          "number": 10,
+          "title": "pq-key-binding-v0: UNVERIFIABLE lane (@blockbird) + the missing pre-rotation ADMIT separator",
+          "draft": false,
+          "head": "81c1c2dba8238f4e76ab5950bfa0c0d81e233553",
+          "base": "a74e234212a1495583dbeb49e93cffae32cdd527",
+          "head_ref": "vectors/unverifiable-lane-and-pre-rotation",
+          "url": "https://github.com/trustless-ai/recompute-kit/pull/10"
+        }
+      ],
+      "screening_result": null
+    },
+    {
+      "repo": "trustless-ai/semantic-abi",
+      "default_branch": "main",
+      "sha": "d15c666dfccff17f7350fe97d2fc7b71cb2cbaee",
+      "inspected_at": "2026-09-16T18:33:09.294Z",
+      "status": "merged/main tree (master for pq-receipt-profile); component may be experimental/spec-only",
+      "inspection_depth": "Targeted code/spec and caller-boundary inspection",
+      "license": "Apache-2.0 code; CC0 schema/spec",
+      "license_evidence": [
+        {
+          "repo": "trustless-ai/semantic-abi",
+          "sha": "d15c666dfccff17f7350fe97d2fc7b71cb2cbaee",
+          "path": "LICENSE",
+          "lines": [
+            1,
+            12
+          ],
+          "url": "https://github.com/trustless-ai/semantic-abi/blob/d15c666dfccff17f7350fe97d2fc7b71cb2cbaee/LICENSE#L1-L12",
+          "assertion": "Pinned root license text; inspect per-file exceptions before any copying.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "c95bae1d1ce0235ecccd3560b772ec1efb97f348a79f0fbe0a634f0c2ccefe2c"
+        },
+        {
+          "repo": "trustless-ai/semantic-abi",
+          "sha": "d15c666dfccff17f7350fe97d2fc7b71cb2cbaee",
+          "path": "README.md",
+          "lines": [
+            16,
+            16
+          ],
+          "url": "https://github.com/trustless-ai/semantic-abi/blob/d15c666dfccff17f7350fe97d2fc7b71cb2cbaee/README.md#L16-L16",
+          "assertion": "Apache code and CC0 specification split.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "f20050889a9e9b2a03fb450add57a0e707ded53c9e0836c7ba23579e5c4e7794"
+        }
+      ],
+      "license_absence_tree": null,
+      "relevant_paths": [
+        "runner/src/linker.mjs",
+        "runner/src/evaluate.mjs",
+        "LICENSE",
+        "README.md"
+      ],
+      "open_prs_inventory": [],
+      "screening_result": null
+    },
+    {
+      "repo": "trustless-ai/trustless-agent-substrate",
+      "default_branch": "feature/tas-poc",
+      "sha": "a344ef80f7c52c03b9183814d1874b8054639c3e",
+      "inspected_at": "2026-09-16T18:33:19.719Z",
+      "status": "experimental default feature/tas-poc; not main",
+      "inspection_depth": "Targeted code/spec and caller-boundary inspection",
+      "license": "Apache-2.0",
+      "license_evidence": [
+        {
+          "repo": "trustless-ai/trustless-agent-substrate",
+          "sha": "a344ef80f7c52c03b9183814d1874b8054639c3e",
+          "path": "LICENSE",
+          "lines": [
+            1,
+            12
+          ],
+          "url": "https://github.com/trustless-ai/trustless-agent-substrate/blob/a344ef80f7c52c03b9183814d1874b8054639c3e/LICENSE#L1-L12",
+          "assertion": "Pinned root license text; inspect per-file exceptions before any copying.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+        }
+      ],
+      "license_absence_tree": null,
+      "relevant_paths": [
+        "src/core/workflow/sourceGate.ts",
+        "src/core/workflow/operationService.ts",
+        "src/clients/workflow/agentSdkClient.ts",
+        "LICENSE"
+      ],
+      "open_prs_inventory": [],
+      "screening_result": null
+    },
+    {
+      "repo": "trustless-ai/verify-layer",
+      "default_branch": "main",
+      "sha": "84afc4b738dc37269089c858404eed8086435f5d",
+      "inspected_at": "2026-09-16T18:33:14.943Z",
+      "status": "merged/main tree (master for pq-receipt-profile); component may be experimental/spec-only",
+      "inspection_depth": "Targeted code/spec and caller-boundary inspection",
+      "license": "CC0-1.0",
+      "license_evidence": [
+        {
+          "repo": "trustless-ai/verify-layer",
+          "sha": "84afc4b738dc37269089c858404eed8086435f5d",
+          "path": "LICENSE",
+          "lines": [
+            1,
+            9
+          ],
+          "url": "https://github.com/trustless-ai/verify-layer/blob/84afc4b738dc37269089c858404eed8086435f5d/LICENSE#L1-L9",
+          "assertion": "Pinned root license text; inspect per-file exceptions before any copying.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "fe7270383bffc9e5d99b0fa8539cf91ebbbec5b209ee521032da622f14ccfc46"
+        }
+      ],
+      "license_absence_tree": null,
+      "relevant_paths": [
+        "verify.mjs",
+        "LICENSE"
+      ],
+      "open_prs_inventory": [],
+      "screening_result": null
+    }
+  ],
+  "primitives": [
+    {
+      "primitive_id": "SEG_RELATION",
+      "repo": "pipavlo82/semantic-execution-guard",
+      "sha": "8c786d8134632cdb4892ed32051377e739495300",
+      "paths": [
+        "relations/robinhood-stock-token-v0/recompute.mjs",
+        "relations/robinhood-stock-token-v0/relation.schema.json",
+        "docs/guard-result.schema.json",
+        "docs/fede-handoff.md",
+        "docs/architecture.md"
+      ],
+      "purpose": "Exact typed quote-to-adjusted-price conversion",
+      "inputs": "Synthetic normalized quote, multiplier, conversion witness and consumer context",
+      "outputs": "PASS / FAIL / CANNOT_ESTABLISH, exact value, input/context digests",
+      "trust_root": "Caller-supplied fixture/context; no credential verification",
+      "authority_model": "Declared source and authority labels only",
+      "semantic_evidence_boundary": "Semantic compatibility of the supplied tuple",
+      "state_dependencies": "Asset tuple, currency/side, scale, effective interval/state and explicit witness",
+      "time_freshness_dependencies": "Supplied observations and intervals; no clock or latest-state resolver",
+      "protected_event": "Future protected action; presently only receipt generation",
+      "event_cadence": "Explicit offline invocation",
+      "enforcement_mode": "AUDIT_ONLY",
+      "state_bound": true,
+      "action_bound": false,
+      "freshness_bound": false,
+      "replay_bound": false,
+      "binding_scope": "State=true means input snapshot committed, NOT established current",
+      "exposure_window": "UNBOUNDED / UNKNOWN if a stored PASS is accepted later; supplied effective interval is not enforced against execution time.",
+      "finding_class": "STRUCTURAL_RISK",
+      "first_slice_role": "REQUIRED_FOR_FIRST_SLICE",
+      "implementation_status": "Frozen draft PR #1; relation implementation only",
+      "independent_verification_status": "This audit inspected pinned sources. No fresh independent deployment verification or third-party implementation validation is claimed.",
+      "runtime_onchain_offchain": "Offchain local Node evaluator",
+      "license_reuse_constraints": "No license grant; team decision pending",
+      "does_not_establish": "Authenticity, truth, event freshness, authorization, replay prevention, execution",
+      "evidence": [
+        {
+          "repo": "pipavlo82/semantic-execution-guard",
+          "sha": "8c786d8134632cdb4892ed32051377e739495300",
+          "path": "relations/robinhood-stock-token-v0/recompute.mjs",
+          "lines": [
+            23,
+            98
+          ],
+          "url": "https://github.com/pipavlo82/semantic-execution-guard/blob/8c786d8134632cdb4892ed32051377e739495300/relations/robinhood-stock-token-v0/recompute.mjs#L23-L98",
+          "assertion": "Pure recomputation and formatter; supplied temporal context; no authenticated event consumer.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "efa3908472b40e58ae270d8c8709380a46b0dc775b9005058742c38b42d2038e"
+        },
+        {
+          "repo": "pipavlo82/semantic-execution-guard",
+          "sha": "8c786d8134632cdb4892ed32051377e739495300",
+          "path": "relations/robinhood-stock-token-v0/relation.schema.json",
+          "lines": [
+            1,
+            24
+          ],
+          "url": "https://github.com/pipavlo82/semantic-execution-guard/blob/8c786d8134632cdb4892ed32051377e739495300/relations/robinhood-stock-token-v0/relation.schema.json#L1-L24",
+          "assertion": "Input contract explicitly requires SYNTHETIC_RELATION_FIXTURE; not a live wire adapter.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "36c1e27cbd02764f8313e5d56ad75879b22beb84edc3014e0e5b462055041fb3"
+        },
+        {
+          "repo": "pipavlo82/semantic-execution-guard",
+          "sha": "8c786d8134632cdb4892ed32051377e739495300",
+          "path": "docs/guard-result.schema.json",
+          "lines": [
+            1,
+            26
+          ],
+          "url": "https://github.com/pipavlo82/semantic-execution-guard/blob/8c786d8134632cdb4892ed32051377e739495300/docs/guard-result.schema.json#L1-L26",
+          "assertion": "Unauthenticated shape/required-field contract, not a signature or event-consumption mechanism.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "48a304b0b77e0975c9f62c55c5208969b4c8b7b3b097464d66a265983ddf3634"
+        },
+        {
+          "repo": "pipavlo82/semantic-execution-guard",
+          "sha": "8c786d8134632cdb4892ed32051377e739495300",
+          "path": "docs/fede-handoff.md",
+          "lines": [
+            15,
+            38
+          ],
+          "url": "https://github.com/pipavlo82/semantic-execution-guard/blob/8c786d8134632cdb4892ed32051377e739495300/docs/fede-handoff.md#L15-L38",
+          "assertion": "Caller can forge the handoff; explicitly not a security gate.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "4f6a9c73bec4175160cbb598a5a854be5f128aa37ac458611f9f0f8a0e14fd47"
+        },
+        {
+          "repo": "pipavlo82/semantic-execution-guard",
+          "sha": "8c786d8134632cdb4892ed32051377e739495300",
+          "path": "docs/architecture.md",
+          "lines": [
+            7,
+            30
+          ],
+          "url": "https://github.com/pipavlo82/semantic-execution-guard/blob/8c786d8134632cdb4892ed32051377e739495300/docs/architecture.md#L7-L30",
+          "assertion": "Adapter and guard are pending; independent verification not established.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "2a17cf2b3bb2459eea2cd13644b592dc23821c9f80e5e13d213629508085453c"
+        }
+      ]
+    },
+    {
+      "primitive_id": "SABI_LINKER",
+      "repo": "trustless-ai/semantic-abi",
+      "sha": "d15c666dfccff17f7350fe97d2fc7b71cb2cbaee",
+      "paths": [
+        "runner/src/linker.mjs",
+        "runner/src/evaluate.mjs"
+      ],
+      "purpose": "Claim-level consumes/establishes compatibility",
+      "inputs": "Producer establishes/does_not_establish and required claim",
+      "outputs": "Valid edge or TYPE_ERROR with counterexample",
+      "trust_root": "Declared manifests",
+      "authority_model": "Claim, authority-class, scope and temporal-boundary comparison",
+      "semantic_evidence_boundary": "Evidence meaning, not credential verification",
+      "state_dependencies": "Manifest claims",
+      "time_freshness_dependencies": "Equal supplied temporal fields; no expiry clock",
+      "protected_event": "Semantic link decision, not an irreversible action",
+      "event_cadence": "Explicit linker/runner call",
+      "enforcement_mode": "CONFORMANCE_ONLY",
+      "state_bound": true,
+      "action_bound": false,
+      "freshness_bound": false,
+      "replay_bound": false,
+      "binding_scope": "State=true only for compared manifest tuple",
+      "exposure_window": "Not a live gate; promoting a past link result to execution would leave UNBOUNDED / UNKNOWN exposure.",
+      "finding_class": "OUT_OF_SCOPE",
+      "first_slice_role": "USEFUL_AFTER_FIRST_SLICE",
+      "implementation_status": "Present at inspected default branch; runtime/deployment status limited to cited evidence",
+      "independent_verification_status": "This audit inspected pinned sources. No fresh independent deployment verification or third-party implementation validation is claimed.",
+      "runtime_onchain_offchain": "Offchain pure library/runner",
+      "license_reuse_constraints": "Apache-2.0 code; CC0 schema/spec",
+      "does_not_establish": "Provider identity, live state, truth, execution authorization",
+      "evidence": [
+        {
+          "repo": "trustless-ai/semantic-abi",
+          "sha": "d15c666dfccff17f7350fe97d2fc7b71cb2cbaee",
+          "path": "runner/src/linker.mjs",
+          "lines": [
+            1,
+            100
+          ],
+          "url": "https://github.com/trustless-ai/semantic-abi/blob/d15c666dfccff17f7350fe97d2fc7b71cb2cbaee/runner/src/linker.mjs#L1-L100",
+          "assertion": "Exact claim/scope/time compatibility and negative boundaries; no live consumer.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "bae8e519361989bfadbb5d226cb9940255cd954c60b40ba42136a2b11161d391"
+        },
+        {
+          "repo": "trustless-ai/semantic-abi",
+          "sha": "d15c666dfccff17f7350fe97d2fc7b71cb2cbaee",
+          "path": "runner/src/evaluate.mjs",
+          "lines": [
+            1,
+            54
+          ],
+          "url": "https://github.com/trustless-ai/semantic-abi/blob/d15c666dfccff17f7350fe97d2fc7b71cb2cbaee/runner/src/evaluate.mjs#L1-L54",
+          "assertion": "Expected pair, observed pair and backend conformance remain distinct.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "a2f1c3caaaeeb37b7067618f7ee0b98bddece859baee7dfbfc68a44be58699b0"
+        }
+      ]
+    },
+    {
+      "primitive_id": "RSI_DISCRIMINATION",
+      "repo": "pipavlo82/relational-security-invariants",
+      "sha": "e8fb81904af2ffe19e974383cf78d9d18d259b98",
+      "paths": [
+        "runner/execution.py"
+      ],
+      "purpose": "Independent-adapter relation testing",
+      "inputs": "Pinned profile, fixtures, adapter and validation plan",
+      "outputs": "Observed relation compared with expected relation",
+      "trust_root": "Profile/fixture oracle and independently selected adapter",
+      "authority_model": "Declared independent lane must be separately demonstrated",
+      "semantic_evidence_boundary": "Falsifiability and adapter agreement",
+      "state_dependencies": "Pinned request digest and plan",
+      "time_freshness_dependencies": "No event clock",
+      "protected_event": "Conformance run",
+      "event_cadence": "On demand",
+      "enforcement_mode": "CONFORMANCE_ONLY",
+      "state_bound": true,
+      "action_bound": false,
+      "freshness_bound": false,
+      "replay_bound": false,
+      "binding_scope": "State=true means test request identity only",
+      "exposure_window": "No live action gate; exposure not bounded by test cadence.",
+      "finding_class": "OUT_OF_SCOPE",
+      "first_slice_role": "INDEPENDENT_VERIFICATION_ONLY",
+      "implementation_status": "Present at inspected default branch; runtime/deployment status limited to cited evidence",
+      "independent_verification_status": "This audit inspected pinned sources. No fresh independent deployment verification or third-party implementation validation is claimed.",
+      "runtime_onchain_offchain": "Offchain runner",
+      "license_reuse_constraints": "License decision pending; no reuse grant",
+      "does_not_establish": "Production enforcement or independence of SEG merely because tests pass",
+      "evidence": [
+        {
+          "repo": "pipavlo82/relational-security-invariants",
+          "sha": "e8fb81904af2ffe19e974383cf78d9d18d259b98",
+          "path": "runner/execution.py",
+          "lines": [
+            24,
+            79
+          ],
+          "url": "https://github.com/pipavlo82/relational-security-invariants/blob/e8fb81904af2ffe19e974383cf78d9d18d259b98/runner/execution.py#L24-L79",
+          "assertion": "Plan admission, adapter execution, digest and result checks; not spending authorization.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "c7234c885eef97e24a89b3b54041cff77de88311e4521e74f1a9f208dd82feb7"
+        }
+      ]
+    },
+    {
+      "primitive_id": "PRF_AXES",
+      "repo": "pipavlo82/protected-relation-fixtures",
+      "sha": "07075d874c75da43f5ac8ed8769d5dbc01d56427",
+      "paths": [
+        "tools/relation_discrimination.py"
+      ],
+      "purpose": "Identity/type/multiplicity/direction/scope discrimination",
+      "inputs": "Explicit relation policy and fixture pair",
+      "outputs": "PRESERVED / VIOLATED / UNVERIFIABLE",
+      "trust_root": "Fixture policy",
+      "authority_model": "Semantic extraction under declared policy",
+      "semantic_evidence_boundary": "Explicit protected axes",
+      "state_dependencies": "Policy and relation pair",
+      "time_freshness_dependencies": "No live freshness dependency",
+      "protected_event": "Fixture evaluation",
+      "event_cadence": "On demand",
+      "enforcement_mode": "CONFORMANCE_ONLY",
+      "state_bound": true,
+      "action_bound": false,
+      "freshness_bound": false,
+      "replay_bound": false,
+      "binding_scope": "State=true for supplied relation/policy",
+      "exposure_window": "No authorization path; not an event-time mitigation.",
+      "finding_class": "OUT_OF_SCOPE",
+      "first_slice_role": "INDEPENDENT_VERIFICATION_ONLY",
+      "implementation_status": "Present at inspected default branch; runtime/deployment status limited to cited evidence",
+      "independent_verification_status": "This audit inspected pinned sources. No fresh independent deployment verification or third-party implementation validation is claimed.",
+      "runtime_onchain_offchain": "Offchain conformance",
+      "license_reuse_constraints": "MIT",
+      "does_not_establish": "Truth, source authority, current state or execution",
+      "evidence": [
+        {
+          "repo": "pipavlo82/protected-relation-fixtures",
+          "sha": "07075d874c75da43f5ac8ed8769d5dbc01d56427",
+          "path": "tools/relation_discrimination.py",
+          "lines": [
+            9,
+            94
+          ],
+          "url": "https://github.com/pipavlo82/protected-relation-fixtures/blob/07075d874c75da43f5ac8ed8769d5dbc01d56427/tools/relation_discrimination.py#L9-L94",
+          "assertion": "Axes, policy constraints and fail-closed unknown extraction are explicit.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "c3df8f7a9b6706939331851b55e3191e1e5e19ad234ca784f3b6f688388b7faa"
+        }
+      ]
+    },
+    {
+      "primitive_id": "RK_PROFILE_BINDING",
+      "repo": "trustless-ai/recompute-kit",
+      "sha": "f5a25bd6bbf555c710d63915d4e5092548e3702c",
+      "paths": [
+        "conformance/verdict-profile-binding-v0/verdict-profile-binding-v0.reference.mjs",
+        "conformance/profile-amendment-v0/profile-amendment-v0.reference.mjs"
+      ],
+      "purpose": "Bind verdict to effective policy and authorized amendment shape",
+      "inputs": "Verdict core, supplied task-effective profile and amendment signatures-as-records",
+      "outputs": "Bound/unbound or effective profile selection",
+      "trust_root": "Supplied commitments and signer records",
+      "authority_model": "Reference compares signed_digest strings; does not verify cryptography",
+      "semantic_evidence_boundary": "Policy identity must be consumed, not merely recorded",
+      "state_dependencies": "Profile and escrow/task commitments",
+      "time_freshness_dependencies": "No proof effective profile is latest at execution",
+      "protected_event": "Reference verdict acceptance",
+      "event_cadence": "Vector execution",
+      "enforcement_mode": "CONFORMANCE_ONLY",
+      "state_bound": true,
+      "action_bound": false,
+      "freshness_bound": false,
+      "replay_bound": false,
+      "binding_scope": "State=true for supplied profile; not authoritative current state",
+      "exposure_window": "From actual policy change until consumer revalidation; UNBOUNDED / UNKNOWN.",
+      "finding_class": "STRUCTURAL_RISK",
+      "first_slice_role": "USEFUL_AFTER_FIRST_SLICE",
+      "implementation_status": "Present at inspected default branch; runtime/deployment status limited to cited evidence",
+      "independent_verification_status": "This audit inspected pinned sources. No fresh independent deployment verification or third-party implementation validation is claimed.",
+      "runtime_onchain_offchain": "Offchain reference",
+      "license_reuse_constraints": "CC0-1.0",
+      "does_not_establish": "Real signatures, live amendment authority or atomic action",
+      "evidence": [
+        {
+          "repo": "trustless-ai/recompute-kit",
+          "sha": "f5a25bd6bbf555c710d63915d4e5092548e3702c",
+          "path": "conformance/verdict-profile-binding-v0/verdict-profile-binding-v0.reference.mjs",
+          "lines": [
+            1,
+            49
+          ],
+          "url": "https://github.com/trustless-ai/recompute-kit/blob/f5a25bd6bbf555c710d63915d4e5092548e3702c/conformance/verdict-profile-binding-v0/verdict-profile-binding-v0.reference.mjs#L1-L49",
+          "assertion": "Reference binding explicitly excludes cryptographic verification.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "20e86353e6a97f5c38d0883920a117fd6e8684a0cb23bc6b5bd1ead03d03957f"
+        },
+        {
+          "repo": "trustless-ai/recompute-kit",
+          "sha": "f5a25bd6bbf555c710d63915d4e5092548e3702c",
+          "path": "conformance/profile-amendment-v0/profile-amendment-v0.reference.mjs",
+          "lines": [
+            8,
+            67
+          ],
+          "url": "https://github.com/trustless-ai/recompute-kit/blob/f5a25bd6bbf555c710d63915d4e5092548e3702c/conformance/profile-amendment-v0/profile-amendment-v0.reference.mjs#L8-L67",
+          "assertion": "Supplied approval digests select effective profile in a fixture.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "915343ece23fb7b2a84906bfe1b6700be4d53bec61cecb04a2f09ee3f57d3ad7"
+        }
+      ]
+    },
+    {
+      "primitive_id": "RK_CAPTURED_ADMISSION",
+      "repo": "trustless-ai/recompute-kit",
+      "sha": "f5a25bd6bbf555c710d63915d4e5092548e3702c",
+      "paths": [
+        "conformance/captured-admission-v0/README.md"
+      ],
+      "purpose": "Admission history, deadline and duplicate classification",
+      "inputs": "Captured immutable history, explicit as_of, admission/event IDs and policy",
+      "outputs": "Admission/deadline/idempotency findings",
+      "trust_root": "Supplied captured history and policy",
+      "authority_model": "Independent of caller latest-state assertions only within supplied history",
+      "semantic_evidence_boundary": "History-sensitive recomputation versus construction-time exclusion",
+      "state_dependencies": "History prefix, request identity and policy",
+      "time_freshness_dependencies": "Explicit as_of and policy deadline",
+      "protected_event": "Modeled admission/write",
+      "event_cadence": "Vector evaluation",
+      "enforcement_mode": "CONFORMANCE_ONLY",
+      "state_bound": true,
+      "action_bound": true,
+      "freshness_bound": true,
+      "replay_bound": false,
+      "binding_scope": "Action/freshness=true only for modeled admission/time, not live clock",
+      "exposure_window": "Concurrent write or later state change until actual atomic lookup-or-create; UNBOUNDED / UNKNOWN in an unwired consumer.",
+      "finding_class": "STRUCTURAL_RISK",
+      "first_slice_role": "USEFUL_AFTER_FIRST_SLICE",
+      "implementation_status": "Present at inspected default branch; runtime/deployment status limited to cited evidence",
+      "independent_verification_status": "This audit inspected pinned sources. No fresh independent deployment verification or third-party implementation validation is claimed.",
+      "runtime_onchain_offchain": "Offchain reference",
+      "license_reuse_constraints": "CC0-1.0",
+      "does_not_establish": "Atomic uniqueness at storage write, live completeness or actual authorization",
+      "evidence": [
+        {
+          "repo": "trustless-ai/recompute-kit",
+          "sha": "f5a25bd6bbf555c710d63915d4e5092548e3702c",
+          "path": "conformance/captured-admission-v0/README.md",
+          "lines": [
+            27,
+            59
+          ],
+          "url": "https://github.com/trustless-ai/recompute-kit/blob/f5a25bd6bbf555c710d63915d4e5092548e3702c/conformance/captured-admission-v0/README.md#L27-L59",
+          "assertion": "Explicit as_of history and policy-derived deadline.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "4cc8349e14f88aaa0e75f9020f7b91a2a68b0dd3c04b33fdf07e6ff71c7f1656"
+        },
+        {
+          "repo": "trustless-ai/recompute-kit",
+          "sha": "f5a25bd6bbf555c710d63915d4e5092548e3702c",
+          "path": "conformance/captured-admission-v0/README.md",
+          "lines": [
+            97,
+            126
+          ],
+          "url": "https://github.com/trustless-ai/recompute-kit/blob/f5a25bd6bbf555c710d63915d4e5092548e3702c/conformance/captured-admission-v0/README.md#L97-L126",
+          "assertion": "Duplicate detection is distinct from atomic construction; anchors and hashes are fixture stand-ins.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "4cc8349e14f88aaa0e75f9020f7b91a2a68b0dd3c04b33fdf07e6ff71c7f1656"
+        }
+      ]
+    },
+    {
+      "primitive_id": "RK_STANDING_TERMINALITY",
+      "repo": "trustless-ai/recompute-kit",
+      "sha": "f5a25bd6bbf555c710d63915d4e5092548e3702c",
+      "paths": [
+        "conformance/pq-recovery-classes-v0/README.md",
+        "conformance/pq-recovery-classes-v0/recovery_check.py"
+      ],
+      "purpose": "Terminal recovery class as a standing bind constraint",
+      "inputs": "Prior recovery statements and proposed bind including supplied anchors",
+      "outputs": "bind_gate permitted/blocked and recovery class",
+      "trust_root": "Supplied anchored statements; synthetic key derivation",
+      "authority_model": "Terminal owner kill or incident recovery rules in reference",
+      "semantic_evidence_boundary": "Standing constraint is required conceptually; checker alone is insufficient",
+      "state_dependencies": "Prior terminality, seed rotation coverage and agent binding",
+      "time_freshness_dependencies": "Ordering of supplied anchor times",
+      "protected_event": "Proposed key bind in fixture",
+      "event_cadence": "Every modeled bind; no verified live wiring",
+      "enforcement_mode": "CONFORMANCE_ONLY",
+      "state_bound": true,
+      "action_bound": true,
+      "freshness_bound": true,
+      "replay_bound": false,
+      "binding_scope": "State/action/time=true only within bind fixture",
+      "exposure_window": "Terminal state becomes effective -> next actual enforced bind gate; absent wiring UNBOUNDED / UNKNOWN.",
+      "finding_class": "STRUCTURAL_RISK",
+      "first_slice_role": "USEFUL_AFTER_FIRST_SLICE",
+      "implementation_status": "Present at inspected default branch; runtime/deployment status limited to cited evidence",
+      "independent_verification_status": "This audit inspected pinned sources. No fresh independent deployment verification or third-party implementation validation is claimed.",
+      "runtime_onchain_offchain": "Offchain vector-first reference",
+      "license_reuse_constraints": "CC0-1.0",
+      "does_not_establish": "Actual cryptography, live terminality registry, or every-event enforcement",
+      "evidence": [
+        {
+          "repo": "trustless-ai/recompute-kit",
+          "sha": "f5a25bd6bbf555c710d63915d4e5092548e3702c",
+          "path": "conformance/pq-recovery-classes-v0/README.md",
+          "lines": [
+            42,
+            82
+          ],
+          "url": "https://github.com/trustless-ai/recompute-kit/blob/f5a25bd6bbf555c710d63915d4e5092548e3702c/conformance/pq-recovery-classes-v0/README.md#L42-L82",
+          "assertion": "Standing bind constraint; explicitly vector-first pre-implementation.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "7826c414cd0bb8b8d1c51a9480a5b8217f9b4247ecd25ade6ea10940b448803e"
+        },
+        {
+          "repo": "trustless-ai/recompute-kit",
+          "sha": "f5a25bd6bbf555c710d63915d4e5092548e3702c",
+          "path": "conformance/pq-recovery-classes-v0/recovery_check.py",
+          "lines": [
+            36,
+            119
+          ],
+          "url": "https://github.com/trustless-ai/recompute-kit/blob/f5a25bd6bbf555c710d63915d4e5092548e3702c/conformance/pq-recovery-classes-v0/recovery_check.py#L36-L119",
+          "assertion": "Synthetic derivation, supplied rotation evidence and bind gate fixture runner.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "74d5f173b02c007513594503eb33d6ed23e17bc7e08dbd7f52ee836ffd43373e"
+        }
+      ]
+    },
+    {
+      "primitive_id": "RK_CUTOFF",
+      "repo": "trustless-ai/recompute-kit",
+      "sha": "f5a25bd6bbf555c710d63915d4e5092548e3702c",
+      "paths": [
+        "conformance/pq-key-binding-v1/cutoff_enforce.py"
+      ],
+      "purpose": "Tri-state authority-window and cutoff recomputation",
+      "inputs": "Supplied bindings, revocations, artifact anchor time, cutoff and companion result",
+      "outputs": "Evidence verified/refuted/unverifiable with separate ADMIT/REJECT",
+      "trust_root": "Supplied binding/anchor/companion verification records",
+      "authority_model": "Only verified projects to admit; legacy pre-baseline admit is distinct from PQ governance",
+      "semantic_evidence_boundary": "Temporal governance versus legacy admission",
+      "state_dependencies": "Binding chain and revoked_at",
+      "time_freshness_dependencies": "Anchor/activation/cutoff times",
+      "protected_event": "Modeled artifact admission",
+      "event_cadence": "Reference invocation; live gateway described upstream",
+      "enforcement_mode": "CONFORMANCE_ONLY",
+      "state_bound": true,
+      "action_bound": true,
+      "freshness_bound": true,
+      "replay_bound": false,
+      "binding_scope": "Action=true for classified artifact, not a trading call",
+      "exposure_window": "From authority invalidation until consumer resolves new chain; UNBOUNDED / UNKNOWN for actual deployment.",
+      "finding_class": "STRUCTURAL_RISK",
+      "first_slice_role": "USEFUL_AFTER_FIRST_SLICE",
+      "implementation_status": "Present at inspected default branch; runtime/deployment status limited to cited evidence",
+      "independent_verification_status": "This audit inspected pinned sources. No fresh independent deployment verification or third-party implementation validation is claimed.",
+      "runtime_onchain_offchain": "Offchain reference port",
+      "license_reuse_constraints": "CC0-1.0",
+      "does_not_establish": "Classical signature verification, live chain completeness or guard integration",
+      "evidence": [
+        {
+          "repo": "trustless-ai/recompute-kit",
+          "sha": "f5a25bd6bbf555c710d63915d4e5092548e3702c",
+          "path": "conformance/pq-key-binding-v1/cutoff_enforce.py",
+          "lines": [
+            2,
+            35
+          ],
+          "url": "https://github.com/trustless-ai/recompute-kit/blob/f5a25bd6bbf555c710d63915d4e5092548e3702c/conformance/pq-key-binding-v1/cutoff_enforce.py#L2-L35",
+          "assertion": "Calls itself port of gateway; this audit could not access referenced gateway.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "14af771fe61b148a55ed39d0102d441b49981e8bc7895b6b5b0ce0a95040210a"
+        },
+        {
+          "repo": "trustless-ai/recompute-kit",
+          "sha": "f5a25bd6bbf555c710d63915d4e5092548e3702c",
+          "path": "conformance/pq-key-binding-v1/cutoff_enforce.py",
+          "lines": [
+            62,
+            177
+          ],
+          "url": "https://github.com/trustless-ai/recompute-kit/blob/f5a25bd6bbf555c710d63915d4e5092548e3702c/conformance/pq-key-binding-v1/cutoff_enforce.py#L62-L177",
+          "assertion": "Revocation, tri-state projection and explicit signature preconditions.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "14af771fe61b148a55ed39d0102d441b49981e8bc7895b6b5b0ce0a95040210a"
+        }
+      ]
+    },
+    {
+      "primitive_id": "RK_PREDICATE_PRECOMMIT",
+      "repo": "trustless-ai/recompute-kit",
+      "sha": "f5a25bd6bbf555c710d63915d4e5092548e3702c",
+      "paths": [
+        "conformance/predicate-conformance-v0/gate.ts"
+      ],
+      "purpose": "Bind falsification run to frozen predicate and canonicalization",
+      "inputs": "Precommit, mutant, predicate attribution and observed run",
+      "outputs": "PASS / CONFORMANCE_FAILED / UNRESOLVED",
+      "trust_root": "Declared author strings and frozen predicate",
+      "authority_model": "Hash reproduction and explicit consumed precommit; real attribution deferred",
+      "semantic_evidence_boundary": "A run consumes a predicate; unavailable is not disagreement",
+      "state_dependencies": "Predicate canon_id, precommit hash and gate identity",
+      "time_freshness_dependencies": "No live clock; git ancestry separate",
+      "protected_event": "Conformance run",
+      "event_cadence": "On demand",
+      "enforcement_mode": "CONFORMANCE_ONLY",
+      "state_bound": true,
+      "action_bound": true,
+      "freshness_bound": false,
+      "replay_bound": false,
+      "binding_scope": "Action=true for conformance run identity only",
+      "exposure_window": "No live authorization; not an exposure limiter.",
+      "finding_class": "OUT_OF_SCOPE",
+      "first_slice_role": "INDEPENDENT_VERIFICATION_ONLY",
+      "implementation_status": "Present at inspected default branch; runtime/deployment status limited to cited evidence",
+      "independent_verification_status": "This audit inspected pinned sources. No fresh independent deployment verification or third-party implementation validation is claimed.",
+      "runtime_onchain_offchain": "Offchain conformance",
+      "license_reuse_constraints": "CC0-1.0",
+      "does_not_establish": "Real authorship/control independence, git ancestry or execution enforcement",
+      "evidence": [
+        {
+          "repo": "trustless-ai/recompute-kit",
+          "sha": "f5a25bd6bbf555c710d63915d4e5092548e3702c",
+          "path": "conformance/predicate-conformance-v0/gate.ts",
+          "lines": [
+            1,
+            75
+          ],
+          "url": "https://github.com/trustless-ai/recompute-kit/blob/f5a25bd6bbf555c710d63915d4e5092548e3702c/conformance/predicate-conformance-v0/gate.ts#L1-L75",
+          "assertion": "Explicit precommit binding and sharply scoped independence claims.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "e4ad832e805f91fbe9e735eef08057064ac3ee99f045d2f67f08523120e6acfd"
+        }
+      ]
+    },
+    {
+      "primitive_id": "TSEI_AUTHORITY_SCAFFOLD",
+      "repo": "pipavlo82/crystal-receipt",
+      "sha": "45b46bf7df3a60b32583291f577a36bf19d22f00",
+      "paths": [
+        "conformance/tsei-invariant-discrimination-v0/independent-authority-model.ts"
+      ],
+      "purpose": "Separate external oracle grounding from originator/self attribution",
+      "inputs": "Blind problem digest, oracle payload and provider observations",
+      "outputs": "Grounding/provenance outcome with claim boundary",
+      "trust_root": "Declared external provider trust_root_id; production verifier injected",
+      "authority_model": "Human-primary independent judgment is not mechanically manufactured",
+      "semantic_evidence_boundary": "Independent semantic authority versus mechanical observation",
+      "state_dependencies": "Problem package and oracle byte digests",
+      "time_freshness_dependencies": "Publication order/provider facts; provider implementation not supplied",
+      "protected_event": "Independent grounding run",
+      "event_cadence": "Conformance/scaffold invocation",
+      "enforcement_mode": "CONFORMANCE_ONLY",
+      "state_bound": true,
+      "action_bound": true,
+      "freshness_bound": null,
+      "replay_bound": false,
+      "binding_scope": "Bound subject is an oracle/problem pair, not a protected transaction",
+      "exposure_window": "Not live admission; production exposure UNKNOWN.",
+      "finding_class": "OUT_OF_SCOPE",
+      "first_slice_role": "INDEPENDENT_VERIFICATION_ONLY",
+      "implementation_status": "Present at inspected default branch; runtime/deployment status limited to cited evidence",
+      "independent_verification_status": "This audit inspected pinned sources. No fresh independent deployment verification or third-party implementation validation is claimed.",
+      "runtime_onchain_offchain": "Offchain scaffold",
+      "license_reuse_constraints": "Apache-2.0",
+      "does_not_establish": "Production provider verification or a general Robinhood authority resolver",
+      "evidence": [
+        {
+          "repo": "pipavlo82/crystal-receipt",
+          "sha": "45b46bf7df3a60b32583291f577a36bf19d22f00",
+          "path": "conformance/tsei-invariant-discrimination-v0/independent-authority-model.ts",
+          "lines": [
+            69,
+            100
+          ],
+          "url": "https://github.com/pipavlo82/crystal-receipt/blob/45b46bf7df3a60b32583291f577a36bf19d22f00/conformance/tsei-invariant-discrimination-v0/independent-authority-model.ts#L69-L100",
+          "assertion": "Claim boundary and mechanical-only operations.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "9264d167bbbe5c473949793dcfc0088da3b164ef5a48c5d3a2c0ead591d85be4"
+        },
+        {
+          "repo": "pipavlo82/crystal-receipt",
+          "sha": "45b46bf7df3a60b32583291f577a36bf19d22f00",
+          "path": "conformance/tsei-invariant-discrimination-v0/independent-authority-model.ts",
+          "lines": [
+            275,
+            299
+          ],
+          "url": "https://github.com/pipavlo82/crystal-receipt/blob/45b46bf7df3a60b32583291f577a36bf19d22f00/conformance/tsei-invariant-discrimination-v0/independent-authority-model.ts#L275-L299",
+          "assertion": "Explicitly exports no production provider verifier.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "9264d167bbbe5c473949793dcfc0088da3b164ef5a48c5d3a2c0ead591d85be4"
+        }
+      ]
+    },
+    {
+      "primitive_id": "CCIP_TSEI_OBSERVATIONS",
+      "repo": "trustless-ai/ccip-router",
+      "sha": "d6f5c96d31490213e932eb63c83b9989b2073900",
+      "paths": [
+        "src/integrations/tseiProfileA.ts",
+        "src/integrations/tseiProfileARouter.ts"
+      ],
+      "purpose": "Transport signed observations and expose divergent receipt bytes",
+      "inputs": "Receipt bytes, instance hash, observer signatures and DB observations",
+      "outputs": "Single/divergent observation set and signer identity",
+      "trust_root": "Observer keys and stored bytes",
+      "authority_model": "Signature authenticates observation, not TSEI semantics or independent authority",
+      "semantic_evidence_boundary": "Identity/hash of observed evidence versus semantic authority",
+      "state_dependencies": "Stored receipt versions and signers",
+      "time_freshness_dependencies": "Timestamp recorded; no execution freshness enforcement",
+      "protected_event": "Observation/read API",
+      "event_cadence": "Per request, asynchronously fetched DB records",
+      "enforcement_mode": "AUDIT_ONLY",
+      "state_bound": true,
+      "action_bound": false,
+      "freshness_bound": false,
+      "replay_bound": false,
+      "binding_scope": "State=true for receipt byte commitments only",
+      "exposure_window": "Conflicting/new observation until next read/sync; UNBOUNDED / UNKNOWN.",
+      "finding_class": "STRUCTURAL_RISK",
+      "first_slice_role": "NOT_JUSTIFIED_YET",
+      "implementation_status": "Present at inspected default branch; runtime/deployment status limited to cited evidence",
+      "independent_verification_status": "This audit inspected pinned sources. No fresh independent deployment verification or third-party implementation validation is claimed.",
+      "runtime_onchain_offchain": "Offchain router",
+      "license_reuse_constraints": "MIT",
+      "does_not_establish": "Private opening, semantic rerun, finality, observer independence or action authorization",
+      "evidence": [
+        {
+          "repo": "trustless-ai/ccip-router",
+          "sha": "d6f5c96d31490213e932eb63c83b9989b2073900",
+          "path": "src/integrations/tseiProfileA.ts",
+          "lines": [
+            45,
+            100
+          ],
+          "url": "https://github.com/trustless-ai/ccip-router/blob/d6f5c96d31490213e932eb63c83b9989b2073900/src/integrations/tseiProfileA.ts#L45-L100",
+          "assertion": "Identity envelope and byte digest, explicit exclusions.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "c67e9fef196db9041daaa26f93720c7811691dc71f21404eb31df28d2e607693"
+        },
+        {
+          "repo": "trustless-ai/ccip-router",
+          "sha": "d6f5c96d31490213e932eb63c83b9989b2073900",
+          "path": "src/integrations/tseiProfileARouter.ts",
+          "lines": [
+            83,
+            126
+          ],
+          "url": "https://github.com/trustless-ai/ccip-router/blob/d6f5c96d31490213e932eb63c83b9989b2073900/src/integrations/tseiProfileARouter.ts#L83-L126",
+          "assertion": "Divergence across stored values and asynchronous record reads.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "5fbf84faffea5ee305fdc7e3429cb4a20179317ba6cc048ab83bb7287293ac54"
+        }
+      ]
+    },
+    {
+      "primitive_id": "CCIP_BINDING_OBSERVER",
+      "repo": "trustless-ai/ccip-router",
+      "sha": "d6f5c96d31490213e932eb63c83b9989b2073900",
+      "paths": [
+        "src/verify/binding.ts"
+      ],
+      "purpose": "Observe NFT/registry ownership binding",
+      "inputs": "Binding coordinates and RPC configuration",
+      "outputs": "valid/invalid observation with owners",
+      "trust_root": "Configured RPC endpoints",
+      "authority_model": "Latest contract reads, no common block pin in inspected route",
+      "semantic_evidence_boundary": "Ownership observation is not event authorization",
+      "state_dependencies": "Owner and registry account state across calls",
+      "time_freshness_dependencies": "Request-time RPC answers without shared block identity",
+      "protected_event": "HTTP ownership observation",
+      "event_cadence": "On-demand read",
+      "enforcement_mode": "AUDIT_ONLY",
+      "state_bound": false,
+      "action_bound": false,
+      "freshness_bound": false,
+      "replay_bound": false,
+      "binding_scope": "No single checked state version bound across all reads",
+      "exposure_window": "Between independent owner/account reads and any later use; UNBOUNDED / UNKNOWN.",
+      "finding_class": "STRUCTURAL_RISK",
+      "first_slice_role": "NOT_JUSTIFIED_YET",
+      "implementation_status": "Present at inspected default branch; runtime/deployment status limited to cited evidence",
+      "independent_verification_status": "This audit inspected pinned sources. No fresh independent deployment verification or third-party implementation validation is claimed.",
+      "runtime_onchain_offchain": "Offchain RPC observer",
+      "license_reuse_constraints": "MIT",
+      "does_not_establish": "Atomic state snapshot, future ownership, executor rights or action execution",
+      "evidence": [
+        {
+          "repo": "trustless-ai/ccip-router",
+          "sha": "d6f5c96d31490213e932eb63c83b9989b2073900",
+          "path": "src/verify/binding.ts",
+          "lines": [
+            38,
+            95
+          ],
+          "url": "https://github.com/trustless-ai/ccip-router/blob/d6f5c96d31490213e932eb63c83b9989b2073900/src/verify/binding.ts#L38-L95",
+          "assertion": "Multiple readContract calls without common block parameter; response lacks event binding.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "b6cbbbac54fa8f692c6f5f611f8fb5e188203bf69d5c16582e9bfbc6fb7ecd77"
+        }
+      ]
+    },
+    {
+      "primitive_id": "CCIP_EXPIRING_RESPONSE",
+      "repo": "trustless-ai/ccip-router",
+      "sha": "d6f5c96d31490213e932eb63c83b9989b2073900",
+      "paths": [
+        "contracts/OffchainResolver.sol"
+      ],
+      "purpose": "Authenticate expiring CCIP-Read callback result",
+      "inputs": "extraData, result, expiry and resolver signature",
+      "outputs": "Verified read result",
+      "trust_root": "Current authorized signer mapping",
+      "authority_model": "Address-domain signature over expiry, request extraData and result",
+      "semantic_evidence_boundary": "Authenticated read response is not single-use execution authority",
+      "state_dependencies": "Signer set and signed read payload",
+      "time_freshness_dependencies": "block.timestamp <= supplied expiry",
+      "protected_event": "Specific CCIP read response",
+      "event_cadence": "Each callback verification",
+      "enforcement_mode": "EVENT_BOUND",
+      "state_bound": true,
+      "action_bound": true,
+      "freshness_bound": true,
+      "replay_bound": false,
+      "binding_scope": "Action=true means exact read request; state=true means signed bytes, not latest external state",
+      "exposure_window": "For mutable external truth: state change -> expiry or earlier signer revocation; bound duration depends on supplied expiry, not numerically fixed.",
+      "finding_class": "STRUCTURAL_RISK",
+      "first_slice_role": "USEFUL_AFTER_FIRST_SLICE",
+      "implementation_status": "Present at inspected default branch; runtime/deployment status limited to cited evidence",
+      "independent_verification_status": "This audit inspected pinned sources. No fresh independent deployment verification or third-party implementation validation is claimed.",
+      "runtime_onchain_offchain": "Onchain view callback",
+      "license_reuse_constraints": "MIT",
+      "does_not_establish": "Chain-separated execution permit, nonce consumption, current external truth or protected action",
+      "evidence": [
+        {
+          "repo": "trustless-ai/ccip-router",
+          "sha": "d6f5c96d31490213e932eb63c83b9989b2073900",
+          "path": "contracts/OffchainResolver.sol",
+          "lines": [
+            83,
+            142
+          ],
+          "url": "https://github.com/trustless-ai/ccip-router/blob/d6f5c96d31490213e932eb63c83b9989b2073900/contracts/OffchainResolver.sol#L83-L142",
+          "assertion": "Request binding, expiry and signer check; callback is view, no consumed nonce and no chain ID in signature preimage.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "d8a5a932aebb9a3868908ab677b0ebeebbc33f1f429e4f0c120306b954040396"
+        }
+      ]
+    },
+    {
+      "primitive_id": "CCIP_PEER_SYNC",
+      "repo": "trustless-ai/ccip-router",
+      "sha": "d6f5c96d31490213e932eb63c83b9989b2073900",
+      "paths": [
+        "src/mesh/cron.ts"
+      ],
+      "purpose": "Periodic peer evidence replication",
+      "inputs": "Peer list and syncInterval",
+      "outputs": "Replicated observations",
+      "trust_root": "Configured peers",
+      "authority_model": "Transport, not independent authority",
+      "semantic_evidence_boundary": "Eventual observation availability",
+      "state_dependencies": "Peer/local stores",
+      "time_freshness_dependencies": "Configurable cron cadence and availability",
+      "protected_event": "Peer sync, not protected action",
+      "event_cadence": "Scheduled syncInterval",
+      "enforcement_mode": "PERIODIC_ONLY",
+      "state_bound": false,
+      "action_bound": false,
+      "freshness_bound": false,
+      "replay_bound": false,
+      "binding_scope": "No authorization bindings",
+      "exposure_window": "New peer fact -> successful sync; UNBOUNDED / UNKNOWN on failure; no fixed duration established.",
+      "finding_class": "STRUCTURAL_RISK",
+      "first_slice_role": "NOT_JUSTIFIED_YET",
+      "implementation_status": "Present at inspected default branch; runtime/deployment status limited to cited evidence",
+      "independent_verification_status": "This audit inspected pinned sources. No fresh independent deployment verification or third-party implementation validation is claimed.",
+      "runtime_onchain_offchain": "Offchain cron",
+      "license_reuse_constraints": "MIT",
+      "does_not_establish": "Event-time safety or current evidence at every action",
+      "evidence": [
+        {
+          "repo": "trustless-ai/ccip-router",
+          "sha": "d6f5c96d31490213e932eb63c83b9989b2073900",
+          "path": "src/mesh/cron.ts",
+          "lines": [
+            1,
+            28
+          ],
+          "url": "https://github.com/trustless-ai/ccip-router/blob/d6f5c96d31490213e932eb63c83b9989b2073900/src/mesh/cron.ts#L1-L28",
+          "assertion": "Configured interval, not an authorization gate.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "9e64d8afffdff4d98dd97ad1eb437f0d751da317b7e62402bd76c957e89ea337"
+        }
+      ]
+    },
+    {
+      "primitive_id": "CCIP_COMMIT_REVEAL",
+      "repo": "trustless-ai/ccip-router",
+      "sha": "d6f5c96d31490213e932eb63c83b9989b2073900",
+      "paths": [
+        "contracts/GenericCommitRevealSettler.sol"
+      ],
+      "purpose": "Commit/reveal consistency for a local record",
+      "inputs": "Sender, period, record and prior commitment",
+      "outputs": "One accepted reveal",
+      "trust_root": "msg.sender and onchain mapping",
+      "authority_model": "Commitment and deadline in same EVM transaction",
+      "semantic_evidence_boundary": "Atomic reveal does not establish truth or challenge resolution",
+      "state_dependencies": "Commit and revealed flag",
+      "time_freshness_dependencies": "Reveal window in contract",
+      "protected_event": "Reveal state transition only",
+      "event_cadence": "Every reveal transaction",
+      "enforcement_mode": "EVENT_ATOMIC",
+      "state_bound": true,
+      "action_bound": true,
+      "freshness_bound": true,
+      "replay_bound": true,
+      "binding_scope": "Bindings apply only to sender/period/reveal",
+      "exposure_window": "No inter-transaction check/use window for this local reveal transition.",
+      "finding_class": "SAFE_BY_CONSTRUCTION",
+      "first_slice_role": "NOT_JUSTIFIED_YET",
+      "implementation_status": "Present at inspected default branch; runtime/deployment status limited to cited evidence",
+      "independent_verification_status": "This audit inspected pinned sources. No fresh independent deployment verification or third-party implementation validation is claimed.",
+      "runtime_onchain_offchain": "Onchain prototype source; no deployment verified",
+      "license_reuse_constraints": "MIT",
+      "does_not_establish": "Semantic price validity or arbitrary protected action",
+      "evidence": [
+        {
+          "repo": "trustless-ai/ccip-router",
+          "sha": "d6f5c96d31490213e932eb63c83b9989b2073900",
+          "path": "contracts/GenericCommitRevealSettler.sol",
+          "lines": [
+            79,
+            145
+          ],
+          "url": "https://github.com/trustless-ai/ccip-router/blob/d6f5c96d31490213e932eb63c83b9989b2073900/contracts/GenericCommitRevealSettler.sol#L79-L145",
+          "assertion": "Commit/reveal state, deadline, hash and revealed flag; challenge resolution deferred.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "9354e5d0b910b9934e5f7321fd82b318cb76e21e212e42f09beff9f228233e67"
+        }
+      ]
+    },
+    {
+      "primitive_id": "CAPV_CONSUME",
+      "repo": "trustless-ai/agent-sdk",
+      "sha": "e41b117893fb56bc869922de378daf91aad63def",
+      "paths": [
+        "testkit/contracts/mocks/verify/ERC8354/ConfidentialPolicyVerdict.sol"
+      ],
+      "purpose": "Policy-verdict verification and atomic nullifier consumption",
+      "inputs": "Verdict tuple, executor authorization and verifier proof",
+      "outputs": "Consumed nullifier and emitted verdict event",
+      "trust_root": "EIP-712 domain, current policy registry and verifier",
+      "authority_model": "Executor, expiry, active domain/root and proof checked at consumption",
+      "semantic_evidence_boundary": "A consumed authorization is not proof its advertised action ran",
+      "state_dependencies": "Policy root/domain active status and consumed mapping",
+      "time_freshness_dependencies": "Expiry evaluated onchain",
+      "protected_event": "Nullifier consumption, NOT the protected target action",
+      "event_cadence": "Every consume transaction",
+      "enforcement_mode": "EVENT_ATOMIC",
+      "state_bound": true,
+      "action_bound": true,
+      "freshness_bound": true,
+      "replay_bound": true,
+      "binding_scope": "Action=true binds advertised actionCommitment; consumer must recompute it from actual call",
+      "exposure_window": "Nullifier burn itself atomic; if verify/consume/action are separate, state change -> later action is UNBOUNDED / UNKNOWN.",
+      "finding_class": "STRUCTURAL_RISK",
+      "first_slice_role": "USEFUL_AFTER_FIRST_SLICE",
+      "implementation_status": "Present at inspected default branch; runtime/deployment status limited to cited evidence",
+      "independent_verification_status": "This audit inspected pinned sources. No fresh independent deployment verification or third-party implementation validation is claimed.",
+      "runtime_onchain_offchain": "Onchain testkit mock/reference source",
+      "license_reuse_constraints": "Apache-2.0 root; inspected CAPV mock CC0-1.0",
+      "does_not_establish": "Protected action execution, atomic consume-and-execute, source truth or deployability as-is",
+      "evidence": [
+        {
+          "repo": "trustless-ai/agent-sdk",
+          "sha": "e41b117893fb56bc869922de378daf91aad63def",
+          "path": "testkit/contracts/mocks/verify/ERC8354/ConfidentialPolicyVerdict.sol",
+          "lines": [
+            18,
+            54
+          ],
+          "url": "https://github.com/trustless-ai/agent-sdk/blob/e41b117893fb56bc869922de378daf91aad63def/testkit/contracts/mocks/verify/ERC8354/ConfidentialPolicyVerdict.sol#L18-L54",
+          "assertion": "Verdict and EIP-712 domain commitments.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "4b17a45b8820bd9fd29ccd13e6881a35cec68d071a7c2dbeff04dbef8807630c"
+        },
+        {
+          "repo": "trustless-ai/agent-sdk",
+          "sha": "e41b117893fb56bc869922de378daf91aad63def",
+          "path": "testkit/contracts/mocks/verify/ERC8354/ConfidentialPolicyVerdict.sol",
+          "lines": [
+            57,
+            138
+          ],
+          "url": "https://github.com/trustless-ai/agent-sdk/blob/e41b117893fb56bc869922de378daf91aad63def/testkit/contracts/mocks/verify/ERC8354/ConfidentialPolicyVerdict.sol#L57-L138",
+          "assertion": "View verification versus consume, current policy, replay and executor checks; no target call.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "4b17a45b8820bd9fd29ccd13e6881a35cec68d071a7c2dbeff04dbef8807630c"
+        }
+      ]
+    },
+    {
+      "primitive_id": "ACTION_COMMITMENT",
+      "repo": "trustless-ai/agent-ercs",
+      "sha": "01283ca57305f915afb560d23359a27fd748eb5a",
+      "paths": [
+        "contracts/verify/ERC8354/PolicyAction.sol"
+      ],
+      "purpose": "Canonical commitment to intended action coordinates",
+      "inputs": "chainId, domainId, agentId, target, value, calldata hash, actionNonce",
+      "outputs": "Action hash",
+      "trust_root": "None: pure hashing primitive",
+      "authority_model": "Consumer must derive hash from actual action and enforce nonce",
+      "semantic_evidence_boundary": "Action identity versus authorization",
+      "state_dependencies": "Action fields; no mutable state reader",
+      "time_freshness_dependencies": "No expiry in this helper",
+      "protected_event": "No event consumer shown by helper",
+      "event_cadence": "Pure helper invocation",
+      "enforcement_mode": "UNKNOWN",
+      "state_bound": false,
+      "action_bound": true,
+      "freshness_bound": false,
+      "replay_bound": true,
+      "binding_scope": "replay=true means nonce committed, NOT tracked or consumed; mode UNKNOWN for live enforcement",
+      "exposure_window": "UNKNOWN until wired to an atomic consumer.",
+      "finding_class": "OUT_OF_SCOPE",
+      "first_slice_role": "USEFUL_AFTER_FIRST_SLICE",
+      "implementation_status": "Present at inspected default branch; runtime/deployment status limited to cited evidence",
+      "independent_verification_status": "This audit inspected pinned sources. No fresh independent deployment verification or third-party implementation validation is claimed.",
+      "runtime_onchain_offchain": "Solidity pure helper",
+      "license_reuse_constraints": "Apache-2.0 root; inspected ConsultEscrow MIT; PolicyAction CC0-1.0",
+      "does_not_establish": "Signature, rights, current state, expiry or nonce enforcement",
+      "evidence": [
+        {
+          "repo": "trustless-ai/agent-ercs",
+          "sha": "01283ca57305f915afb560d23359a27fd748eb5a",
+          "path": "contracts/verify/ERC8354/PolicyAction.sol",
+          "lines": [
+            1,
+            29
+          ],
+          "url": "https://github.com/trustless-ai/agent-ercs/blob/01283ca57305f915afb560d23359a27fd748eb5a/contracts/verify/ERC8354/PolicyAction.sol#L1-L29",
+          "assertion": "Pure action hash includes domain, target, call value/data and nonce.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "9698c60db69fbae636164c22620407a0868589d7a1466fed5d1b4e213f4ec64f"
+        }
+      ]
+    },
+    {
+      "primitive_id": "CONSULT_ESCROW",
+      "repo": "trustless-ai/agent-ercs",
+      "sha": "01283ca57305f915afb560d23359a27fd748eb5a",
+      "paths": [
+        "contracts/settlement/ConsultEscrow/ConsultEscrow.sol"
+      ],
+      "purpose": "Attested result releases one funded job",
+      "inputs": "Job ID, result hash and configured attestor signature",
+      "outputs": "Job marked released and payment",
+      "trust_root": "Job attestor and local job storage",
+      "authority_model": "Personal-sign job/result; paid recipient fixed in job",
+      "semantic_evidence_boundary": "Local single settlement versus cross-domain price authorization",
+      "state_dependencies": "Open job and phase",
+      "time_freshness_dependencies": "Refund deadline checked on refund; release has no expiry check",
+      "protected_event": "Job release/payment",
+      "event_cadence": "Every release transaction",
+      "enforcement_mode": "EVENT_ATOMIC",
+      "state_bound": true,
+      "action_bound": true,
+      "freshness_bound": false,
+      "replay_bound": true,
+      "binding_scope": "Action=true is job/result, not arbitrary calldata; replay=true only local phase",
+      "exposure_window": "Release is atomic locally; matching signatures can outlive refund deadline until job is refunded. Cross-deployment domain scope is not bound.",
+      "finding_class": "STRUCTURAL_RISK",
+      "first_slice_role": "NOT_JUSTIFIED_YET",
+      "implementation_status": "Present at inspected default branch; runtime/deployment status limited to cited evidence",
+      "independent_verification_status": "This audit inspected pinned sources. No fresh independent deployment verification or third-party implementation validation is claimed.",
+      "runtime_onchain_offchain": "Onchain example source",
+      "license_reuse_constraints": "Apache-2.0 root; inspected ConsultEscrow MIT; PolicyAction CC0-1.0",
+      "does_not_establish": "Chain/consumer-domain signature separation, expiry of release permission or semantic price relation",
+      "evidence": [
+        {
+          "repo": "trustless-ai/agent-ercs",
+          "sha": "01283ca57305f915afb560d23359a27fd748eb5a",
+          "path": "contracts/settlement/ConsultEscrow/ConsultEscrow.sol",
+          "lines": [
+            21,
+            55
+          ],
+          "url": "https://github.com/trustless-ai/agent-ercs/blob/01283ca57305f915afb560d23359a27fd748eb5a/contracts/settlement/ConsultEscrow/ConsultEscrow.sol#L21-L55",
+          "assertion": "Release checks open state, signature then changes phase before payment; deadline used only by refund.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "373e1f6feab886d1115eceef391cebce97a16b51d4bdfdfb1e5bd4bdb3bd07f5"
+        }
+      ]
+    },
+    {
+      "primitive_id": "RECOVERY_ESCROW",
+      "repo": "trustless-ai/agent-contracts-examples",
+      "sha": "60855b200745d2f6dfd24b266f95ca92ce102ed2",
+      "paths": [
+        "recovery-receipt/contracts/src/MiniRecoveryEscrow.sol"
+      ],
+      "purpose": "Check receipt and ownership atomically before reward",
+      "inputs": "Funded job, expected artifact hash and verifier payload",
+      "outputs": "Closed/spent job and fee payment",
+      "trust_root": "Pinned verifier and token ownerOf",
+      "authority_model": "Receipt match and current output ownership in same transaction",
+      "semantic_evidence_boundary": "Useful consume-and-act pattern, not a stock-token guard",
+      "state_dependencies": "Job open/spent and token ownership",
+      "time_freshness_dependencies": "No expiry rule in inspected release",
+      "protected_event": "Recovery reward release",
+      "event_cadence": "Every release call",
+      "enforcement_mode": "EVENT_ATOMIC",
+      "state_bound": true,
+      "action_bound": true,
+      "freshness_bound": false,
+      "replay_bound": true,
+      "binding_scope": "State/action/replay flags limited to this reward job",
+      "exposure_window": "No inter-transaction check/use gap in the inspected reward path, under the pinned verifier/token semantics.",
+      "finding_class": "SAFE_BY_CONSTRUCTION",
+      "first_slice_role": "USEFUL_AFTER_FIRST_SLICE",
+      "implementation_status": "Present at inspected default branch; runtime/deployment status limited to cited evidence",
+      "independent_verification_status": "This audit inspected pinned sources. No fresh independent deployment verification or third-party implementation validation is claimed.",
+      "runtime_onchain_offchain": "Illustrative onchain source, explicitly not production-ready",
+      "license_reuse_constraints": "Apache-2.0",
+      "does_not_establish": "Robinhood source authenticity, price policy, arbitrary authorization or verified deployment",
+      "evidence": [
+        {
+          "repo": "trustless-ai/agent-contracts-examples",
+          "sha": "60855b200745d2f6dfd24b266f95ca92ce102ed2",
+          "path": "recovery-receipt/contracts/src/MiniRecoveryEscrow.sol",
+          "lines": [
+            10,
+            50
+          ],
+          "url": "https://github.com/trustless-ai/agent-contracts-examples/blob/60855b200745d2f6dfd24b266f95ca92ce102ed2/recovery-receipt/contracts/src/MiniRecoveryEscrow.sol#L10-L50",
+          "assertion": "Illustrative scope, pinned verifier, current ownership and closed/spent-before-payment sequence.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "ec9c2522ae9c7753fadb19664222b882e913c4aaceeb247dc6ed0a2204d22bdd"
+        }
+      ]
+    },
+    {
+      "primitive_id": "TAS_SOURCE_GATE",
+      "repo": "trustless-ai/trustless-agent-substrate",
+      "sha": "a344ef80f7c52c03b9183814d1874b8054639c3e",
+      "paths": [
+        "src/core/workflow/sourceGate.ts",
+        "src/core/workflow/operationService.ts",
+        "src/clients/workflow/agentSdkClient.ts"
+      ],
+      "purpose": "Invalidate stale workflow source contexts before dispatch",
+      "inputs": "Accepted workflow context and newly resolved context",
+      "outputs": "Approved dispatch context or fail-closed error",
+      "trust_root": "Configured source resolver and accepted fingerprint",
+      "authority_model": "Revision rechecked during resolution; block-hash selectors checked for members",
+      "semantic_evidence_boundary": "Source check precedes dispatch but does not bind transaction to checked block",
+      "state_dependencies": "Gate revision, workflow manifest/fingerprint, chain and RPC",
+      "time_freshness_dependencies": "Pinned snapshot is not execution-time state",
+      "protected_event": "SDK dispatch after source validation",
+      "event_cadence": "Per operation, followed by asynchronous resolution and invocation",
+      "enforcement_mode": "EVENT_CHECKED_NONATOMIC",
+      "state_bound": true,
+      "action_bound": false,
+      "freshness_bound": false,
+      "replay_bound": false,
+      "binding_scope": "State=true for source snapshot only; actual execution consumes no such state in inspected adapter",
+      "exposure_window": "Successful sourceGate return -> awaited wallet/address work -> transaction execution; UNBOUNDED / UNKNOWN.",
+      "finding_class": "STRUCTURAL_RISK",
+      "first_slice_role": "USEFUL_AFTER_FIRST_SLICE",
+      "implementation_status": "Default feature/tas-poc branch; experimental, not main",
+      "independent_verification_status": "This audit inspected pinned sources. No fresh independent deployment verification or third-party implementation validation is claimed.",
+      "runtime_onchain_offchain": "Offchain experimental feature branch; local Foundry-chain restriction",
+      "license_reuse_constraints": "Apache-2.0",
+      "does_not_establish": "Atomic state use, general deployed safety or absence of downstream contract protections",
+      "evidence": [
+        {
+          "repo": "trustless-ai/trustless-agent-substrate",
+          "sha": "a344ef80f7c52c03b9183814d1874b8054639c3e",
+          "path": "src/core/workflow/sourceGate.ts",
+          "lines": [
+            18,
+            74
+          ],
+          "url": "https://github.com/trustless-ai/trustless-agent-substrate/blob/a344ef80f7c52c03b9183814d1874b8054639c3e/src/core/workflow/sourceGate.ts#L18-L74",
+          "assertion": "Gate guards revision during async source resolution.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "b25f179911fb28f5877185055a6d016e92722545c838a64ebdcc621aad4286c3"
+        },
+        {
+          "repo": "trustless-ai/trustless-agent-substrate",
+          "sha": "a344ef80f7c52c03b9183814d1874b8054639c3e",
+          "path": "src/core/workflow/operationService.ts",
+          "lines": [
+            230,
+            298
+          ],
+          "url": "https://github.com/trustless-ai/trustless-agent-substrate/blob/a344ef80f7c52c03b9183814d1874b8054639c3e/src/core/workflow/operationService.ts#L230-L298",
+          "assertion": "Further awaits then invocation context without checked block/fingerprint.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "a8771c4514a3481667cf4c3dafa7adacc626797be8aa5bad7e3d0975869f31f5"
+        },
+        {
+          "repo": "trustless-ai/trustless-agent-substrate",
+          "sha": "a344ef80f7c52c03b9183814d1874b8054639c3e",
+          "path": "src/clients/workflow/agentSdkClient.ts",
+          "lines": [
+            202,
+            236
+          ],
+          "url": "https://github.com/trustless-ai/trustless-agent-substrate/blob/a344ef80f7c52c03b9183814d1874b8054639c3e/src/clients/workflow/agentSdkClient.ts#L202-L236",
+          "assertion": "Foundry-only adapter constructs SDK client from RPC/address/account, not checked block.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "817d87bc4f71425e089448e946a661acfdebaf7cd154515ad1a4b08431cbe251"
+        }
+      ]
+    },
+    {
+      "primitive_id": "STATE_PROOF_VERIFIER",
+      "repo": "trustless-ai/verify-layer",
+      "sha": "84afc4b738dc37269089c858404eed8086435f5d",
+      "paths": [
+        "verify.mjs"
+      ],
+      "purpose": "Verify account/storage proofs against selected state root",
+      "inputs": "Account/storage proof, block and expected root",
+      "outputs": "Proof validity with trust tier",
+      "trust_root": "Configured RPC header source; light-client source is stub",
+      "authority_model": "MPT validity relative to root, not independent consensus validation",
+      "semantic_evidence_boundary": "Proof correctness relative to root versus root authority and current state",
+      "state_dependencies": "Exact root/block and proof slots",
+      "time_freshness_dependencies": "Historical/finalized selection; no consumer expiry",
+      "protected_event": "Offline/on-demand proof verification",
+      "event_cadence": "Explicit request",
+      "enforcement_mode": "AUDIT_ONLY",
+      "state_bound": true,
+      "action_bound": false,
+      "freshness_bound": false,
+      "replay_bound": false,
+      "binding_scope": "State=true historical proof binding only",
+      "exposure_window": "Verified block -> later protected event; UNBOUNDED / UNKNOWN without consumer freshness/state rule.",
+      "finding_class": "STRUCTURAL_RISK",
+      "first_slice_role": "USEFUL_AFTER_FIRST_SLICE",
+      "implementation_status": "Present at inspected default branch; runtime/deployment status limited to cited evidence",
+      "independent_verification_status": "This audit inspected pinned sources. No fresh independent deployment verification or third-party implementation validation is claimed.",
+      "runtime_onchain_offchain": "Offchain proof verifier sketch",
+      "license_reuse_constraints": "CC0-1.0",
+      "does_not_establish": "Trusted consensus root, current action state, replay or execution",
+      "evidence": [
+        {
+          "repo": "trustless-ai/verify-layer",
+          "sha": "84afc4b738dc37269089c858404eed8086435f5d",
+          "path": "verify.mjs",
+          "lines": [
+            44,
+            86
+          ],
+          "url": "https://github.com/trustless-ai/verify-layer/blob/84afc4b738dc37269089c858404eed8086435f5d/verify.mjs#L44-L86",
+          "assertion": "Root verification and RPC versus unimplemented light-client trust tier.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "ece05db266d1eb86ff71f47aa5a0666ada611dfd496ef0982e570406a28fb2d2"
+        },
+        {
+          "repo": "trustless-ai/verify-layer",
+          "sha": "84afc4b738dc37269089c858404eed8086435f5d",
+          "path": "verify.mjs",
+          "lines": [
+            90,
+            142
+          ],
+          "url": "https://github.com/trustless-ai/verify-layer/blob/84afc4b738dc37269089c858404eed8086435f5d/verify.mjs#L90-L142",
+          "assertion": "Account/storage proof tied to selected block; no action consumer.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "ece05db266d1eb86ff71f47aa5a0666ada611dfd496ef0982e570406a28fb2d2"
+        }
+      ]
+    },
+    {
+      "primitive_id": "RECEIPT_ROOT",
+      "repo": "pipavlo82/crystal-receipt",
+      "sha": "45b46bf7df3a60b32583291f577a36bf19d22f00",
+      "paths": [
+        "src/receiptos/verify/verify-receipt.ts"
+      ],
+      "purpose": "Recompute canonical receipt payload commitment",
+      "inputs": "Receipt payload and declared root",
+      "outputs": "Root comparison result",
+      "trust_root": "Hash/canonicalization implementation",
+      "authority_model": "Integrity comparison, no signer authority",
+      "semantic_evidence_boundary": "Payload integrity is not truth or source authorization",
+      "state_dependencies": "Receipt payload",
+      "time_freshness_dependencies": "No freshness consumer",
+      "protected_event": "Receipt audit",
+      "event_cadence": "On demand",
+      "enforcement_mode": "AUDIT_ONLY",
+      "state_bound": true,
+      "action_bound": false,
+      "freshness_bound": false,
+      "replay_bound": false,
+      "binding_scope": "State=true for payload bytes only",
+      "exposure_window": "Post-event audit; cannot limit an authorization exposure window.",
+      "finding_class": "OUT_OF_SCOPE",
+      "first_slice_role": "USEFUL_AFTER_FIRST_SLICE",
+      "implementation_status": "Present at inspected default branch; runtime/deployment status limited to cited evidence",
+      "independent_verification_status": "This audit inspected pinned sources. No fresh independent deployment verification or third-party implementation validation is claimed.",
+      "runtime_onchain_offchain": "Offchain receipt verifier",
+      "license_reuse_constraints": "Apache-2.0",
+      "does_not_establish": "Source truth, authorization, current state or performed action",
+      "evidence": [
+        {
+          "repo": "pipavlo82/crystal-receipt",
+          "sha": "45b46bf7df3a60b32583291f577a36bf19d22f00",
+          "path": "src/receiptos/verify/verify-receipt.ts",
+          "lines": [
+            1,
+            35
+          ],
+          "url": "https://github.com/pipavlo82/crystal-receipt/blob/45b46bf7df3a60b32583291f577a36bf19d22f00/src/receiptos/verify/verify-receipt.ts#L1-L35",
+          "assertion": "Recompute root and compare; no event gate.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "70dad3a005e0d09af6d3b4def8ab4c98e24d3ee9f19839d88894c42c5ac9da04"
+        }
+      ]
+    },
+    {
+      "primitive_id": "CHRONICLE_ADMISSION",
+      "repo": "pipavlo82/Chronicle",
+      "sha": "c467b48fd18fc8ec86f10582befa35946ce41914",
+      "paths": [
+        "src/chronicle_receiptos_admission.mjs",
+        "docs/verification-before-history.md"
+      ],
+      "purpose": "Recompute evidence before constructing history entry",
+      "inputs": "Capsule/evidence/proof objects",
+      "outputs": "Checked Chronicle entry",
+      "trust_root": "Pinned recomputation rules and supplied source objects",
+      "authority_model": "Root rederived rather than trusting supplied ok",
+      "semantic_evidence_boundary": "Verification-before-history is not authorization-before-action",
+      "state_dependencies": "Evidence/capsule/receipt identifiers and roots",
+      "time_freshness_dependencies": "No live execution deadline",
+      "protected_event": "History entry construction after execution",
+      "event_cadence": "Per entry construction; durable transaction not established",
+      "enforcement_mode": "AUDIT_ONLY",
+      "state_bound": true,
+      "action_bound": true,
+      "freshness_bound": false,
+      "replay_bound": false,
+      "binding_scope": "Action=true only links described historical object, not execution permit",
+      "exposure_window": "History admission only; no bound on original action exposure.",
+      "finding_class": "OUT_OF_SCOPE",
+      "first_slice_role": "USEFUL_AFTER_FIRST_SLICE",
+      "implementation_status": "Present at inspected default branch; runtime/deployment status limited to cited evidence",
+      "independent_verification_status": "This audit inspected pinned sources. No fresh independent deployment verification or third-party implementation validation is claimed.",
+      "runtime_onchain_offchain": "Offchain synchronous entry builder",
+      "license_reuse_constraints": "Apache-2.0; brand and underlying proof rights separately reserved",
+      "does_not_establish": "Durable atomic append, current external authority or original protected event gating",
+      "evidence": [
+        {
+          "repo": "pipavlo82/Chronicle",
+          "sha": "c467b48fd18fc8ec86f10582befa35946ce41914",
+          "path": "src/chronicle_receiptos_admission.mjs",
+          "lines": [
+            31,
+            41
+          ],
+          "url": "https://github.com/pipavlo82/Chronicle/blob/c467b48fd18fc8ec86f10582befa35946ce41914/src/chronicle_receiptos_admission.mjs#L31-L41",
+          "assertion": "Entry construction requires independent derivation.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "3a8a44f4334f2a9a3ccdc91f0ae586908f10de430f2a10e4ca5abcbed7a80a25"
+        },
+        {
+          "repo": "pipavlo82/Chronicle",
+          "sha": "c467b48fd18fc8ec86f10582befa35946ce41914",
+          "path": "src/chronicle_receiptos_admission.mjs",
+          "lines": [
+            82,
+            143
+          ],
+          "url": "https://github.com/pipavlo82/Chronicle/blob/c467b48fd18fc8ec86f10582befa35946ce41914/src/chronicle_receiptos_admission.mjs#L82-L143",
+          "assertion": "Proof/root/capsule identity validation before returned entry.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "3a8a44f4334f2a9a3ccdc91f0ae586908f10de430f2a10e4ca5abcbed7a80a25"
+        },
+        {
+          "repo": "pipavlo82/Chronicle",
+          "sha": "c467b48fd18fc8ec86f10582befa35946ce41914",
+          "path": "docs/verification-before-history.md",
+          "lines": [
+            23,
+            40
+          ],
+          "url": "https://github.com/pipavlo82/Chronicle/blob/c467b48fd18fc8ec86f10582befa35946ce41914/docs/verification-before-history.md#L23-L40",
+          "assertion": "Execution -> evidence -> verification -> history ordering.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "cc1319f2a65c489509437b4bd1e59aaaec0c476b13c40e58c77fc5cf1877cf05"
+        }
+      ]
+    },
+    {
+      "primitive_id": "RECEIPTOS_INGEST",
+      "repo": "pipavlo82/receiptos-mvp",
+      "sha": "0e70ebe85f4dd1b8b2a24be9c29f1b9757e25a71",
+      "paths": [
+        "src/api.py"
+      ],
+      "purpose": "Signed receipt admission with replay bookkeeping",
+      "inputs": "Receipt with ID/nonce and local seen state",
+      "outputs": "Appended receipt or duplicate refusal",
+      "trust_root": "Configured demo signer secret and local files",
+      "authority_model": "Receipt verify then duplicate check then separate file writes",
+      "semantic_evidence_boundary": "Per-request replay check is not atomic replay consumption",
+      "state_dependencies": "JSON seen file and JSONL ledger",
+      "time_freshness_dependencies": "No transactional freshness bound",
+      "protected_event": "Local API receipt append",
+      "event_cadence": "Per ingest request",
+      "enforcement_mode": "EVENT_CHECKED_NONATOMIC",
+      "state_bound": true,
+      "action_bound": true,
+      "freshness_bound": false,
+      "replay_bound": false,
+      "binding_scope": "State/action=true for verified receipt identity; replay=false for atomic exclusion",
+      "exposure_window": "Seen check -> ledger append -> separate seen save; concurrent/crash window UNKNOWN; crash can leave stale replay state indefinitely.",
+      "finding_class": "STRUCTURAL_RISK",
+      "first_slice_role": "NOT_JUSTIFIED_YET",
+      "implementation_status": "Present at inspected default branch; runtime/deployment status limited to cited evidence",
+      "independent_verification_status": "This audit inspected pinned sources. No fresh independent deployment verification or third-party implementation validation is claimed.",
+      "runtime_onchain_offchain": "Offchain Flask demo, not independently deployed",
+      "license_reuse_constraints": "No license found in inspected tree",
+      "does_not_establish": "Concurrent/crash-safe replay exclusion, current external authority or trading execution",
+      "evidence": [
+        {
+          "repo": "pipavlo82/receiptos-mvp",
+          "sha": "0e70ebe85f4dd1b8b2a24be9c29f1b9757e25a71",
+          "path": "src/api.py",
+          "lines": [
+            18,
+            27
+          ],
+          "url": "https://github.com/pipavlo82/receiptos-mvp/blob/0e70ebe85f4dd1b8b2a24be9c29f1b9757e25a71/src/api.py#L18-L27",
+          "assertion": "Seen state read/write helpers.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "b2d7e0b1d91c71638fdf24b96754aaebbf5b32afa0aa5b0642aa25e124f24e1f"
+        },
+        {
+          "repo": "pipavlo82/receiptos-mvp",
+          "sha": "0e70ebe85f4dd1b8b2a24be9c29f1b9757e25a71",
+          "path": "src/api.py",
+          "lines": [
+            58,
+            76
+          ],
+          "url": "https://github.com/pipavlo82/receiptos-mvp/blob/0e70ebe85f4dd1b8b2a24be9c29f1b9757e25a71/src/api.py#L58-L76",
+          "assertion": "Separate check, append and seen save; no transaction/lock in route.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "b2d7e0b1d91c71638fdf24b96754aaebbf5b32afa0aa5b0642aa25e124f24e1f"
+        }
+      ]
+    },
+    {
+      "primitive_id": "RVR_PROFILE_RECEIPT",
+      "repo": "pipavlo82/recomputable-verification-receipts",
+      "sha": "287c0ea1c2578c1833405bc2476975f95addbada",
+      "paths": [
+        "docs/spec/RECOMPUTABLE_VERIFICATION_RECEIPTS_V0.md"
+      ],
+      "purpose": "Portable profile/evidence/result recomputation identity",
+      "inputs": "Pinned verification profile, evidence and claimed outcome/reason",
+      "outputs": "Semantic outcome plus reproduced/diverged/cannot_recompute",
+      "trust_root": "Closed verification profile and externally named evidence authority",
+      "authority_model": "Recompute result identity; unavailable is separate from refuted",
+      "semantic_evidence_boundary": "Semantic outcome versus recomputation outcome",
+      "state_dependencies": "Profile/evidence/result commitments",
+      "time_freshness_dependencies": "Time only if profile defines and binds it",
+      "protected_event": "Independent verification receipt",
+      "event_cadence": "Explicit verifier invocation",
+      "enforcement_mode": "AUDIT_ONLY",
+      "state_bound": true,
+      "action_bound": false,
+      "freshness_bound": false,
+      "replay_bound": false,
+      "binding_scope": "State=true for committed profile/evidence, not latest mutable state",
+      "exposure_window": "Audit only; no synchronous protected action gate.",
+      "finding_class": "OUT_OF_SCOPE",
+      "first_slice_role": "INDEPENDENT_VERIFICATION_ONLY",
+      "implementation_status": "Present at inspected default branch; runtime/deployment status limited to cited evidence",
+      "independent_verification_status": "This audit inspected pinned sources. No fresh independent deployment verification or third-party implementation validation is claimed.",
+      "runtime_onchain_offchain": "Offchain experimental specification/adapter",
+      "license_reuse_constraints": "Apache-2.0",
+      "does_not_establish": "Settlement authority, freshness, independent source truth or onchain execution",
+      "evidence": [
+        {
+          "repo": "pipavlo82/recomputable-verification-receipts",
+          "sha": "287c0ea1c2578c1833405bc2476975f95addbada",
+          "path": "docs/spec/RECOMPUTABLE_VERIFICATION_RECEIPTS_V0.md",
+          "lines": [
+            3,
+            79
+          ],
+          "url": "https://github.com/pipavlo82/recomputable-verification-receipts/blob/287c0ea1c2578c1833405bc2476975f95addbada/docs/spec/RECOMPUTABLE_VERIFICATION_RECEIPTS_V0.md#L3-L79",
+          "assertion": "Explicit experimental/non-settlement scope, separate outcomes and commitment fields.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "81077ddbf50624bc70941cf53a4f542604e926a653d7fcb3a36310ff5430b973"
+        }
+      ]
+    },
+    {
+      "primitive_id": "PQ_TEMPORAL_AUTHORITY",
+      "repo": "trustless-ai/pq-agent-binding",
+      "sha": "4f934ad31e96979002d818cd8a5f12909c1b6713",
+      "paths": [
+        "spec/v1-temporal-authority.md"
+      ],
+      "purpose": "Commit every outcome-affecting authority boundary",
+      "inputs": "Acceptance chain, owner transition authorization, anchored head and manifests",
+      "outputs": "Derived authority window under proposed settled construction",
+      "trust_root": "Owner authorization and independently resolved anchors",
+      "authority_model": "Design-frozen temporal authority specification; live implementation not verified",
+      "semantic_evidence_boundary": "Committed temporal authority versus uncommitted local temporal labels",
+      "state_dependencies": "Ordered acceptance chain, complete manifests and predecessors",
+      "time_freshness_dependencies": "Externally anchored temporal activation, not mutable local submitted_at",
+      "protected_event": "Key authority resolution; runtime wiring UNKNOWN",
+      "event_cadence": "Specified construction, not observed event gate",
+      "enforcement_mode": "UNKNOWN",
+      "state_bound": true,
+      "action_bound": null,
+      "freshness_bound": true,
+      "replay_bound": null,
+      "binding_scope": "true flags describe required settled-spec bindings, not verified implementation",
+      "exposure_window": "Legacy mutable boundary / skipped intermediate rotation until resolvable anchors; deployment window UNKNOWN here. Reported 1435 seconds is upstream historical evidence, not fresh measurement.",
+      "finding_class": "STRUCTURAL_RISK",
+      "first_slice_role": "USEFUL_AFTER_FIRST_SLICE",
+      "implementation_status": "Present at inspected default branch; runtime/deployment status limited to cited evidence",
+      "independent_verification_status": "This audit inspected pinned sources. No fresh independent deployment verification or third-party implementation validation is claimed.",
+      "runtime_onchain_offchain": "Specification and upstream historical report",
+      "license_reuse_constraints": "CC0-1.0",
+      "does_not_establish": "PQ necessity for SEG, deployed compliance or generic stop-trading enforcement",
+      "evidence": [
+        {
+          "repo": "trustless-ai/pq-agent-binding",
+          "sha": "4f934ad31e96979002d818cd8a5f12909c1b6713",
+          "path": "spec/v1-temporal-authority.md",
+          "lines": [
+            1,
+            62
+          ],
+          "url": "https://github.com/trustless-ai/pq-agent-binding/blob/4f934ad31e96979002d818cd8a5f12909c1b6713/spec/v1-temporal-authority.md#L1-L62",
+          "assertion": "Frozen design and upstream-reported v0 mutable-time defect; not independently reproduced here.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "2d0e2df322c42f23994941d77567c253ee2dd3ca1790c4bd0103079471abf6a5"
+        },
+        {
+          "repo": "trustless-ai/pq-agent-binding",
+          "sha": "4f934ad31e96979002d818cd8a5f12909c1b6713",
+          "path": "spec/v1-temporal-authority.md",
+          "lines": [
+            345,
+            387
+          ],
+          "url": "https://github.com/trustless-ai/pq-agent-binding/blob/4f934ad31e96979002d818cd8a5f12909c1b6713/spec/v1-temporal-authority.md#L345-L387",
+          "assertion": "Superseding settled construction binds sequence, authorization and anchored coverage.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "2d0e2df322c42f23994941d77567c253ee2dd3ca1790c4bd0103079471abf6a5"
+        }
+      ]
+    },
+    {
+      "primitive_id": "CRC_WATCHER",
+      "repo": "trustless-ai/cross-reference-console",
+      "sha": "268c77b795aef5f13b018e76e4f7d9307a81b395",
+      "paths": [
+        ".github/workflows/watcher.yml"
+      ],
+      "purpose": "Poll and validate observation registry updates",
+      "inputs": "Ledger intake and registry tree",
+      "outputs": "Validated registry commit or unverifiable intake summary",
+      "trust_root": "Ledger resolution and validation rules",
+      "authority_model": "CI gates publication of observations, not financial actions",
+      "semantic_evidence_boundary": "Monitoring truth is not synchronous event authorization",
+      "state_dependencies": "Fetched ledger and checked tree",
+      "time_freshness_dependencies": "Cron every 30 minutes nominal; failures/delays unbounded",
+      "protected_event": "Registry intake/publication; not trading close",
+      "event_cadence": "Scheduled */30 plus manual dispatch",
+      "enforcement_mode": "PERIODIC_ONLY",
+      "state_bound": true,
+      "action_bound": false,
+      "freshness_bound": false,
+      "replay_bound": false,
+      "binding_scope": "State=true for validated fetched tree, not current remote truth",
+      "exposure_window": "Fact change -> next successful fetch/check/publication; nominal <=30 minutes only under ideal scheduling; no finite worst-case bound.",
+      "finding_class": "STRUCTURAL_RISK",
+      "first_slice_role": "NOT_JUSTIFIED_YET",
+      "implementation_status": "Present at inspected default branch; runtime/deployment status limited to cited evidence",
+      "independent_verification_status": "This audit inspected pinned sources. No fresh independent deployment verification or third-party implementation validation is claimed.",
+      "runtime_onchain_offchain": "Offchain GitHub workflow",
+      "license_reuse_constraints": "CC0-1.0",
+      "does_not_establish": "Every-event safety, atomic action gating or an actual 30-minute maximum exposure",
+      "evidence": [
+        {
+          "repo": "trustless-ai/cross-reference-console",
+          "sha": "268c77b795aef5f13b018e76e4f7d9307a81b395",
+          "path": ".github/workflows/watcher.yml",
+          "lines": [
+            1,
+            84
+          ],
+          "url": "https://github.com/trustless-ai/cross-reference-console/blob/268c77b795aef5f13b018e76e4f7d9307a81b395/.github/workflows/watcher.yml#L1-L84",
+          "assertion": "Scheduled intake, explicit unverifiable summary and tree validation before registry publication.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "13a53d6cbaa7742f3172777e7bb79982442540d3d03f4f0b8664295d05999be0"
+        }
+      ]
+    },
+    {
+      "primitive_id": "RESCUE_FIXED_DESTINATION",
+      "repo": "trustless-ai/eip7702-rescue",
+      "sha": "31133de1ca5428947580f53a486d97aae461e33e",
+      "paths": [
+        "contracts/RescueDelegate.sol"
+      ],
+      "purpose": "Fixed-destination atomic asset rescue",
+      "inputs": "Token and token IDs",
+      "outputs": "Transfers from delegated account to immutable SAFE",
+      "trust_root": "Immutable destination and token transfer semantics",
+      "authority_model": "No caller-selectable recipient",
+      "semantic_evidence_boundary": "Destination cannot be substituted; unrelated to price evidence",
+      "state_dependencies": "Current token ownership and fixed destination",
+      "time_freshness_dependencies": "No generic expiry",
+      "protected_event": "Rescue transfers in one transaction",
+      "event_cadence": "Every rescue call",
+      "enforcement_mode": "EVENT_ATOMIC",
+      "state_bound": true,
+      "action_bound": true,
+      "freshness_bound": false,
+      "replay_bound": false,
+      "binding_scope": "No nonce-based authorization promised; ownership constrains repeat transfer",
+      "exposure_window": "No inter-transaction check/use gap within this scoped transfer loop; not a generic price gate.",
+      "finding_class": "SAFE_BY_CONSTRUCTION",
+      "first_slice_role": "NOT_JUSTIFIED_YET",
+      "implementation_status": "Present at inspected default branch; runtime/deployment status limited to cited evidence",
+      "independent_verification_status": "This audit inspected pinned sources. No fresh independent deployment verification or third-party implementation validation is claimed.",
+      "runtime_onchain_offchain": "Onchain source, deployment not checked",
+      "license_reuse_constraints": "CC0-1.0",
+      "does_not_establish": "Stock-token semantic conversion, evidence authenticity or generalized permissions",
+      "evidence": [
+        {
+          "repo": "trustless-ai/eip7702-rescue",
+          "sha": "31133de1ca5428947580f53a486d97aae461e33e",
+          "path": "contracts/RescueDelegate.sol",
+          "lines": [
+            18,
+            36
+          ],
+          "url": "https://github.com/trustless-ai/eip7702-rescue/blob/31133de1ca5428947580f53a486d97aae461e33e/contracts/RescueDelegate.sol#L18-L36",
+          "assertion": "Immutable SAFE and single-transaction transfer loop.",
+          "basis": "INSPECTED_PINNED_SOURCE",
+          "file_sha256": "451dde91c19509476206d76bc221ee92792ac3c86d08a8ed52314d8c9a0a185f"
+        }
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "id": "F1_UNTRUSTED_PASS",
+      "class": "STRUCTURAL_RISK",
+      "primitives": [
+        "SEG_RELATION"
+      ],
+      "statement": "The formatter accepts a changed numeric value in caller-controlled PASS receipt data and the schema accepts it. Intentional unauthenticated handoff, not an exploit of an absent guard.",
+      "checked_state": "Caller-supplied quote/multiplier/context",
+      "result_binding": "SHA-256 input/context, but formatter does not recompute or authenticate them",
+      "consumer": "No execution consumer exists in frozen branch",
+      "mutable_inputs": "Source facts, current effective state, policy and action are not authoritative here",
+      "replay": "No action/nonce/guard domain/expiry consumption",
+      "priority": "Highest integration priority"
+    },
+    {
+      "id": "F2_ASYNC_CHECK_USE",
+      "class": "STRUCTURAL_RISK",
+      "primitives": [
+        "TAS_SOURCE_GATE",
+        "CCIP_BINDING_OBSERVER"
+      ],
+      "statement": "A valid per-operation source check or mixed-block ownership observation does not establish the state consumed by a later transaction.",
+      "checked_state": "TAS source revision/block selector; CCIP independently fetched current owners",
+      "result_binding": "TAS checked snapshot not passed to transaction invocation; CCIP no shared block pin",
+      "consumer": "Inspected client adapter/RPC route, downstream contract safety not established",
+      "mutable_inputs": "Chain state and accepted workflow can change after source gate or between RPC calls",
+      "replay": "No exact execution permit at this boundary"
+    },
+    {
+      "id": "F3_CONSUME_IS_NOT_EXECUTE",
+      "class": "STRUCTURAL_RISK",
+      "primitives": [
+        "CAPV_CONSUME",
+        "ACTION_COMMITMENT"
+      ],
+      "statement": "CAPV atomically burns a nullifier against advertised actionCommitment; it has no target call. A separate verify/consume/action integration would still need atomic composition.",
+      "checked_state": "Current policy registry and nullifier state",
+      "result_binding": "Typed verdict plus domain and action commitment",
+      "consumer": "Mock consume function",
+      "mutable_inputs": "Root/authority/action environment may change before a separately executed action",
+      "replay": "Local nullifier enforced; actual action binding must be rederived by wrapper"
+    },
+    {
+      "id": "F4_PERIODIC_OR_REFERENCE_ONLY",
+      "class": "STRUCTURAL_RISK",
+      "primitives": [
+        "RK_STANDING_TERMINALITY",
+        "RK_CAPTURED_ADMISSION",
+        "CRC_WATCHER",
+        "CCIP_PEER_SYNC"
+      ],
+      "statement": "Standing-constraint specifications, duplicate detectors and periodic watchers cannot be promoted to every-event enforcement without a consumer.",
+      "checked_state": "Fixture history or last fetched snapshot",
+      "result_binding": "Profile/receipt/predicate varies; no financial action consumed",
+      "consumer": "Conformance runner or scheduled observation publisher",
+      "mutable_inputs": "Authority, safety threshold or current state changes between runs",
+      "replay": "No live action nonce tied to checks"
+    },
+    {
+      "id": "F5_RECEIPT_INGEST_RACE",
+      "class": "STRUCTURAL_RISK",
+      "primitives": [
+        "RECEIPTOS_INGEST"
+      ],
+      "statement": "Per-request receipt verification and seen-file checking precede separate append/save operations. Concurrent requests or a crash can separate check from replay-state consumption.",
+      "checked_state": "Local seen.json snapshot",
+      "result_binding": "Receipt ID/nonce validated but storage update nontransactional",
+      "consumer": "Local Flask ingest route",
+      "mutable_inputs": "Another request or process crash",
+      "replay": "No lock/transaction in inspected route; no production reachability claim"
+    },
+    {
+      "id": "F6_TEMPORAL_AUTHORITY_COMPLETENESS",
+      "class": "STRUCTURAL_RISK",
+      "primitives": [
+        "PQ_TEMPORAL_AUTHORITY",
+        "RK_CUTOFF"
+      ],
+      "statement": "Upstream v0 documents verdict-bearing local time outside commitments and skipped between-batch bindings. The transferable lesson is complete, immutable temporal authority; no PQ integration is required.",
+      "checked_state": "Supplied/anchored binding history and temporal boundary",
+      "result_binding": "Settled proposal binds acceptance order/coverage; reference cutoff assumes supplied resolved chain",
+      "consumer": "Live gateway source unavailable; deployed compliance UNKNOWN",
+      "mutable_inputs": "Local boundary, missing intermediate transition or unavailable predecessor",
+      "replay": "Historical governance differs from permission to execute now"
+    },
+    {
+      "id": "F7_READ_SIGNATURE_SCOPE",
+      "class": "STRUCTURAL_RISK",
+      "primitives": [
+        "CCIP_EXPIRING_RESPONSE",
+        "CONSULT_ESCROW"
+      ],
+      "statement": "Expiry, signature and one-time local storage are different protections. The read callback has expiry and address/request binding but no chain or single-use action domain; ConsultEscrow has local phase replay control but no release expiry/domain in the signature.",
+      "checked_state": "Current signers or local job phase",
+      "result_binding": "Read extraData/result or job/result only",
+      "consumer": "Read callback or scoped job release",
+      "mutable_inputs": "External truth may change within signed lifetime; matching jobs/domains need separate review",
+      "replay": "Intentional read replay until expiry; local job phase does not prevent cross-deployment reinterpretation"
+    },
+    {
+      "id": "F8_ATOMIC_PATTERNS",
+      "class": "SAFE_BY_CONSTRUCTION",
+      "primitives": [
+        "CCIP_COMMIT_REVEAL",
+        "RECOVERY_ESCROW",
+        "RESCUE_FIXED_DESTINATION"
+      ],
+      "statement": "These sources demonstrate scoped same-transaction checks and state transitions. This is useful design evidence, not proof that SEG already has an atomic guard.",
+      "checked_state": "Local commit/job/ownership and immutable destination",
+      "result_binding": "Inputs consumed by the same call",
+      "consumer": "Scoped source contracts only",
+      "mutable_inputs": "Pinned dependency semantics remain assumptions",
+      "replay": "As described per primitive; no generic authorization claim"
+    }
+  ],
+  "minimal_composition": [
+    {
+      "id": "R1_TYPED_RELATION",
+      "reuse": "SEG_RELATION; pre-existing Semantic ABI concepts",
+      "failure": "Without this primitive, a raw equity quote, including multiplier=1 numeric coincidence, can be promoted to an adjusted token-price claim without conversion.",
+      "proposal": "Retain the exact frozen relation as the semantic reference. Its input schema explicitly requires SYNTHETIC_RELATION_FIXTURE: live evidence needs a separately reviewed adapter/profile boundary preserving identity, scale and explicit conversion, not falsely relabeling live data as synthetic. Leave PR #1 intact. Do not run a second generic linker merely to restate the same boundary.",
+      "evidence": [
+        "SEG_RELATION",
+        "SABI_LINKER"
+      ]
+    },
+    {
+      "id": "R2_TRUSTED_EVIDENCE_CONTEXT",
+      "reuse": "New narrow integration seam; no existing source resolver proven sufficient",
+      "failure": "Without this primitive, caller-supplied quote, multiplier and mutually consistent context can manufacture PASS with no authority for those inputs.",
+      "proposal": "Choose one explicit trust root for each quote and effective multiplier source. A constrained attestor may authenticate captured responses under a declared trust model; it is not an independently verified oracle. Guard policy fixes permitted source/asset/profile and who may authorize. Unknown source or unavailable current state blocks the action.",
+      "evidence": [
+        "SEG_RELATION",
+        "CCIP_BINDING_OBSERVER",
+        "STATE_PROOF_VERIFIER"
+      ]
+    },
+    {
+      "id": "R3_EVENT_DOMAIN_AUTHORIZATION",
+      "reuse": "Action-commitment and CAPV patterns; no whole SDK dependency required",
+      "failure": "Without this primitive, a valid result can authorize a different target, asset, recipient, amount, chain, consumer, policy or executor than the one checked, or be replayed.",
+      "proposal": "Authenticate an immutable profile/implementation-bound semantic result and exact action commitment in a chain/guard/deployment domain. Consumer derives the action hash from the call it will actually execute; enforce signer/actor rights and a single-use nonce. A proof route or direct trusted in-contract evaluation may replace an attestor, but a JSON PASS never does.",
+      "evidence": [
+        "SEG_RELATION",
+        "ACTION_COMMITMENT",
+        "CAPV_CONSUME",
+        "CCIP_EXPIRING_RESPONSE"
+      ]
+    },
+    {
+      "id": "R4_ATOMIC_CURRENT_STATE_USE",
+      "reuse": "Scoped atomic settlement patterns; Fede owns the actual guard",
+      "failure": "Without this primitive, an authentic earlier PASS remains usable after an outcome-affecting multiplier, policy, authority or safety-state change; separate consumption can succeed without the action.",
+      "proposal": "In the same reverting transaction, check the active policy/source authority and event-relevant state/version and effective-time rule, enforce expiry, mark the nonce consumed, and execute the protected action. Prevent callbacks/reentrancy from invalidating checked assumptions. Revert rolls back consumption and action together. Freshness alone is not current-state identity.",
+      "evidence": [
+        "RK_STANDING_TERMINALITY",
+        "TAS_SOURCE_GATE",
+        "CAPV_CONSUME",
+        "RECOVERY_ESCROW"
+      ]
+    }
+  ],
+  "trust_seam": [
+    {
+      "field": "Profile + implementation identity",
+      "requirement": "REQUIRED",
+      "reason": "Bind immutable relation/version and normalization/rounding policy digest. Text profile ID alone cannot identify changed code. Guard allowlist/config must match at consumption."
+    },
+    {
+      "field": "Evidence + context digests",
+      "requirement": "REQUIRED",
+      "reason": "Bind exact canonical input and externally justified context, including source identity and effective state. Existing 0x SHA-256 fields identify bytes; they do not authenticate them. One commitment can cover both if its preimage/domain are fixed."
+    },
+    {
+      "field": "Asset / chain / contract / claim / currency / side / adjusted mantissa + scale",
+      "requirement": "REQUIRED",
+      "reason": "These change the meaning or economic effect. Full identity tuple must match guard policy and actual target asset. Stock-token address is distinct from guard and action target."
+    },
+    {
+      "field": "Quote time + multiplier effective version",
+      "requirement": "REQUIRED",
+      "reason": "Consumer enforces accepted age/validity policy and active state at event time. Signed version alone does not prove latest; value-only comparison misses A -> B -> A transitions. Include effective schedule semantics if outcome changes solely with time."
+    },
+    {
+      "field": "Action target / value / calldata / recipient / amount / limits",
+      "requirement": "REQUIRED",
+      "reason": "Commit all outcome-affecting action fields; consumer rehashes actual call. Economic fields inside calldata need not be duplicated flat. Permit no alternate unguarded entry to the same protected transition."
+    },
+    {
+      "field": "Executor",
+      "requirement": "CONDITIONAL",
+      "reason": "Bind intended executor if rights or economic result depend on it. Otherwise allow relayers explicitly while binding beneficiary and action; msg.sender may be a relayer, not the beneficiary."
+    },
+    {
+      "field": "Nonce / replay domain",
+      "requirement": "REQUIRED",
+      "reason": "One-use action ID scoped to authorization domain, checked and written atomically with execution. Recording a nonce or emitting an event does not consume it."
+    },
+    {
+      "field": "Expiry / not-before / freshness rule",
+      "requirement": "REQUIRED",
+      "reason": "Check at consumption, not only record. Exact boundary inequality, clock, max age and future-time handling are policy decisions still open. Expiry bounds age, not intervening state transitions."
+    },
+    {
+      "field": "Guard / deployment / chain domain",
+      "requirement": "REQUIRED",
+      "reason": "Bind chain ID and consuming contract, plus version/epoch where address reuse or upgrades change semantics. EIP-712 is one possible encoding, not an imposed implementation."
+    },
+    {
+      "field": "Block hash / number / state root",
+      "requirement": "CONDITIONAL",
+      "reason": "Required when input authority is a chain snapshot: pin chain, block hash/root, finality policy and relevant state. Number alone is not reorg-stable. A historical proof still needs a current-state rule; no universal demand for a separate block field for non-chain sources."
+    }
+  ],
+  "local_experiments": [
+    {
+      "id": "FORMATTER_NOT_AUTHENTICATION",
+      "base_sha": "8c786d8134632cdb4892ed32051377e739495300",
+      "modified_files": [],
+      "network_calls": 0,
+      "original_value": "1543125",
+      "fabricated_value": "999999",
+      "schema_errors": [],
+      "guard_execution": "NOT_PRESENT",
+      "conclusion": "Expected documented formatting behavior; structural risk only if downstream treats shape as authority.",
+      "procedure": "Recompute control fixture; shallow-copy receipt with derived_adjusted_value={mantissa:\"999999\",decimals:4}; call toGuardResult and validate against frozen guard-result.schema.json."
+    }
+  ],
+  "independent_verification_plan": [
+    "Freeze Fede guard, trusted adapter, policy/profile, signer configuration and deployment bytes separately from PR #1. Pin all exact SHAs and build/compiler settings.",
+    "Run an independent relation implementation over the frozen inputs. Keep semantic result separate from conformance match; unavailable dependencies produce CANNOT_ESTABLISH and block execution. Do not reuse producer expected outputs as the independent oracle.",
+    "Carry V2 numeric coincidence, wrong-asset, stale/missing multiplier, scale and already-adjusted cases through the actual guard. Preserve the 26-case baseline and 7 mutations as frozen evidence, not new audit test counts.",
+    "Add future integration tests: forged PASS/value/context; wrong signer/profile/chain/guard/asset/target/recipient/executor; duplicate nonce; expired/future timestamp; policy or multiplier change between signing and mining; A -> B -> A state; pending time-only activation; source outage and conflicting snapshots.",
+    "Test atomicity: induce callback/reentrancy or relevant mutable-state changes after checking; failed action must roll back nonce consumption and protected state. View verify at t0 followed by transaction at t1 must not be the authorization design.",
+    "Tiago captures bad-path trace/no action and control state delta at exact blocks. An independent reviewer recomputes action/evidence/domain digests, signer and nonce consumption from calldata/logs/state; confirmations/finality remain explicit.",
+    "Independent verification labels require named independently produced reasoning/code and pinned inputs. RSI/PRF/RVR and TSEI scaffolds can organize that evidence; running a producer suite or differing declared author strings does not establish independence."
+  ],
+  "tiago_artifacts": [
+    "Actual chain ID; RPC URL used (redact credentials); capture timestamp; eth_chainId and raw JSON-RPC bytes with SHA-256. Declare transport trust and finality policy.",
+    "Block number AND hash/state root where relevant; quote source and exact response bytes/headers/timestamps, authenticated acquisition method, asset identity, currency/side and declared price decimals.",
+    "Observed Stock Token/test asset, multiplier source and oracle/feed addresses if they exist; code bytes/hash and ABI/version. Do not infer existence from documentation or a schema address.",
+    "Current/pending multiplier raw responses, scale, observation block/time, effective schedule and authoritative state/version mechanism. Demonstrate how the consumer detects changes at execution; timestamp freshness alone is insufficient.",
+    "Guard address; deployment transaction hash, constructor/configuration, bytecode/compiler/source pin and explorer URLs. Record configured signer/source/policy/domain and any upgrade or governance authority.",
+    "Exact control/bad calldata, target/action parameters, caller/executor, action digest, evidence/context digests, nonce and expiry. Publish no private keys or credential-bearing RPC URLs.",
+    "Transaction receipts; reverted transaction receipt and trace; successful control receipt and before/after protected-state delta; logs connecting consumed authorization to the actual action. If bad path is only eth_call simulation, label it simulation, not mined revert.",
+    "Raw RPC request/response captures and SHA-256 digests; timestamps and explorer URLs; independent re-fetch comparison. All Robinhood testnet existence/deployment/success claims remain UNVERIFIED until supplied and checked."
+  ],
+  "unknowns": [
+    "No inspected Fede guard or agreed protected action implementation; atomicity, all guarded entry points, runtime uint256 range, EVM encoding and revert behavior remain open. The frozen input schema accepts synthetic fixtures only; any live adapter/profile agreement is future work, not a silent reinterpretation of this schema.",
+    "Robinhood testnet token/feed/contract availability, source authenticity route, current/pending multiplier semantics in deployed code and authoritative state version remain UNVERIFIED.",
+    "Who may attest/authorize, how source acquisition is trusted, how policy/signer revocation becomes current onchain, and which mutable predicates affect the actual action are team decisions.",
+    "Without an authoritative event-visible multiplier version (or equivalent state/proof rule), a real current-multiplier atomic guarantee cannot be made. Short expiry leaves a bounded stale interval; it does not solve it. Label any attestor-snapshot-only demo accordingly.",
+    "RPC/finality/reorg assumptions, state-proof header authority, exact max-age/expiry inequality and pending effective transitions are not yet agreed.",
+    "Referenced trustless-ai/vertice-gateway was not in accessible inventory; gh repo view could not resolve it. The cutoff reference claims a live enforcer, but callers/deployed wiring could not be inspected.",
+    "Existing upstream deployment/independence reports are source claims only here. No broad repository-wide absence theorem, formal verification or exploitability assessment is claimed.",
+    "recompute-kit open PRs #42/#43/#44 and other branches were inventoried, not treated as merged. At pinned main, tools/run_conformance.py classifies ordinary nonzero exit (including 2) as suite failure absent special environmental rules; do not infer full tri-state process reporting from per-profile tri-state semantics.",
+    "New product code has no license grant. Team contribution/reuse policy and eventual license decision remain pending."
+  ],
+  "claims_not_permitted": [
+    "Relation PASS is authenticated, true, fresh, authorized or executed.",
+    "Semantic equality follows from numeric equality, or supplied matching context proves current external state.",
+    "A recomputable/fail-closed checker is enforced on every protected event.",
+    "A per-event check is atomic check-and-use, or consuming a nullifier proves the protected action executed.",
+    "Signed historical state, proof at a block or unexpired receipt necessarily represents the latest effective multiplier.",
+    "Public code, producer tests, declared independent identity strings or a receipt hash constitute independent verification.",
+    "The draft PR is merged, Solidity-tested, deployed or used successfully; Robinhood addresses/feeds exist on testnet.",
+    "Synthetic fixtures are production observations; normative documentation is live evidence; RPC corroboration is independently verified consensus.",
+    "PQ, TSEI, ReceiptOS, RSI, a full SDK or an observation mesh are necessary runtime dependencies for this slice.",
+    "Any structural risk in this audit is a proven live-capital vulnerability; this audit establishes none."
+  ],
+  "auxiliary_evidence": [
+    {
+      "repo": "trustless-ai/recompute-kit",
+      "sha": "f5a25bd6bbf555c710d63915d4e5092548e3702c",
+      "path": "tools/run_conformance.py",
+      "lines": [
+        96,
+        108
+      ],
+      "url": "https://github.com/trustless-ai/recompute-kit/blob/f5a25bd6bbf555c710d63915d4e5092548e3702c/tools/run_conformance.py#L96-L108",
+      "assertion": "At pinned main ordinary nonzero runner exit is classified SUITE; open improvements not landed.",
+      "basis": "INSPECTED_PINNED_SOURCE",
+      "file_sha256": "1ef630c9afd891c1a5294015180986f38af30db9237c5c66cfff4fe76b1a232f"
+    },
+    {
+      "repo": "pipavlo82/semantic-execution-guard",
+      "sha": "8c786d8134632cdb4892ed32051377e739495300",
+      "path": "provenance/SOURCES.md",
+      "lines": [
+        1,
+        54
+      ],
+      "url": "https://github.com/pipavlo82/semantic-execution-guard/blob/8c786d8134632cdb4892ed32051377e739495300/provenance/SOURCES.md#L1-L54",
+      "assertion": "Frozen normative documentation citations and explicitly synthetic/live-unverified boundaries.",
+      "basis": "INSPECTED_PINNED_SOURCE",
+      "file_sha256": "907005fbbeb49d40b48c2871f29ca58567ba570657e5376b26cf99799c4a3dad"
+    }
+  ],
+  "source_file_manifest": [
+    {
+      "repo": "pipavlo82/semantic-execution-guard",
+      "sha": "8c786d8134632cdb4892ed32051377e739495300",
+      "path": "relations/robinhood-stock-token-v0/recompute.mjs",
+      "sha256": "efa3908472b40e58ae270d8c8709380a46b0dc775b9005058742c38b42d2038e",
+      "bytes": 7146
+    },
+    {
+      "repo": "pipavlo82/semantic-execution-guard",
+      "sha": "8c786d8134632cdb4892ed32051377e739495300",
+      "path": "relations/robinhood-stock-token-v0/relation.schema.json",
+      "sha256": "36c1e27cbd02764f8313e5d56ad75879b22beb84edc3014e0e5b462055041fb3",
+      "bytes": 8027
+    },
+    {
+      "repo": "pipavlo82/semantic-execution-guard",
+      "sha": "8c786d8134632cdb4892ed32051377e739495300",
+      "path": "docs/guard-result.schema.json",
+      "sha256": "48a304b0b77e0975c9f62c55c5208969b4c8b7b3b097464d66a265983ddf3634",
+      "bytes": 1943
+    },
+    {
+      "repo": "pipavlo82/semantic-execution-guard",
+      "sha": "8c786d8134632cdb4892ed32051377e739495300",
+      "path": "docs/fede-handoff.md",
+      "sha256": "4f6a9c73bec4175160cbb598a5a854be5f128aa37ac458611f9f0f8a0e14fd47",
+      "bytes": 2411
+    },
+    {
+      "repo": "pipavlo82/semantic-execution-guard",
+      "sha": "8c786d8134632cdb4892ed32051377e739495300",
+      "path": "docs/architecture.md",
+      "sha256": "2a17cf2b3bb2459eea2cd13644b592dc23821c9f80e5e13d213629508085453c",
+      "bytes": 2475
+    },
+    {
+      "repo": "trustless-ai/semantic-abi",
+      "sha": "d15c666dfccff17f7350fe97d2fc7b71cb2cbaee",
+      "path": "runner/src/linker.mjs",
+      "sha256": "bae8e519361989bfadbb5d226cb9940255cd954c60b40ba42136a2b11161d391",
+      "bytes": 4044
+    },
+    {
+      "repo": "trustless-ai/semantic-abi",
+      "sha": "d15c666dfccff17f7350fe97d2fc7b71cb2cbaee",
+      "path": "runner/src/evaluate.mjs",
+      "sha256": "a2f1c3caaaeeb37b7067618f7ee0b98bddece859baee7dfbfc68a44be58699b0",
+      "bytes": 2639
+    },
+    {
+      "repo": "pipavlo82/relational-security-invariants",
+      "sha": "e8fb81904af2ffe19e974383cf78d9d18d259b98",
+      "path": "runner/execution.py",
+      "sha256": "c7234c885eef97e24a89b3b54041cff77de88311e4521e74f1a9f208dd82feb7",
+      "bytes": 4816
+    },
+    {
+      "repo": "pipavlo82/protected-relation-fixtures",
+      "sha": "07075d874c75da43f5ac8ed8769d5dbc01d56427",
+      "path": "tools/relation_discrimination.py",
+      "sha256": "c3df8f7a9b6706939331851b55e3191e1e5e19ad234ca784f3b6f688388b7faa",
+      "bytes": 16710
+    },
+    {
+      "repo": "trustless-ai/recompute-kit",
+      "sha": "f5a25bd6bbf555c710d63915d4e5092548e3702c",
+      "path": "conformance/verdict-profile-binding-v0/verdict-profile-binding-v0.reference.mjs",
+      "sha256": "20e86353e6a97f5c38d0883920a117fd6e8684a0cb23bc6b5bd1ead03d03957f",
+      "bytes": 2623
+    },
+    {
+      "repo": "trustless-ai/recompute-kit",
+      "sha": "f5a25bd6bbf555c710d63915d4e5092548e3702c",
+      "path": "conformance/profile-amendment-v0/profile-amendment-v0.reference.mjs",
+      "sha256": "915343ece23fb7b2a84906bfe1b6700be4d53bec61cecb04a2f09ee3f57d3ad7",
+      "bytes": 4107
+    },
+    {
+      "repo": "trustless-ai/recompute-kit",
+      "sha": "f5a25bd6bbf555c710d63915d4e5092548e3702c",
+      "path": "conformance/captured-admission-v0/README.md",
+      "sha256": "4cc8349e14f88aaa0e75f9020f7b91a2a68b0dd3c04b33fdf07e6ff71c7f1656",
+      "bytes": 12005
+    },
+    {
+      "repo": "trustless-ai/recompute-kit",
+      "sha": "f5a25bd6bbf555c710d63915d4e5092548e3702c",
+      "path": "conformance/pq-recovery-classes-v0/README.md",
+      "sha256": "7826c414cd0bb8b8d1c51a9480a5b8217f9b4247ecd25ade6ea10940b448803e",
+      "bytes": 6413
+    },
+    {
+      "repo": "trustless-ai/recompute-kit",
+      "sha": "f5a25bd6bbf555c710d63915d4e5092548e3702c",
+      "path": "conformance/pq-recovery-classes-v0/recovery_check.py",
+      "sha256": "74d5f173b02c007513594503eb33d6ed23e17bc7e08dbd7f52ee836ffd43373e",
+      "bytes": 8011
+    },
+    {
+      "repo": "trustless-ai/recompute-kit",
+      "sha": "f5a25bd6bbf555c710d63915d4e5092548e3702c",
+      "path": "conformance/pq-key-binding-v1/cutoff_enforce.py",
+      "sha256": "14af771fe61b148a55ed39d0102d441b49981e8bc7895b6b5b0ce0a95040210a",
+      "bytes": 13693
+    },
+    {
+      "repo": "trustless-ai/recompute-kit",
+      "sha": "f5a25bd6bbf555c710d63915d4e5092548e3702c",
+      "path": "conformance/predicate-conformance-v0/gate.ts",
+      "sha256": "e4ad832e805f91fbe9e735eef08057064ac3ee99f045d2f67f08523120e6acfd",
+      "bytes": 31538
+    },
+    {
+      "repo": "pipavlo82/crystal-receipt",
+      "sha": "45b46bf7df3a60b32583291f577a36bf19d22f00",
+      "path": "conformance/tsei-invariant-discrimination-v0/independent-authority-model.ts",
+      "sha256": "9264d167bbbe5c473949793dcfc0088da3b164ef5a48c5d3a2c0ead591d85be4",
+      "bytes": 14871
+    },
+    {
+      "repo": "trustless-ai/ccip-router",
+      "sha": "d6f5c96d31490213e932eb63c83b9989b2073900",
+      "path": "src/integrations/tseiProfileA.ts",
+      "sha256": "c67e9fef196db9041daaa26f93720c7811691dc71f21404eb31df28d2e607693",
+      "bytes": 6233
+    },
+    {
+      "repo": "trustless-ai/ccip-router",
+      "sha": "d6f5c96d31490213e932eb63c83b9989b2073900",
+      "path": "src/integrations/tseiProfileARouter.ts",
+      "sha256": "5fbf84faffea5ee305fdc7e3429cb4a20179317ba6cc048ab83bb7287293ac54",
+      "bytes": 8248
+    },
+    {
+      "repo": "trustless-ai/ccip-router",
+      "sha": "d6f5c96d31490213e932eb63c83b9989b2073900",
+      "path": "src/verify/binding.ts",
+      "sha256": "b6cbbbac54fa8f692c6f5f611f8fb5e188203bf69d5c16582e9bfbc6fb7ecd77",
+      "bytes": 4693
+    },
+    {
+      "repo": "trustless-ai/ccip-router",
+      "sha": "d6f5c96d31490213e932eb63c83b9989b2073900",
+      "path": "contracts/OffchainResolver.sol",
+      "sha256": "d8a5a932aebb9a3868908ab677b0ebeebbc33f1f429e4f0c120306b954040396",
+      "bytes": 5684
+    },
+    {
+      "repo": "trustless-ai/ccip-router",
+      "sha": "d6f5c96d31490213e932eb63c83b9989b2073900",
+      "path": "src/mesh/cron.ts",
+      "sha256": "9e64d8afffdff4d98dd97ad1eb437f0d751da317b7e62402bd76c957e89ea337",
+      "bytes": 1001
+    },
+    {
+      "repo": "trustless-ai/ccip-router",
+      "sha": "d6f5c96d31490213e932eb63c83b9989b2073900",
+      "path": "contracts/GenericCommitRevealSettler.sol",
+      "sha256": "9354e5d0b910b9934e5f7321fd82b318cb76e21e212e42f09beff9f228233e67",
+      "bytes": 8203
+    },
+    {
+      "repo": "trustless-ai/agent-sdk",
+      "sha": "e41b117893fb56bc869922de378daf91aad63def",
+      "path": "testkit/contracts/mocks/verify/ERC8354/ConfidentialPolicyVerdict.sol",
+      "sha256": "4b17a45b8820bd9fd29ccd13e6881a35cec68d071a7c2dbeff04dbef8807630c",
+      "bytes": 7361
+    },
+    {
+      "repo": "trustless-ai/agent-ercs",
+      "sha": "01283ca57305f915afb560d23359a27fd748eb5a",
+      "path": "contracts/verify/ERC8354/PolicyAction.sol",
+      "sha256": "9698c60db69fbae636164c22620407a0868589d7a1466fed5d1b4e213f4ec64f",
+      "bytes": 1418
+    },
+    {
+      "repo": "trustless-ai/agent-ercs",
+      "sha": "01283ca57305f915afb560d23359a27fd748eb5a",
+      "path": "contracts/settlement/ConsultEscrow/ConsultEscrow.sol",
+      "sha256": "373e1f6feab886d1115eceef391cebce97a16b51d4bdfdfb1e5bd4bdb3bd07f5",
+      "bytes": 3655
+    },
+    {
+      "repo": "trustless-ai/agent-contracts-examples",
+      "sha": "60855b200745d2f6dfd24b266f95ca92ce102ed2",
+      "path": "recovery-receipt/contracts/src/MiniRecoveryEscrow.sol",
+      "sha256": "ec9c2522ae9c7753fadb19664222b882e913c4aaceeb247dc6ed0a2204d22bdd",
+      "bytes": 2682
+    },
+    {
+      "repo": "trustless-ai/trustless-agent-substrate",
+      "sha": "a344ef80f7c52c03b9183814d1874b8054639c3e",
+      "path": "src/core/workflow/sourceGate.ts",
+      "sha256": "b25f179911fb28f5877185055a6d016e92722545c838a64ebdcc621aad4286c3",
+      "bytes": 2572
+    },
+    {
+      "repo": "trustless-ai/trustless-agent-substrate",
+      "sha": "a344ef80f7c52c03b9183814d1874b8054639c3e",
+      "path": "src/core/workflow/operationService.ts",
+      "sha256": "a8771c4514a3481667cf4c3dafa7adacc626797be8aa5bad7e3d0975869f31f5",
+      "bytes": 13194
+    },
+    {
+      "repo": "trustless-ai/trustless-agent-substrate",
+      "sha": "a344ef80f7c52c03b9183814d1874b8054639c3e",
+      "path": "src/clients/workflow/agentSdkClient.ts",
+      "sha256": "817d87bc4f71425e089448e946a661acfdebaf7cd154515ad1a4b08431cbe251",
+      "bytes": 10574
+    },
+    {
+      "repo": "trustless-ai/verify-layer",
+      "sha": "84afc4b738dc37269089c858404eed8086435f5d",
+      "path": "verify.mjs",
+      "sha256": "ece05db266d1eb86ff71f47aa5a0666ada611dfd496ef0982e570406a28fb2d2",
+      "bytes": 12423
+    },
+    {
+      "repo": "pipavlo82/crystal-receipt",
+      "sha": "45b46bf7df3a60b32583291f577a36bf19d22f00",
+      "path": "src/receiptos/verify/verify-receipt.ts",
+      "sha256": "70dad3a005e0d09af6d3b4def8ab4c98e24d3ee9f19839d88894c42c5ac9da04",
+      "bytes": 1110
+    },
+    {
+      "repo": "pipavlo82/Chronicle",
+      "sha": "c467b48fd18fc8ec86f10582befa35946ce41914",
+      "path": "src/chronicle_receiptos_admission.mjs",
+      "sha256": "3a8a44f4334f2a9a3ccdc91f0ae586908f10de430f2a10e4ca5abcbed7a80a25",
+      "bytes": 8011
+    },
+    {
+      "repo": "pipavlo82/Chronicle",
+      "sha": "c467b48fd18fc8ec86f10582befa35946ce41914",
+      "path": "docs/verification-before-history.md",
+      "sha256": "cc1319f2a65c489509437b4bd1e59aaaec0c476b13c40e58c77fc5cf1877cf05",
+      "bytes": 3031
+    },
+    {
+      "repo": "pipavlo82/receiptos-mvp",
+      "sha": "0e70ebe85f4dd1b8b2a24be9c29f1b9757e25a71",
+      "path": "src/api.py",
+      "sha256": "b2d7e0b1d91c71638fdf24b96754aaebbf5b32afa0aa5b0642aa25e124f24e1f",
+      "bytes": 5528
+    },
+    {
+      "repo": "pipavlo82/recomputable-verification-receipts",
+      "sha": "287c0ea1c2578c1833405bc2476975f95addbada",
+      "path": "docs/spec/RECOMPUTABLE_VERIFICATION_RECEIPTS_V0.md",
+      "sha256": "81077ddbf50624bc70941cf53a4f542604e926a653d7fcb3a36310ff5430b973",
+      "bytes": 13294
+    },
+    {
+      "repo": "trustless-ai/pq-agent-binding",
+      "sha": "4f934ad31e96979002d818cd8a5f12909c1b6713",
+      "path": "spec/v1-temporal-authority.md",
+      "sha256": "2d0e2df322c42f23994941d77567c253ee2dd3ca1790c4bd0103079471abf6a5",
+      "bytes": 35583
+    },
+    {
+      "repo": "trustless-ai/cross-reference-console",
+      "sha": "268c77b795aef5f13b018e76e4f7d9307a81b395",
+      "path": ".github/workflows/watcher.yml",
+      "sha256": "13a53d6cbaa7742f3172777e7bb79982442540d3d03f4f0b8664295d05999be0",
+      "bytes": 4158
+    },
+    {
+      "repo": "trustless-ai/eip7702-rescue",
+      "sha": "31133de1ca5428947580f53a486d97aae461e33e",
+      "path": "contracts/RescueDelegate.sol",
+      "sha256": "451dde91c19509476206d76bc221ee92792ac3c86d08a8ed52314d8c9a0a185f",
+      "bytes": 1779
+    },
+    {
+      "repo": "pipavlo82/Chronicle",
+      "sha": "c467b48fd18fc8ec86f10582befa35946ce41914",
+      "path": "LICENSE",
+      "sha256": "5a92139183111df03bdbf51afb7a45f4578efc3c8b5d6a32d190b0dde939961e",
+      "bytes": 10258
+    },
+    {
+      "repo": "pipavlo82/Chronicle",
+      "sha": "c467b48fd18fc8ec86f10582befa35946ce41914",
+      "path": "docs/LICENSE_POLICY_V0.md",
+      "sha256": "89652644266a98d142a2e4793215834c30fc757e82f5ebae957a9159c78e4d92",
+      "bytes": 4973
+    },
+    {
+      "repo": "pipavlo82/crystal-receipt",
+      "sha": "45b46bf7df3a60b32583291f577a36bf19d22f00",
+      "path": "LICENSE",
+      "sha256": "fa7fe2e14249d2da31c0d2a0bbefc17a1994a93b42ae652a3dab450b6f1c0251",
+      "bytes": 10377
+    },
+    {
+      "repo": "pipavlo82/pq-receipt-profile",
+      "sha": "54cf1a3784a56f4624b41357148bbe9ba301c470",
+      "path": "README.md",
+      "sha256": "44b6baf569d028e4349762bd814a71a62705adc5f741f2b76385130cffe21273",
+      "bytes": 9896
+    },
+    {
+      "repo": "pipavlo82/protected-relation-fixtures",
+      "sha": "07075d874c75da43f5ac8ed8769d5dbc01d56427",
+      "path": "LICENSE",
+      "sha256": "11d93abd8b3371d3d3dbc536e11e132f3482dc6334eca0006601cfd58229253e",
+      "bytes": 1074
+    },
+    {
+      "repo": "pipavlo82/receiptos-pq-lab",
+      "sha": "a705d9c1942c0f30725c9bddec6606a0cddf4fc6",
+      "path": "README.md",
+      "sha256": "ff726b28badc3662f3f141f91b10f38ed2a69219fb3a229519b4df16793203d0",
+      "bytes": 3944
+    },
+    {
+      "repo": "pipavlo82/recomputable-verification-receipts",
+      "sha": "287c0ea1c2578c1833405bc2476975f95addbada",
+      "path": "LICENSE",
+      "sha256": "fa7fe2e14249d2da31c0d2a0bbefc17a1994a93b42ae652a3dab450b6f1c0251",
+      "bytes": 10377
+    },
+    {
+      "repo": "pipavlo82/relational-security-invariants",
+      "sha": "e8fb81904af2ffe19e974383cf78d9d18d259b98",
+      "path": "LICENSE",
+      "sha256": "8538f3699adfbf44315245ad3bd0140785344842c22df47082f1f8dcf54a4fbd",
+      "bytes": 253
+    },
+    {
+      "repo": "trustless-ai/agent-contracts-examples",
+      "sha": "60855b200745d2f6dfd24b266f95ca92ce102ed2",
+      "path": "LICENSE",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "bytes": 11357
+    },
+    {
+      "repo": "trustless-ai/agent-ercs",
+      "sha": "01283ca57305f915afb560d23359a27fd748eb5a",
+      "path": "LICENSE",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "bytes": 11357
+    },
+    {
+      "repo": "trustless-ai/agent-sdk",
+      "sha": "e41b117893fb56bc869922de378daf91aad63def",
+      "path": "LICENSE",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "bytes": 11357
+    },
+    {
+      "repo": "trustless-ai/ccip-router",
+      "sha": "d6f5c96d31490213e932eb63c83b9989b2073900",
+      "path": "LICENSE",
+      "sha256": "2e4a5f0865b801a4e12a41e8173faf26860b8edb90859c883ebd073e7ec76c9a",
+      "bytes": 1083
+    },
+    {
+      "repo": "trustless-ai/composed-attestation-note",
+      "sha": "b1ba7a24d492804a2382576170404baa2998ff77",
+      "path": "LICENSE",
+      "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+      "bytes": 7048
+    },
+    {
+      "repo": "trustless-ai/composed-attestation-note",
+      "sha": "b1ba7a24d492804a2382576170404baa2998ff77",
+      "path": "README.md",
+      "sha256": "7efb8dc8a4a89767d95ad454afa0957c3cd20dacdb93fcb0d3a4c1a5900792e0",
+      "bytes": 2155
+    },
+    {
+      "repo": "trustless-ai/cross-reference-console",
+      "sha": "268c77b795aef5f13b018e76e4f7d9307a81b395",
+      "path": "LICENSE",
+      "sha256": "fab94f290fa307e36b2ec973b36835b737409f574535a28fec45073c1180b963",
+      "bytes": 254
+    },
+    {
+      "repo": "trustless-ai/eip7702-rescue",
+      "sha": "31133de1ca5428947580f53a486d97aae461e33e",
+      "path": "LICENSE",
+      "sha256": "170e3b177791614567a81679ad1e20ee0197c57377cbff7f8d52030d1e8abfe9",
+      "bytes": 455
+    },
+    {
+      "repo": "trustless-ai/observation-conditions-note",
+      "sha": "05e8fda42996ea138c6728df4c02931122dc7f98",
+      "path": "LICENSE",
+      "sha256": "7b8e39433bf026c111931a27907c16ee553bd878ef02a61322580cbf9ce0da6b",
+      "bytes": 148
+    },
+    {
+      "repo": "trustless-ai/observation-conditions-note",
+      "sha": "05e8fda42996ea138c6728df4c02931122dc7f98",
+      "path": "README.md",
+      "sha256": "d1eecaa9a3a9c8d033d917bacb64bfd5764490b020ec6cb838b7de21e646bad1",
+      "bytes": 862
+    },
+    {
+      "repo": "trustless-ai/pq-agent-binding",
+      "sha": "4f934ad31e96979002d818cd8a5f12909c1b6713",
+      "path": "LICENSE",
+      "sha256": "fab94f290fa307e36b2ec973b36835b737409f574535a28fec45073c1180b963",
+      "bytes": 254
+    },
+    {
+      "repo": "trustless-ai/primitives",
+      "sha": "6b39e9540d4bd0a78decb588c0a8e328c303f208",
+      "path": "LICENSE",
+      "sha256": "bd1565ed53e0710c252914871977bcc28b98d1a5b6013d2b03539453386559bf",
+      "bytes": 305
+    },
+    {
+      "repo": "trustless-ai/primitives",
+      "sha": "6b39e9540d4bd0a78decb588c0a8e328c303f208",
+      "path": "README.md",
+      "sha256": "a63d40430eb09ae303dd16c6b8347177cdb36e89421fd40e78de94f61381efd2",
+      "bytes": 8251
+    },
+    {
+      "repo": "trustless-ai/recompute-kit",
+      "sha": "f5a25bd6bbf555c710d63915d4e5092548e3702c",
+      "path": "LICENSE",
+      "sha256": "405d0af6743b62b00a440d519b85fd9c3f159ff85b3bcfcd8c683e6372b4a7aa",
+      "bytes": 424
+    },
+    {
+      "repo": "trustless-ai/semantic-abi",
+      "sha": "d15c666dfccff17f7350fe97d2fc7b71cb2cbaee",
+      "path": "LICENSE",
+      "sha256": "c95bae1d1ce0235ecccd3560b772ec1efb97f348a79f0fbe0a634f0c2ccefe2c",
+      "bytes": 11358
+    },
+    {
+      "repo": "trustless-ai/semantic-abi",
+      "sha": "d15c666dfccff17f7350fe97d2fc7b71cb2cbaee",
+      "path": "README.md",
+      "sha256": "f20050889a9e9b2a03fb450add57a0e707ded53c9e0836c7ba23579e5c4e7794",
+      "bytes": 3895
+    },
+    {
+      "repo": "trustless-ai/trustless-agent-substrate",
+      "sha": "a344ef80f7c52c03b9183814d1874b8054639c3e",
+      "path": "LICENSE",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "bytes": 11357
+    },
+    {
+      "repo": "trustless-ai/verify-layer",
+      "sha": "84afc4b738dc37269089c858404eed8086435f5d",
+      "path": "LICENSE",
+      "sha256": "fe7270383bffc9e5d99b0fa8539cf91ebbbec5b209ee521032da622f14ccfc46",
+      "bytes": 353
+    },
+    {
+      "repo": "trustless-ai/recompute-kit",
+      "sha": "f5a25bd6bbf555c710d63915d4e5092548e3702c",
+      "path": "tools/run_conformance.py",
+      "sha256": "1ef630c9afd891c1a5294015180986f38af30db9237c5c66cfff4fe76b1a232f",
+      "bytes": 16190
+    },
+    {
+      "repo": "pipavlo82/semantic-execution-guard",
+      "sha": "8c786d8134632cdb4892ed32051377e739495300",
+      "path": "provenance/SOURCES.md",
+      "sha256": "907005fbbeb49d40b48c2871f29ca58567ba570657e5376b26cf99799c4a3dad",
+      "bytes": 3914
+    }
+  ]
+}

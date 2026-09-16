@@ -1,0 +1,252 @@
+{
+  "relation_profile_id": "semantic-execution-guard.robinhood-stock-token.v0",
+  "fixture_kind": "SYNTHETIC_RELATION_FIXTURE",
+  "implementation_sha256": "efa3908472b40e58ae270d8c8709380a46b0dc775b9005058742c38b42d2038e",
+  "schema_sha256": "36c1e27cbd02764f8313e5d56ad75879b22beb84edc3014e0e5b462055041fb3",
+  "validator_sha256": "24f81e9ce9d8a7f5191296db2f1244f70e25aac3d17341b909f70c1013f7749d",
+  "vectors_sha256": "925e9cf8f4a626f108a3adce3b373cc97fe4e509bfb38b3be9bf5f5d8040d0e0",
+  "mutation_runner_sha256": "30cd5f9e5dc2311a5d09f4e7d4830d4ad2968ed91befef401b20b18b0c118604",
+  "baseline_vectors": 26,
+  "killed": 7,
+  "survived": 0,
+  "records": [
+    {
+      "mutation_id": "M1",
+      "changed_rule": "Explicit conversion requirement removed: direct raw promotion allowed",
+      "killer_vectors": [
+        "V2_NUMERIC_COINCIDENCE_DIRECT_PROMOTION",
+        "V11_DIRECT_PROMOTION_NONUNIT"
+      ],
+      "observed_result": [
+        {
+          "case_id": "V2_NUMERIC_COINCIDENCE_DIRECT_PROMOTION",
+          "baseline_status": "FAIL",
+          "mutant_status": "PASS",
+          "mutant_reason_code": "MUTANT_RAW_PROMOTION",
+          "mutant_derived_value": {
+            "mantissa": "1234500",
+            "decimals": 4
+          }
+        },
+        {
+          "case_id": "V11_DIRECT_PROMOTION_NONUNIT",
+          "baseline_status": "FAIL",
+          "mutant_status": "PASS",
+          "mutant_reason_code": "MUTANT_RAW_PROMOTION",
+          "mutant_derived_value": {
+            "mantissa": "1234500",
+            "decimals": 4
+          }
+        }
+      ],
+      "status": "KILLED",
+      "patch_occurrences": 1,
+      "mutant_source_sha256": "e815d734a460439c13dd8a73aac00118123ba95c9f6ec8633f5e9bd3f63360f3",
+      "positive_controls_preserved": 2
+    },
+    {
+      "mutation_id": "M2",
+      "changed_rule": "Multiplier requirement removed: missing evidence silently defaults to identity",
+      "killer_vectors": [
+        "V4_MISSING_MULTIPLIER"
+      ],
+      "observed_result": [
+        {
+          "case_id": "V4_MISSING_MULTIPLIER",
+          "baseline_status": "CANNOT_ESTABLISH",
+          "mutant_status": "PASS",
+          "mutant_reason_code": "MUTANT_RAW_PROMOTION",
+          "mutant_derived_value": {
+            "mantissa": "1234500",
+            "decimals": 4
+          }
+        }
+      ],
+      "status": "KILLED",
+      "patch_occurrences": 1,
+      "mutant_source_sha256": "20337e38732bfa11d0d7ddd71f68ea5c555de85370969bd6ca39f7bb74008526",
+      "positive_controls_preserved": 2
+    },
+    {
+      "mutation_id": "M3",
+      "changed_rule": "Asset/chain/contract identity matching removed",
+      "killer_vectors": [
+        "V5_WRONG_ASSET_MULTIPLIER",
+        "V15_WRONG_CHAIN",
+        "V16_WRONG_CONTRACT",
+        "V24_CONSUMER_ASSET_MISMATCH"
+      ],
+      "observed_result": [
+        {
+          "case_id": "V5_WRONG_ASSET_MULTIPLIER",
+          "baseline_status": "FAIL",
+          "mutant_status": "PASS",
+          "mutant_reason_code": "EXACT_CONVERSION_ESTABLISHED",
+          "mutant_derived_value": {
+            "mantissa": "1543125",
+            "decimals": 4
+          }
+        },
+        {
+          "case_id": "V15_WRONG_CHAIN",
+          "baseline_status": "FAIL",
+          "mutant_status": "PASS",
+          "mutant_reason_code": "EXACT_CONVERSION_ESTABLISHED",
+          "mutant_derived_value": {
+            "mantissa": "1543125",
+            "decimals": 4
+          }
+        },
+        {
+          "case_id": "V16_WRONG_CONTRACT",
+          "baseline_status": "FAIL",
+          "mutant_status": "PASS",
+          "mutant_reason_code": "EXACT_CONVERSION_ESTABLISHED",
+          "mutant_derived_value": {
+            "mantissa": "1543125",
+            "decimals": 4
+          }
+        },
+        {
+          "case_id": "V24_CONSUMER_ASSET_MISMATCH",
+          "baseline_status": "FAIL",
+          "mutant_status": "PASS",
+          "mutant_reason_code": "EXACT_CONVERSION_ESTABLISHED",
+          "mutant_derived_value": {
+            "mantissa": "1543125",
+            "decimals": 4
+          }
+        }
+      ],
+      "status": "KILLED",
+      "patch_occurrences": 1,
+      "mutant_source_sha256": "35ee96912038be62864caf56fff058cb403eb69696b2f6e135bb9d05f8ba85cd",
+      "positive_controls_preserved": 2
+    },
+    {
+      "mutation_id": "M4",
+      "changed_rule": "Temporal/effective-state compatibility enforcement removed",
+      "killer_vectors": [
+        "V3_STALE_MULTIPLIER",
+        "V6_TEMPORAL_MISMATCH",
+        "V26_EFFECTIVE_INTERVAL_END"
+      ],
+      "observed_result": [
+        {
+          "case_id": "V3_STALE_MULTIPLIER",
+          "baseline_status": "FAIL",
+          "mutant_status": "PASS",
+          "mutant_reason_code": "EXACT_CONVERSION_ESTABLISHED",
+          "mutant_derived_value": {
+            "mantissa": "1543125",
+            "decimals": 4
+          }
+        },
+        {
+          "case_id": "V6_TEMPORAL_MISMATCH",
+          "baseline_status": "FAIL",
+          "mutant_status": "PASS",
+          "mutant_reason_code": "EXACT_CONVERSION_ESTABLISHED",
+          "mutant_derived_value": {
+            "mantissa": "1543125",
+            "decimals": 4
+          }
+        },
+        {
+          "case_id": "V26_EFFECTIVE_INTERVAL_END",
+          "baseline_status": "FAIL",
+          "mutant_status": "PASS",
+          "mutant_reason_code": "EXACT_CONVERSION_ESTABLISHED",
+          "mutant_derived_value": {
+            "mantissa": "1543125",
+            "decimals": 4
+          }
+        }
+      ],
+      "status": "KILLED",
+      "patch_occurrences": 1,
+      "mutant_source_sha256": "b225d251568cf9430406374ee53a12eca7074f2a4f0fa9d2ee4bb0c6ecbbe7ee",
+      "positive_controls_preserved": 2
+    },
+    {
+      "mutation_id": "M5",
+      "changed_rule": "Already-adjusted evidence exclusion removed: multiplier applied again",
+      "killer_vectors": [
+        "V7_DOUBLE_ADJUSTMENT"
+      ],
+      "observed_result": [
+        {
+          "case_id": "V7_DOUBLE_ADJUSTMENT",
+          "baseline_status": "FAIL",
+          "mutant_status": "PASS",
+          "mutant_reason_code": "EXACT_CONVERSION_ESTABLISHED",
+          "mutant_derived_value": {
+            "mantissa": "2000000",
+            "decimals": 4
+          }
+        }
+      ],
+      "status": "KILLED",
+      "patch_occurrences": 1,
+      "mutant_source_sha256": "3c407e492638f826681beb031763daf46fc7662845608c57c35a36c8d5849acd",
+      "positive_controls_preserved": 2
+    },
+    {
+      "mutation_id": "M6",
+      "changed_rule": "Decimal/scale agreement enforcement removed",
+      "killer_vectors": [
+        "V8_SCALE_MISMATCH",
+        "V14_MULTIPLIER_SCALE_SUBSTITUTION"
+      ],
+      "observed_result": [
+        {
+          "case_id": "V8_SCALE_MISMATCH",
+          "baseline_status": "FAIL",
+          "mutant_status": "PASS",
+          "mutant_reason_code": "EXACT_CONVERSION_ESTABLISHED",
+          "mutant_derived_value": {
+            "mantissa": "1543125",
+            "decimals": 4
+          }
+        },
+        {
+          "case_id": "V14_MULTIPLIER_SCALE_SUBSTITUTION",
+          "baseline_status": "FAIL",
+          "mutant_status": "PASS",
+          "mutant_reason_code": "EXACT_CONVERSION_ESTABLISHED",
+          "mutant_derived_value": {
+            "mantissa": "15431250",
+            "decimals": 4
+          }
+        }
+      ],
+      "status": "KILLED",
+      "patch_occurrences": 1,
+      "mutant_source_sha256": "d1f196e408c59686e8b1e0f79c1b1a34d5a30d9783467f3a4fedc348d221b44d",
+      "positive_controls_preserved": 2
+    },
+    {
+      "mutation_id": "M7",
+      "changed_rule": "Numeric coincidence treated as semantic equivalence without conversion",
+      "killer_vectors": [
+        "V2_NUMERIC_COINCIDENCE_DIRECT_PROMOTION"
+      ],
+      "observed_result": [
+        {
+          "case_id": "V2_NUMERIC_COINCIDENCE_DIRECT_PROMOTION",
+          "baseline_status": "FAIL",
+          "mutant_status": "PASS",
+          "mutant_reason_code": "MUTANT_RAW_PROMOTION",
+          "mutant_derived_value": {
+            "mantissa": "1234500",
+            "decimals": 4
+          }
+        }
+      ],
+      "status": "KILLED",
+      "patch_occurrences": 1,
+      "mutant_source_sha256": "52bb0811841be007ac473706e3438375bc0135ffdaf1187320e3af2d2216a4b0",
+      "positive_controls_preserved": 2
+    }
+  ]
+}

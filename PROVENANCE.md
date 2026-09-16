@@ -5,7 +5,7 @@
 - Repository: pipavlo82/semantic-execution-guard
 - URL: https://github.com/pipavlo82/semantic-execution-guard
 - Repository creation timestamp (GitHub API): 2026-09-16T17:51:51Z
-- Initial commit SHA: pending creation of this commit; recorded in the next provenance update without rewriting this root commit.
+- Initial commit SHA: `093dc4f7832c1e18ede0bf9de6fb590aad6fbea8` (also local main; recorded after creation without rewriting the root commit).
 
 ## Pre-existing foundation
 

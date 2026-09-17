@@ -8,9 +8,11 @@ import {MockAggregatorV3} from "./mocks/MockAggregatorV3.sol";
 /// @notice Named vectors mirror relations/robinhood-stock-token-v0/vectors.json's own
 /// case_id convention where the on-chain analog exists, plus the vectors that only
 /// make sense on-chain (staleness, incomplete round, unregistered asset, feed
-/// re-registration). This is NOT a port of the off-chain relation test suite --
-/// recompute.mjs/mutations.mjs already own that; this suite proves the on-chain
-/// enforcement layer this repo's contracts/README.md said did not exist yet.
+/// re-registration, and the hardening vectors an independent audit named -- see
+/// each test's own header comment for attribution). This is NOT a port of the
+/// off-chain relation test suite -- recompute.mjs/mutations.mjs already own that;
+/// this suite proves the on-chain enforcement layer this repo's contracts/README.md
+/// said did not exist yet.
 contract SemanticExecutionGuardTest is Test {
     bytes32 constant ASSET_A = keccak256("synthetic:equity-A");
     uint256 constant MAX_STALENESS = 3600;
@@ -45,25 +47,23 @@ contract SemanticExecutionGuardTest is Test {
     /// V2_NUMERIC_COINCIDENCE_DIRECT_PROMOTION analog, the actual point of this
     /// handoff: this is a STRUCTURAL test, not a value-based one. It proves the
     /// off-chain "raw quote" can never reach execution not because we compare it
-    /// and reject a mismatch, but because executeAtOraclePrice has no parameter
+    /// and reject a mismatch, but because establishExecutablePrice has no parameter
     /// through which any externally-supplied price -- correct-looking or not --
     /// could ever be substituted for the oracle's own fresh read. Demonstrated by
-    /// reflection on the function's ABI: its only non-fixed argument is
-    /// `amountTokens`, a quantity, never a price.
+    /// reflection on the function's ABI: its only argument is `assetId`, never a
+    /// price.
     function test_V2_protectedActionAcceptsNoExternalPrice() public pure {
-        bytes4 selector = SemanticExecutionGuard.executeAtOraclePrice.selector;
-        // executeAtOraclePrice(bytes32,uint256) -- keccak256 selector fixed at
-        // compile time by the signature itself; asserting it here pins the
-        // contract's real ABI shape so a future edit that quietly adds a price
-        // parameter changes this selector and fails this test loudly.
-        assertEq(selector, bytes4(keccak256("executeAtOraclePrice(bytes32,uint256)")));
+        bytes4 selector = SemanticExecutionGuard.establishExecutablePrice.selector;
+        // establishExecutablePrice(bytes32) -- keccak256 selector fixed at compile
+        // time by the signature itself; asserting it here pins the contract's real
+        // ABI shape so a future edit that quietly adds a price parameter changes
+        // this selector and fails this test loudly.
+        assertEq(selector, bytes4(keccak256("establishExecutablePrice(bytes32)")));
     }
 
     /// Same V2 property, demonstrated by actual execution rather than only by
-    /// selector shape: two calls that differ ONLY in what a caller might have
-    /// separately claimed as the "raw quote" (impossible to even express as an
-    /// argument here) execute identically, because the price always comes from
-    /// the same oracle read regardless of any surrounding narrative.
+    /// selector shape: the value returned is always the oracle read, with no call
+    /// shape available to substitute a caller's own claimed number.
     function test_V2_executionIsInvariantToClaimedRawQuote_byConstruction() public {
         feedA.setRound(10, 1543125, block.timestamp - 10, block.timestamp - 10, 10);
         (int256 priceBefore,,,) = guard.getExecutablePrice(ASSET_A);
@@ -71,13 +71,9 @@ contract SemanticExecutionGuardTest is Test {
         // A caller "believes" (off-chain, out of band) the raw underlying quote was
         // 1543125 too -- the exact V2 coincidence case. There is no on-chain call
         // shape that lets them assert this into the execution path.
-        (int256 executedPrice, uint256 notional) = guard.executeAtOraclePrice(ASSET_A, 2);
+        (int256 establishedPrice,,,) = guard.establishExecutablePrice(ASSET_A);
 
-        assertEq(executedPrice, priceBefore);
-        // priceBefore was just returned by getExecutablePrice, which reverts on
-        // <= 0 -- safe to cast for this assertion.
-        // forge-lint: disable-next-line(unsafe-typecast)
-        assertEq(notional, 2 * uint256(priceBefore));
+        assertEq(establishedPrice, priceBefore);
     }
 
     function test_staleAnswer_reverts() public {
@@ -138,6 +134,49 @@ contract SemanticExecutionGuardTest is Test {
         vm.prank(address(0xBEEF));
         vm.expectRevert(SemanticExecutionGuard.NotOwner.selector);
         guard.registerFeed(keccak256("synthetic:equity-C"), newFeed);
+    }
+
+    /// Hardening vector 1a (independent audit, Pavlo, ethglobal build thread,
+    /// against commit 8dc4f92): registering the zero address as a feed used to
+    /// succeed silently and only fail later, non-obviously, the first time
+    /// getExecutablePrice tried to call a function on address(0).
+    function test_HARDENED_registerFeed_rejectsZeroAddress() public {
+        vm.expectRevert(SemanticExecutionGuard.ZeroFeedAddress.selector);
+        guard.registerFeed(keccak256("synthetic:equity-D"), address(0));
+    }
+
+    /// Hardening vector 1b (same audit): registering an EOA (or any address with
+    /// no deployed code) as a feed used to succeed silently for the same reason.
+    function test_HARDENED_registerFeed_rejectsNonContractAddress() public {
+        address eoa = address(0xC0FFEE);
+        vm.expectRevert(abi.encodeWithSelector(SemanticExecutionGuard.FeedNotAContract.selector, eoa));
+        guard.registerFeed(keccak256("synthetic:equity-E"), eoa);
+    }
+
+    /// Hardening vector 2a (same audit): `updatedAt == 0` (a feed that has never
+    /// actually reported, e.g. a freshly-deployed but unpopulated aggregator) used
+    /// to pass through to the staleness subtraction and be treated as "maximally
+    /// stale" rather than flagged as the distinct "never reported" case.
+    function test_HARDENED_zeroUpdatedAt_reverts() public {
+        feedA.setRound(10, 1543125, 0, 0, 10);
+        vm.expectRevert(abi.encodeWithSelector(SemanticExecutionGuard.ZeroUpdatedAt.selector, ASSET_A));
+        guard.getExecutablePrice(ASSET_A);
+    }
+
+    /// Hardening vector 2b, the most serious of the four (same audit): a feed
+    /// reporting `updatedAt > block.timestamp` (a malicious or badly clock-skewed
+    /// feed claiming to be from the future) used to make
+    /// `block.timestamp - updatedAt` underflow. Solidity 0.8's checked arithmetic
+    /// turns that into a bare `Panic(0x11)` instead of this contract's own typed,
+    /// informative error -- confirmed by reproducing the panic on the
+    /// pre-hardening contract before writing this fix.
+    function test_HARDENED_futureUpdatedAt_revertsWithTypedError_notPanic() public {
+        uint256 future = block.timestamp + 1;
+        feedA.setRound(10, 1543125, future, future, 10);
+        vm.expectRevert(
+            abi.encodeWithSelector(SemanticExecutionGuard.FutureUpdatedAt.selector, ASSET_A, future, block.timestamp)
+        );
+        guard.getExecutablePrice(ASSET_A);
     }
 
     /// Boundary check on the staleness window itself: exactly at the bound passes,

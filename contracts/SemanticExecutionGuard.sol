@@ -31,9 +31,20 @@ interface IAggregatorV3 {
 /// mode: a no-corporate-action window where raw and adjusted values coincide would
 /// silently pass, then the SAME check would fail open at the exact moment a split or
 /// dividend makes them diverge, which is the highest-stakes moment for it to hold.
-/// This guard avoids that shape structurally: the protected action has no parameter
-/// through which an off-chain quote could ever become the executable price. The only
-/// value ever used for execution is this contract's own fresh oracle read.
+/// This guard avoids that shape structurally: `establishExecutablePrice` has no
+/// parameter through which an off-chain quote could ever become the executable
+/// price. The only value ever used is this contract's own fresh oracle read.
+///
+/// @dev v0 scope, per an independent audit (Pavlo, ethglobal build thread,
+/// confirmed against commit 8dc4f92 and fixed here): this contract ESTABLISHES an
+/// executable price and receipts it -- it does not itself execute a protected state
+/// transition (no token transfer, no trade settlement). Do not read the function
+/// name as implying dispatch; a future protected action that consumes this price is
+/// a separate, not-yet-built component. Relatedly, this v0 deliberately does NOT
+/// compute or expose any "notional" (amount * price) figure, because no ERC-20
+/// decimals are bound to a feed registration -- doing that math here would silently
+/// imply a unit scale nothing in this contract actually defines. A future consumer
+/// that knows its own token's decimals is responsible for that arithmetic.
 contract SemanticExecutionGuard {
     /// @notice Registered (feed, asset) binding. A feed address alone is not enough --
     /// this guards against a caller supplying a real Chainlink feed for the WRONG
@@ -50,9 +61,13 @@ contract SemanticExecutionGuard {
 
     error UnknownAsset(bytes32 assetId);
     error FeedAlreadyRegistered(bytes32 assetId, address existingFeed);
+    error ZeroFeedAddress();
+    error FeedNotAContract(address feed);
     error StaleAnswer(bytes32 assetId, uint256 updatedAt, uint256 nowTs, uint256 maxStaleness);
     error NonPositiveAnswer(bytes32 assetId, int256 answer);
     error IncompleteRound(bytes32 assetId, uint80 roundId, uint80 answeredInRound);
+    error ZeroUpdatedAt(bytes32 assetId);
+    error FutureUpdatedAt(bytes32 assetId, uint256 updatedAt, uint256 nowTs);
     error NotOwner();
 
     event FeedRegistered(bytes32 indexed assetId, address indexed feed);
@@ -74,7 +89,13 @@ contract SemanticExecutionGuard {
     /// set -- re-pointing a live asset's feed is exactly the kind of silent
     /// substitution this guard exists to make impossible, so it is disallowed
     /// entirely rather than gated behind a second owner-only call.
+    /// @dev Rejects the zero address and any address with no deployed code (an EOA,
+    /// or an address nothing has been deployed to yet) -- both would otherwise pass
+    /// registration silently and only revert later, non-obviously, the first time
+    /// `getExecutablePrice` tries to call a function that doesn't exist there.
     function registerFeed(bytes32 assetId, address feed) external onlyOwner {
+        if (feed == address(0)) revert ZeroFeedAddress();
+        if (feed.code.length == 0) revert FeedNotAContract(feed);
         if (feedOf[assetId] != address(0)) {
             revert FeedAlreadyRegistered(assetId, feedOf[assetId]);
         }
@@ -84,10 +105,11 @@ contract SemanticExecutionGuard {
 
     /// @notice The ONLY source of an executable price this contract recognizes.
     /// Reverts (does not silently return a fallback) on: unregistered asset,
-    /// incomplete round, non-positive answer, or staleness past the configured
-    /// bound. Returns the adjusted price and its native feed decimals -- callers
-    /// must NOT re-apply any multiplier; the returned value is already the full,
-    /// multiplier-adjusted per-token price per Robinhood's own feed contract.
+    /// incomplete round, non-positive answer, an unset or future `updatedAt`, or
+    /// staleness past the configured bound. Returns the adjusted price and its
+    /// native feed decimals -- callers must NOT re-apply any multiplier; the
+    /// returned value is already the full, multiplier-adjusted per-token price per
+    /// Robinhood's own feed contract.
     function getExecutablePrice(bytes32 assetId)
         public
         view
@@ -105,6 +127,19 @@ contract SemanticExecutionGuard {
         if (adjustedPrice <= 0) {
             revert NonPositiveAnswer(assetId, adjustedPrice);
         }
+        if (updatedAt == 0) {
+            revert ZeroUpdatedAt(assetId);
+        }
+        // `block.timestamp - updatedAt` below is unchecked-unsafe if updatedAt could
+        // ever exceed block.timestamp -- Solidity 0.8's default checked arithmetic
+        // would revert with a bare Panic(0x11) rather than this contract's own
+        // typed error, which is both worse UX for an integrator and a real signal
+        // that something upstream (a malicious or badly clock-skewed feed) reported
+        // impossible data. Reject explicitly, before the subtraction, with context.
+        // forge-lint: disable-next-line(block-timestamp)
+        if (updatedAt > block.timestamp) {
+            revert FutureUpdatedAt(assetId, updatedAt, block.timestamp);
+        }
         // block.timestamp is validator-influenceable only by a few seconds; this
         // check's own window is an hour-scale operational staleness bound, not a
         // security boundary sized to resist that magnitude of manipulation.
@@ -116,27 +151,23 @@ contract SemanticExecutionGuard {
         feedDecimals = IAggregatorV3(feed).decimals();
     }
 
-    /// @notice The protected action. Deliberately takes NO price parameter of any
-    /// kind -- there is no argument through which a caller could pass an off-chain
-    /// UnderlyingEquityQuote (raw or "already adjusted, trust me") and have it
-    /// used for execution. `amountTokens` is the only caller-supplied quantity;
-    /// every price figure in the emitted receipt comes from `getExecutablePrice`,
-    /// read fresh in this same call, not accepted as input.
-    function executeAtOraclePrice(bytes32 assetId, uint256 amountTokens)
+    /// @notice Establishes and receipts the current executable price for `assetId`.
+    /// Deliberately takes NO price parameter of any kind -- there is no argument
+    /// through which a caller could pass an off-chain UnderlyingEquityQuote (raw or
+    /// "already adjusted, trust me") and have it used here. Every price figure in
+    /// the emitted receipt comes from `getExecutablePrice`, read fresh in this same
+    /// call, not accepted as input.
+    /// @dev Named `establish`, not `execute`, on purpose (see the contract-level
+    /// @dev note): this does not transfer tokens, settle a trade, or perform any
+    /// other state transition -- it is the price-establishment step a real
+    /// protected action would call before doing so. It also does not compute or
+    /// return any amount-scaled "notional" value, since no token decimals are bound
+    /// to a feed registration in this v0.
+    function establishExecutablePrice(bytes32 assetId)
         external
-        returns (int256 adjustedPrice, uint256 notional)
+        returns (int256 adjustedPrice, uint8 feedDecimals, uint80 roundId, uint256 updatedAt)
     {
-        uint8 feedDecimals;
-        uint80 roundId;
-        uint256 updatedAt;
         (adjustedPrice, feedDecimals, roundId, updatedAt) = getExecutablePrice(assetId);
-
-        // casting to uint256 is safe because getExecutablePrice() above already
-        // reverts on adjustedPrice <= 0 (NonPositiveAnswer) -- a strictly positive
-        // int256 always fits into uint256 without truncation.
-        // forge-lint: disable-next-line(unsafe-typecast)
-        notional = amountTokens * uint256(adjustedPrice);
-
         emit ExecutablePriceEstablished(assetId, adjustedPrice, feedDecimals, roundId, updatedAt);
     }
 }

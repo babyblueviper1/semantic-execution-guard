@@ -3,5 +3,5 @@ src = "contracts"
 test = "test"
 script = "script"
 out = "out"
-libs = []
+libs = ["lib"]
 solc_version = "0.8.28"
